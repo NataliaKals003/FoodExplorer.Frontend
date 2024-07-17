@@ -7,10 +7,10 @@ export const Container = styled.div`
     align-items: center;
     background-color: ${({ theme }) => theme.COLORS.DARK_900};
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    border-radius: 5px;
-    padding: 12px 0;
-    padding-left: 99px;
-    padding-right: 20px;
+    border-radius: 0.31rem;
+    padding: 0.75rem 0;
+    padding-left: 6.18rem;
+    padding-right: 1.25rem;
 
     > input {
         font-style: normal;
@@ -27,7 +27,7 @@ export const Container = styled.div`
     
 
     > svg {
-        margin-right: 4px;
+        margin-right: 0.25rem;
     }
 `;
 

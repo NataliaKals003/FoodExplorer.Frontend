@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LAYOUT_BREAKPOINTS } from "../../styles/layoutBreakpoints";
 
 export const Container = styled.div`
     width: 100;
@@ -11,5 +12,9 @@ export const Container = styled.div`
     "content"
     "footer"
     ;
+
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+       
+    }
 `;
 
