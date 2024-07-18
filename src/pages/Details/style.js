@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { LAYOUT_BREAKPOINTS } from "../../styles/layoutBreakpoints";
 
 export const Container = styled.div`
-    width: 100;
+    display: flex;
+    flex-direction: column;
     height: 100vh;
 
     display: grid;
@@ -18,3 +19,10 @@ export const Container = styled.div`
     }
 `;
 
+// export const Content = styled.div`
+//     flex: 1;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center
+// ;`
