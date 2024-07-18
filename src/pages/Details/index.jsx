@@ -7,7 +7,6 @@ export function Details() {
   return (
     <Container>
       <Header />
-
       <Button title="Include" />
       <Footer />
     </Container>

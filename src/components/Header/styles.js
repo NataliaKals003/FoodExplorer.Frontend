@@ -7,7 +7,7 @@ export const Container = styled.header`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 1.75rem 2rem;
+    padding: 1.75rem 6rem;
     height: 6.5rem;
     width: 100%;
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
