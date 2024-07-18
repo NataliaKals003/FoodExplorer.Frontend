@@ -5,31 +5,33 @@ export const Container = styled.aside`
     display: none;
 
     @media(max-width: ${LAYOUT_BREAKPOINTS.MD}) {
-         
     display: flex;
-    align-items: center;
     flex-direction: column;
-    width: 100%; 
+    width: 100%;
     height: 100vh;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: ${({ theme }) => theme.COLORS.DARK_900};
+    background-color: ${({ theme }) => theme.COLORS.DARK_400};
     transition: transform 0.3s ease;
     transform: translateX(0);
     }
 `;
 
 export const MenuHader = styled.header`
+    background-color: ${({ theme }) => theme.COLORS.DARK_700};
     display: flex;
+    flex-direction: row;
     align-items: center;
-    padding: 1rem;
+    padding: 3.5rem 1.75rem 1.5rem;
+    height: 6.5rem;
 `;
 
 export const Title = styled.div`
-    font-size: 1.31rem;
+    font-size: 1.4rem;
     font-weight: 400;
+    margin-left: 1rem;
 `;
 
 export const CloseButton = styled.button`
@@ -37,18 +39,31 @@ export const CloseButton = styled.button`
   border: none;
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
   cursor: pointer;
-  font-size: 24px;
 `;
 
-export const Nav = styled.div`
-
-`;
 
 export const Search = styled.div`
-
+    margin: 0; 
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    z-index: 1000; 
+    padding: 2rem 1.75rem; 
+    
 `;
 
 export const Logout = styled.button`
-
+    background: none;
+    border: none;
+    color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    font-size: 1.5rem;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    margin: 0 1.75rem;
+    border-bottom: solid 3px ${({ theme }) => theme.COLORS.DARK_1000};  
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
 `;
+
+
 
