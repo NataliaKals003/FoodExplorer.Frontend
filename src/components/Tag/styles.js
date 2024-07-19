@@ -8,5 +8,4 @@ export const Container = styled.span`
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font-family: "Poppins", sans-serif;
     font-size: 0.75rem;
-    
 `;
