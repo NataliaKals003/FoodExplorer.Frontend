@@ -41,7 +41,7 @@ export const Content = styled.div`
 
   img {
     flex: none;
-    width: 40%;  
+    width: 30%;  
     height: auto; 
     margin-right: 2rem;
   }
