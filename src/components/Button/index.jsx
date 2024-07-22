@@ -1,6 +1,6 @@
 import { Container } from './styles';
 
-export function Button({ title, icon: Icon, loading = false, ...rest }) {
+export function Button({ title, icon: Icon, loading = false, children, ...rest }) {
     return (
         <Container
             type="button"
@@ -8,7 +8,7 @@ export function Button({ title, icon: Icon, loading = false, ...rest }) {
             {...rest}
         >
             {Icon && <Icon style={{ marginRight: '11px' }} size={23} />}
-            {loading ? "Loading..." : title}
+            {loading ? "Loading..." : children || title}
         </Container>
     );
 }
