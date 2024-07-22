@@ -120,7 +120,6 @@ export const Content = styled.div`
     img {
       width: 50%;
     }
-    
   }
   
   @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
