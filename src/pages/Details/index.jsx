@@ -7,6 +7,7 @@ import { Button } from '../../components/Button/index.jsx';
 import { Footer } from '../../components/Footer/index.jsx';
 import dishSalad from '../../assets/dishSalad.svg'
 import { IoChevronBack } from "react-icons/io5";
+import { PiReceiptBold } from "react-icons/pi";
 
 export function Details() {
   return (
@@ -22,10 +23,17 @@ export function Details() {
             <Tag title="alface" />
             <Tag title="cebola" />
             <Tag title="pepino" />
+            <Tag title="pepino" />
+            <Tag title="pepino" />
+            <Tag title="pepino" />
           </TagsContainer>
           <div className="bottom-content">
-            <Amount amount="2" />
-            <Button title={`incluir ∙ R$ 25,00`} />
+            <Amount />
+            <Button className="include" title={`∙ R$ 25,00`}>
+              <PiReceiptBold className="icon" size={20} />
+              <span className="text-desktop">incluir ∙ R$ 25,00</span>
+              <span className="text-mobile">pedir ∙ R$ 25,00</span>
+            </Button>
           </div>
         </div>
       </Content>
