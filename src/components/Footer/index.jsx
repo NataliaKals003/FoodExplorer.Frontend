@@ -5,7 +5,7 @@ export function Footer() {
     return (
         <Container>
             <Logo>
-                <img src={polygonFooter} alt="Polygon" />
+                <img src={polygonFooter} size={24} alt="Polygon" />
                 <span>food explorer</span>
             </Logo>
             <div>

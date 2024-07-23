@@ -12,11 +12,22 @@ export const Container = styled.header`
     width: 100%;
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
 
-    .headerButton {
-        @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
-            display: none;
-        }   
+    @media (max-width: ${LAYOUT_BREAKPOINTS.LG}) {
+        padding: 3.5rem 1.75rem 1.5rem 1.75rem;
     }
+    
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        padding: 3.5rem 1.75rem 1.5rem 1.75rem;
+
+        .headerButton {
+            display: none;
+        }
+    }
+
+    @media (max-width: ${LAYOUT_BREAKPOINTS.SM}) {
+        padding: 3.5rem 1.75rem 1.5rem 1.75rem;
+    }
+
 `;
 
 export const Logo = styled.div`
