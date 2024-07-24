@@ -1,6 +1,6 @@
 import { Container, Content, TagsContainer } from './style.js';
 import { Header } from '../../components/Header/index.jsx';
-import { ButtonText } from '../../components/ButtonText';
+import { ButtonText } from '../../components/ButtonText/index.jsx';
 import { Tag } from '../../components/Tag/index.jsx';
 import { Amount } from '../../components/Amount/index.jsx';
 import { Button } from '../../components/Button/index.jsx';
@@ -16,7 +16,7 @@ export function Details() {
       <ButtonText className="backButton" icon={IoChevronBack} title="voltar" />
       <Content>
         <img src={dishSalad} alt="Salad" />
-        <div className="text-content">
+        <div className='text-content'>
           <h1>Salada Ravanello</h1>
           <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim. O pão naan dá um toque especial.</p>
           <TagsContainer>

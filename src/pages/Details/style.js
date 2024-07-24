@@ -35,13 +35,12 @@ export const Content = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 1rem;
   margin: 1.5rem 7.62rem 9.68rem 7.62rem;
   font-family: "Poppins", sans-serif;
 
   img {
     flex: none;
-    width: 40%;  
+    width: 30%;  
     height: auto; 
     margin-right: 2rem;
   }
@@ -116,6 +115,7 @@ export const Content = styled.div`
       }
     }
   }
+  
   @media (max-width: ${LAYOUT_BREAKPOINTS.LG}) {
     img {
       width: 50%;
