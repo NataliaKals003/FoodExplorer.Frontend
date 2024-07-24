@@ -176,4 +176,13 @@ export const TextBanner = styled.div`
 
 export const Content = styled.div`
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        font-size: 1.12rem;
+        font-family: 'Poppins';
+        font-weight: 500;
+    }
 `;
