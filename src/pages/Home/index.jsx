@@ -1,21 +1,46 @@
 import { Container, Banner, Content, ImageContainer, TextBanner } from './styles';
 import { Header } from '../../components/Header';
 import macarons from '../../assets/macarons.svg';
-import { Card } from '../../components/Card'
+import salad from '../../assets/dishSalad.svg';
+import { Swiper } from '../../components/Swiper';
 import { Footer } from '../../components/Footer';
 
 export function Home() {
     const products = [
         {
-            title: "Spaguetty",
+            title: "Leo",
             description: "Delicioso folheado de pêssego com folhas de hortelã.",
-            imageUrl: "https://www.w3schools.com/w3images/pizza.jpg",
+            imageUrl: salad,
             price: 32.97
         },
         {
-            title: "Leo gostoso",
-            description: "My desc",
-            imageUrl: "https://www.w3schools.com/w3images/pizza.jpg",
+            title: "Natalia",
+            description: "Delicioso folheado de pêssego com folhas de hortelã.",
+            imageUrl: salad,
+            price: 32.97
+        },
+        {
+            title: "Natalia",
+            description: "Delicioso folheado de pêssego com folhas de hortelã.",
+            imageUrl: salad,
+            price: 32.97
+        },
+        {
+            title: "Natalia",
+            description: "Delicioso folheado de pêssego com folhas de hortelã.",
+            imageUrl: salad,
+            price: 32.97
+        },
+        {
+            title: "Natalia",
+            description: "Delicioso folheado de pêssego com folhas de hortelã.",
+            imageUrl: salad,
+            price: 32.97
+        },
+        {
+            title: "Natalia",
+            description: "Delicioso folheado de pêssego com folhas de hortelã.",
+            imageUrl: salad,
             price: 32.97
         }
     ];
@@ -34,19 +59,23 @@ export function Home() {
             </Banner>
             <Content>
                 <div className='Main'>
-                    <h1>Refeições</h1>
-                    {products.map((product) => <Card
-                        title={product.title}
-                        description={product.description}
-                        imageUrl={product.imageUrl}
-                        price={product.price}
-                    />)
-                    }
+                    <h2>Refeições</h2>
+                    <h3>Refeições</h3>
+                    <Swiper products={products} />
+                </div>
+                <div className='Desert'>
+                    <h2>Sobremesas</h2>
+                    <h3>Pratos principais</h3>
+                    <Swiper products={products} />
+                </div>
+                <div className='Drink'>
+                    <h2>Bebidas</h2>
+                    <h3>Pratos principais</h3>
+                    <Swiper products={products} />
                 </div>
             </Content>
             <Footer />
         </Container>
     );
 }
-
 
