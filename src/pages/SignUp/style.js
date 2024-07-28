@@ -61,8 +61,7 @@ export const Content = styled.div`
     .login {
         width: 100%;
         padding: 0.75rem 1rem;
-        border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};
-        border-radius: 0.3rem;
+        border-radius: 0.5rem;
         margin-bottom: 2rem;
         font-size: 1rem;
     }
@@ -79,4 +78,3 @@ export const Content = styled.div`
         margin-top: 2rem;
     }
 `;
-
