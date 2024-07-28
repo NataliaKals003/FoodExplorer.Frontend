@@ -10,7 +10,7 @@ export const Container = styled.aside`
     width: 100%;
     height: 100vh;
     position: fixed;
-    z-index: 1;
+    z-index: 3;
     top: 0;
     left: 0;
     background-color: ${({ theme }) => theme.COLORS.DARK_400};
@@ -48,7 +48,12 @@ export const Search = styled.div`
     justify-content: center;
     display: flex;
     z-index: 1000; 
-    padding: 2rem 1.75rem; 
+    
+
+    .headerInput {
+        padding: 0.75rem 0.81rem; 
+        margin: 1.75rem 2rem;
+    }
     
 `;
 

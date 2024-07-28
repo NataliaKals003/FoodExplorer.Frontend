@@ -6,7 +6,7 @@ import { IoSearchOutline } from "react-icons/io5";
 
 export function SideMenu({ closeMenu }) {
     return (
-        <Container>
+        <Container >
             <MenuHader>
                 <CloseButton onClick={closeMenu}>
                     <AiOutlineClose size={18} />
@@ -14,7 +14,9 @@ export function SideMenu({ closeMenu }) {
                 <Title>Menu</Title>
             </MenuHader>
             <Search>
-                <Input placeholder="Seach by dishes or ingredients" icon={IoSearchOutline} />
+                <Input
+                    className="headerInput"
+                    placeholder="Seach by dishes or ingredients" icon={IoSearchOutline} />
             </Search>
             <Logout>Sair</Logout>
             <div style={{ marginTop: 'auto' }}></div>
