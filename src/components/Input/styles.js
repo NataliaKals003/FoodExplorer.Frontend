@@ -8,9 +8,9 @@ export const Container = styled.div`
     background-color: ${({ theme }) => theme.COLORS.DARK_900};
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
     border-radius: 0.31rem;
-    padding: 0.75rem 0;
+    /* padding: 0.75rem 0;
     padding-left: 6.18rem;
-    padding-right: 1.25rem;
+    padding-right: 1.25rem; */
 
     > input {
         font-style: normal;
@@ -20,7 +20,7 @@ export const Container = styled.div`
         border: 0;
         width: 100%;
 
-        &:placeholder {
+        &::placeholder {
             color: ${({ theme }) => theme.COLORS.LIGHT_500};
         }
     }
