@@ -21,10 +21,5 @@ export const Container = styled.div`
             color: ${({ theme }) => theme.COLORS.LIGHT_500};
         }
     }
-    
-
-    > svg {
-        margin-right: 0.25rem;
-    }
 `;
 

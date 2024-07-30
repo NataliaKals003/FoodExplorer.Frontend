@@ -29,13 +29,19 @@ export function Header() {
                 </div>
             </Logo>
             <Search>
-                <Input placeholder="Seach by dishes or ingredients" icon={IoSearchOutline} />
+                <Input
+                    className="header"
+                    placeholder="Seach by dishes or ingredients"
+                    icon={IoSearchOutline} />
             </Search>
             <OrdersIcon>
                 <PiReceiptBold />
                 <span>{orderCount}</span>
             </OrdersIcon>
-            <Button className="headerButton" icon={PiReceiptBold} title={`Pedidos (${orderCount})`} />
+            <Button
+                className="headerButton"
+                icon={PiReceiptBold}
+                title={`Pedidos (${orderCount})`} />
             <Logout><LuLogOut /></Logout>
             {isSideMenuOpen && <SideMenu closeMenu={toggleSideMenu} />}
         </Container >
