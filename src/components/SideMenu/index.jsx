@@ -1,6 +1,6 @@
 import { Container, MenuHader, Title, CloseButton, Search, Logout } from "./styles";
 import { Footer } from '../Footer';
-import { Input } from "../Input";
+import { InputHeader } from "../InputHeader";
 import { AiOutlineClose } from 'react-icons/ai';
 import { IoSearchOutline } from "react-icons/io5";
 
@@ -14,9 +14,11 @@ export function SideMenu({ closeMenu }) {
                 <Title>Menu</Title>
             </MenuHader>
             <Search>
-                <Input
-                    className="headerInput"
-                    placeholder="Seach by dishes or ingredients" icon={IoSearchOutline} />
+                <InputHeader
+                    placeholder="Seach by dishes or ingredients"
+                    icon={IoSearchOutline}
+                    type="text"
+                    mobile={true} />
             </Search>
             <Logout>Sair</Logout>
             <div style={{ marginTop: 'auto' }}></div>

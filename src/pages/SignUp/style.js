@@ -6,6 +6,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-around;
     gap: 3rem;
+    overflow-y: auto;
 `;
 
 export const Logo = styled.div`

@@ -1,10 +1,16 @@
 import styled from "styled-components";
+import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
+
 
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     color: ${({ theme }) => theme.COLORS.LIGHT_400};    
+
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        width: 100%;
+    }
 
     > label {
         display: flex;

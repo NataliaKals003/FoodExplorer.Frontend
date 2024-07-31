@@ -1,4 +1,4 @@
-import { Container, Form, DishDetails, DishAttributes, DishDescription, TextArea } from "./styles";
+import { Container, Form, DishDetails, DishAttributes } from "./styles";
 import { Header } from '../../components/Header';
 import { ButtonText } from "../../components/ButtonText";
 import { Input } from "../../components/Input";
@@ -10,9 +10,10 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { SelectDish } from "../../components/SelectDish";
 import { Ingredients } from "../../components/Ingredients";
 import { Description } from "../../components/Description";
+import { Button } from "../../components/Button";
 
 
-export function AddDish() {
+export function ManageDish() {
 
     const currencySymbol = "R$";
 
@@ -43,6 +44,7 @@ export function AddDish() {
                         <Input title="Preço" placeholder={currencySymbol} type="number" />
                     </DishAttributes>
                     <Description title="Descrição" placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
+                    <Button className="SaveDish" title="Salvar alterações" />
                 </Form>
             </main>
             <Footer />

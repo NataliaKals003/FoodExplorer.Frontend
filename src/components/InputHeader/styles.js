@@ -16,7 +16,7 @@ export const Container = styled.div`
     }
 
     > input {
-        flex: none;
+        flex: 1;
         background: transparent;
         border: none;
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
@@ -27,4 +27,8 @@ export const Container = styled.div`
             width: 100%;
         }
     }
+
+    &.mobile {
+            margin: 1.75rem 2rem;
+        }
 `;

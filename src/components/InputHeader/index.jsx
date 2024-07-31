@@ -1,8 +1,8 @@
 import { Container } from "./styles";
 
-export function InputHeader({ placeholder, icon: Icon, ...rest }) {
+export function InputHeader({ placeholder, mobile, icon: Icon, ...rest }) {
     return (
-        <Container>
+        <Container className={`${mobile ? 'mobile' : ''}`}>
             {Icon && <Icon size={23} />}
             <input {...rest} placeholder={placeholder} />
         </Container>

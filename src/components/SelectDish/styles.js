@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { LAYOUT_BREAKPOINTS } from "../../styles/layoutBreakpoints";
+import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 
 export const Container = styled.div`
     display: flex;
@@ -11,15 +11,19 @@ export const Container = styled.div`
     span {
         margin-bottom: 1rem;
     }
+
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        width: 100%;
+    }
 `;
 
 export const SelectWrapper = styled.div`
-display: flex;
+    display: flex;
     align-items: center;
     position: relative;
 
     select {
-        flex: 1;
+        width: -webkit-fill-available;
         padding: 0.75rem 2rem;
         border-radius: 0.5rem;
         border: none;
@@ -32,7 +36,7 @@ display: flex;
     }
 
     .icon {
-        margin-left: -2.5rem; /* Adjust this value as needed */
+        margin-left: -2.5rem;
         font-size: 1.6rem;
         pointer-events: none;
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
