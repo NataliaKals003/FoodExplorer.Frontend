@@ -177,7 +177,6 @@ export const TextBanner = styled.div`
 export const Content = styled.div`
     flex-grow: 1;
     margin: 0rem 10rem 0rem 10rem;
-    overflow-y: auto;
 
     h3 {
         display: none;
