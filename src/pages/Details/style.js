@@ -8,17 +8,7 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
   .backButton {
-    background: none;
-    font-family: "Poppins", sans-serif;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
     margin: 2rem 0 2.62rem 7.62rem;
-    color: ${({ theme }) => theme.COLORS.LIGHT_300};
-
     svg {
       font-size: 2rem; 
     }

@@ -40,6 +40,7 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow-y: auto;
 
     > h2 {
         align-self: center;

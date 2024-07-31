@@ -1,30 +1,31 @@
 import styled from "styled-components";
+import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
+
 
 export const Container = styled.div`
-    width: 100%;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: ${({ theme }) => theme.COLORS.DARK_900};
-    color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    border-radius: 0.31rem;
+    flex-direction: column;
+    align-items: flex-start;
+    color: ${({ theme }) => theme.COLORS.LIGHT_400}; 
+
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        width: 100%;
+    }
 
     > input {
+        width: 100%;
         font-style: normal;
         font-weight: 400;
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
         background: transparent;
         border: 0;
-        width: 100%;
+        background-color: ${({ theme }) => theme.COLORS.DARK_800};
+        padding: 0.75rem 2rem;
+        border-radius: 0.5rem;
+        margin-top: 1rem;
 
-        &::placeholder {
-            color: ${({ theme }) => theme.COLORS.LIGHT_500};
+        &.dark {
+            background-color: ${({ theme }) => theme.COLORS.DARK_900};
         }
     }
-    
-
-    > svg {
-        margin-right: 0.25rem;
-    }
 `;
-

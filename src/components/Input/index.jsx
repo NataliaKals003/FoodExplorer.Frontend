@@ -1,8 +1,9 @@
 import { Container } from "./styles";
 
-export function Input({ className, icon: Icon, ...rest }) {
+export function Input({ icon: Icon, title, dark, ...rest }) {
     return (
-        <Container className={className}>
+        <Container className={`${dark ? 'dark' : ''}`}>
+            <span>{title}</span>
             {Icon && <Icon size={23} />}
             <input {...rest} />
         </Container>

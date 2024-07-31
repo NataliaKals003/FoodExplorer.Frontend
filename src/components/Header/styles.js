@@ -12,8 +12,18 @@ export const Container = styled.header`
     width: 100%;
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
 
+    .headerButton {
+        width: 20%;
+        justify-content: center;
+    }
+
     @media (max-width: ${LAYOUT_BREAKPOINTS.LG}) {
         padding: 3.5rem 1.75rem 1.5rem 1.75rem;
+
+        .headerButton {
+            width: 23%;
+            justify-content: center;
+        }
     }
     
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
@@ -75,8 +85,21 @@ export const Logout = styled.button`
 
 export const Search = styled.div`
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex: 1;
     margin: 0 2rem;
+    height: 100px;
+    
+    .header {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 6rem;
+        
+        > svg {
+            margin-right: 0.5rem;
+        }
+    }
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
         display: none;

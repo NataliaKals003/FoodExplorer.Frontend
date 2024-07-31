@@ -21,12 +21,15 @@ export const Content = styled.div`
         height: 1.5rem;
         width: 1.5rem;
         align-self: end;
-        margin: 1rem;
+        margin: 1rem 1rem 0 0;
 
         @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
-            margin: 0.5rem;
-            height: 1.2rem;
-            width: 1.2rem;
+
+            .heartFavourite, .heart{
+                margin: 0.5rem;
+                height: 1.2rem;
+                width: 1.2rem;
+            }
         }
     }
 
@@ -35,100 +38,71 @@ export const Content = styled.div`
     }
 
     > img {
-        margin: 0rem 2rem 0.75rem 2rem; 
-        width: 5.5rem;
-        height: 5.5rem;
         border-radius: 50%;
+        margin: -1rem 0rem 1rem; 
+        width: 11rem;
+        height: 11rem;
     }
 
     h1 {
         font-family: "Poppins", sans-serif;
-        font-size: 0.8rem;
-        font-weight: 500;
-        margin-bottom: 0.75rem;
         text-align: center; 
+        font-size: 1.5rem;
+        font-weight: 700;
     }
 
     p {
-        display: none;
+        font-weight: 400;
+        font-size: 0.7rem;
+        margin: 1rem 1.5rem;
+        text-align: center;
+        word-wrap: break-word;
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};;
     }
 
     .price {
-        font-size: 1rem;
         font-weight: 400;
         color: ${({ theme }) => theme.COLORS.CAKE_200};
         margin-bottom: 0.75rem;
         text-align: center; 
+        font-size: 2rem;
     }
 
-    @media (min-width: ${LAYOUT_BREAKPOINTS.MD}) {
-
-        svg{
-            size: 18px;
-        }
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
 
         img {
-            margin: 0rem 3rem 1rem; 
+            margin: -1rem 3rem 1rem; 
             width: 6rem;
             height: 6rem;
         }
 
         p {
-            display: block;
-            width: 90%; 
-            font-weight: 400;
-            font-size: 0.7rem;
-            margin: 1rem 1.5rem;
-            text-align: center;
-            word-wrap: break-word;
+            display: none;
         }
 
         h1 {
-            font-size: 1rem;
-            font-weight: 700;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
 
         .price {
-            font-size: 1.5rem;
-        }
-    }
-
-    @media (min-width: ${LAYOUT_BREAKPOINTS.LG}) {
-        img {
-            margin: 0rem 3rem 1rem; 
-            width: 11rem;
-            height: 11rem;
-        }
-
-        p {
-            display: block;
-            width: 90%; 
-            font-weight: 400;
             font-size: 1rem;
-            margin: 1rem 1.5rem;
-            text-align: center;
-            word-wrap: break-word;
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .price {
-            font-size: 2rem;
+            margin-top: 0.75rem;
         }
     }
 `;
 
 export const Footer = styled.footer`
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin: 0 1.5rem 1.5rem;
+    margin: 0 3rem 1.5rem;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
 
     .cardAmount {
-        margin-bottom: 1.2rem;
+        margin-bottom: 0;
+
         span {
             font-size: 1rem;
             font-weight: 300;
@@ -138,53 +112,19 @@ export const Footer = styled.footer`
     .cardButton {
         font-size: 0.8rem;
         font-weight: 400;
-        border-radius: 0.5rem;
+        border-radius: 0.3rem;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0.25rem 2rem; /* Ajusta o padding para caber no card */
+        padding: 0.75rem 1.5rem;
     }
 
-    @media (min-width: ${LAYOUT_BREAKPOINTS.MD}) {
-        display: flex;
-        align-items: center;
-        flex-direction: row;
-        justify-content: center;
-        gap: 1rem;
-        margin: 1rem 0 1.5rem;
-
-        .cardAmount {
-            margin-bottom: 0;
-
-            span {
-                font-size: 1.3rem;
-            }
-        }
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        flex-direction: column;
+        margin: 0 1.5rem 1.5rem;
 
         .cardButton {
-            font-size: 0.8rem;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.3rem;
-        }
-    }
-
-    @media (min-width: ${LAYOUT_BREAKPOINTS.LG}) {
-        align-items: center;
-        flex-direction: row;
-
-        .cardAmount {
-            margin-bottom: 0;
-
-            span {
-                font-size: 1.5rem;
-            }
-        }
-
-        .cardButton {
-            font-size: 0.8rem;
-            padding: 0.8rem 1.5rem;
-            font-weight: 500;
-            border-radius: 0.3rem;
+            padding: 0.25rem 2rem;
         }
     }
 `;
