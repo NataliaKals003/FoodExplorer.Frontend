@@ -18,10 +18,11 @@ export function SideMenu({ closeMenu }) {
                     placeholder="Seach by dishes or ingredients"
                     icon={IoSearchOutline}
                     type="text"
-                    mobile={true} />
+                    mobile={true}
+                />
             </Search>
             <Logout>Sair</Logout>
-            <div style={{ marginTop: 'auto' }}></div>
+            <div style={{ marginTop: 'auto' }} />
             <Footer />
         </Container>
     )

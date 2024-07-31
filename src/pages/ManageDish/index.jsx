@@ -12,9 +12,7 @@ import { Ingredients } from "../../components/Ingredients";
 import { Description } from "../../components/Description";
 import { Button } from "../../components/Button";
 
-
 export function ManageDish() {
-
     const currencySymbol = "R$";
 
     return (

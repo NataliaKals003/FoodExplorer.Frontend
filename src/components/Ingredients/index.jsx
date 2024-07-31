@@ -3,7 +3,6 @@ import { TagItem } from "../TagIten";
 import { useState } from "react";
 
 export function Ingredients({ title }) {
-
     const [ingredients, setIngredients] = useState([]);
     const [newIngredient, setNewIngredient] = useState("");
 
