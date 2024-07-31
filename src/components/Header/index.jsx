@@ -1,6 +1,5 @@
 import { Container, Logo, Logout, Search, Menu, OrdersIcon } from "./styles";
 import { Button } from '../Button';
-import { Input } from "../Input";
 import { SideMenu } from "../SideMenu";
 import { LuLogOut } from "react-icons/lu";
 import { PiReceiptBold } from "react-icons/pi";
@@ -8,6 +7,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { BsList } from "react-icons/bs";
 import polygon from '../../assets/Polygon.svg';
 import { useState } from 'react';
+import { InputHeader } from "../InputHeader";
 
 export function Header() {
     const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
@@ -29,10 +29,10 @@ export function Header() {
                 </div>
             </Logo>
             <Search>
-                <Input
-                    className="header"
+                <InputHeader
                     placeholder="Seach by dishes or ingredients"
-                    icon={IoSearchOutline} />
+                    icon={IoSearchOutline}
+                    type="text" />
             </Search>
             <OrdersIcon>
                 <PiReceiptBold />

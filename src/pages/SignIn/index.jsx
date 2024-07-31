@@ -19,6 +19,7 @@ export function SignIn() {
                         className="login"
                         placeholder="Exemplo: exemplo@exemplo.com.br"
                         type="text"
+                        dark={true}
                     />
                     <span>Senha</span>
                     <Input
@@ -26,6 +27,7 @@ export function SignIn() {
                         placeholder="No mínimo 6 caracteres"
                         type="password"
                         maxLength={6}
+                        dark={true}
                     />
                     <Button title="Entrar" />
                     <ButtonText

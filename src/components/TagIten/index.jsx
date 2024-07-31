@@ -2,7 +2,7 @@ import { FiPlus, FiX } from 'react-icons/fi';
 import { Container, TagInput } from './styles';
 import { useEffect, useRef } from 'react';
 
-export function TagItem({ isNew = false, value, onClick, ...rest }) {
+export function TagItem({ isNew, value, placeholder, onClick, onChange, ...rest }) {
 
     const inputRef = useRef(null);
 
@@ -19,8 +19,9 @@ export function TagItem({ isNew = false, value, onClick, ...rest }) {
                 value={value}
                 readOnly={!isNew}
                 ref={inputRef}
+                onChange={onChange}
+                placeholder={isNew ? placeholder : ''}
                 {...rest}
-                placeholder={isNew ? 'Adicionar' : ''}
             />
 
             <button
@@ -30,7 +31,6 @@ export function TagItem({ isNew = false, value, onClick, ...rest }) {
             >
                 {isNew ? <FiPlus /> : <FiX />}
             </button>
-
         </Container>
     );
 }

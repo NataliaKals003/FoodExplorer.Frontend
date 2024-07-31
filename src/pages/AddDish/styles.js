@@ -36,99 +36,6 @@ export const DishDetails = styled.fieldset`
     gap: 2rem;
 `;
 
-export const UploadDishContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    color: ${({ theme }) => theme.COLORS.LIGHT_400};
-
-    > label {
-        display: flex;
-        align-items: center;
-        background-color: ${({ theme }) => theme.COLORS.DARK_800};
-        color: ${({ theme }) => theme.COLORS.LIGHT_100};
-        margin-top: 1rem;
-        padding: 0.75rem 2rem;
-        border-radius: 0.5rem;
-        width: auto;
-        
-        > svg {
-            font-size: 1.5rem;
-            margin-right: 0.5rem;
-        }
-
-        p {
-            font-family: 'Poppins';
-            font-size: 0.8rem;
-            font-weight: 400;
-        }
-    }
-
-    input {
-        display: none;
-    }
-`;
-
-export const DishNameContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex: 1;
-    color: ${({ theme }) => theme.COLORS.LIGHT_400};
-
-    .dishNameInput {
-        padding: 0.75rem 2rem;
-        border-radius: 0.5rem;
-        margin-top: 1rem;
-        background-color: ${({ theme }) => theme.COLORS.DARK_800};
-        color: ${({ theme }) => theme.COLORS.LIGHT_500};
-    }
-`;
-
-export const DishCategoryContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex: 1;
-    color: ${({ theme }) => theme.COLORS.LIGHT_400};
-
-    select {
-        margin-top: 1rem;
-        padding: 0.75rem 2rem;
-        border-radius: 0.5rem;
-        border: none;
-        margin-right: 1rem;
-        font-size: 1rem;
-        background-color: ${({ theme }) => theme.COLORS.DARK_800};
-        color: ${({ theme }) => theme.COLORS.LIGHT_400};
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-    }
-
-    .icon {
-        position: absolute;
-        right: 9.75rem;
-        top: 50%;
-        transform: translateY(-65%);
-        font-size: 1.6rem;
-        pointer-events: none; 
-        font-size: 1.6rem;
-
-        @media (max-width: ${LAYOUT_BREAKPOINTS.XL}) {
-            right: 9.75rem;
-            top: 57%;
-            transform: translateY(-50%);
-        }
-
-        @media (max-width: ${LAYOUT_BREAKPOINTS.LG}) {
-            right: 9.75rem;
-            top: 57%;
-            transform: translateY(-50%);
-        }
-    }
-`;
-
 export const DishAttributes = styled.fieldset`
     border: none;
     display: flex;
@@ -136,37 +43,6 @@ export const DishAttributes = styled.fieldset`
     justify-content: space-between;
     gap: 2rem;
     margin: 2rem 0;
-`;
-
-export const DishIngredientsContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    flex: 1;
-
-    section {
-        display: flex;
-        flex-wrap: wrap;
-        background-color: ${({ theme }) => theme.COLORS.DARK_800};
-        color: ${({ theme }) => theme.COLORS.LIGHT_500};
-        margin-top: 1rem;
-        border-radius: 0.5rem;
-    }
-`;
-
-export const DishPriceContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    color: ${({ theme }) => theme.COLORS.LIGHT_400};
-
-    .dishPriceInput {
-        padding: 0.75rem 2rem;
-        border-radius: 0.5rem;
-        margin-top: 1rem;
-        background-color: ${({ theme }) => theme.COLORS.DARK_800};
-        color: ${({ theme }) => theme.COLORS.LIGHT_500};
-    }
 `;
 
 export const DishDescription = styled.fieldset`
