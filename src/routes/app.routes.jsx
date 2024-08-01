@@ -9,6 +9,7 @@ export function AppRoutes() {
         <Routes>
             <Route path={appRoutes.home} element={<Home />} />
             <Route path={appRoutes.details} element={<Details />} />
+            <Route path={appRoutes.createDish} element={<ManageDish />} />
             <Route path={appRoutes.manageDish} element={<ManageDish />} />
         </Routes>
     )

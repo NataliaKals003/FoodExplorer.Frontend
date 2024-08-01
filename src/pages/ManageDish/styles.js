@@ -55,19 +55,6 @@ export const Form = styled.form`
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
         margin: 0 2rem 3.31rem;
     }
-
-    .SaveDish {
-        width: fit-content;
-        align-self: flex-end;
-        justify-content: center;
-        margin-top: 2rem;
-        
-    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
-        width: 100%;
-    }
-        
-    }
-
 `;
 
 export const DishDetails = styled.fieldset`
@@ -96,8 +83,26 @@ export const DishAttributes = styled.fieldset`
     }
 `;
 
+export const ButtonContainer = styled.div`
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-content: flex-end;
+    /* width: fit-content; */
 
+    .saveDish, .deleteDish {
+        width: fit-content;
+        align-self: center;
+        justify-content: center;
+    }
 
-
-
-
+    .deleteDish {
+        background-color: ${({ theme }) => theme.COLORS.DARK_800};
+    }
+        
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        .saveDish, .deleteDish {
+            width: 100%;
+        }
+    }
+`;
