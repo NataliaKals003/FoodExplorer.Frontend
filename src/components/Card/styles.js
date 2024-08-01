@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 
-export const Container = styled.div`
+export const Container = styled.button`
     background-color: ${({ theme }) => theme.COLORS.DARK_200};
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
     border: 1px solid ${({ theme }) => theme.COLORS.DARK_300};
@@ -10,6 +10,13 @@ export const Container = styled.div`
     flex-direction: column;
     max-width: 300px; 
     margin: 0 auto; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    
+    &:hover {
+        transform: scale(1.05); 
+        filter: brightness(1.2);
+    }
+    
 `;
 
 export const Content = styled.div`

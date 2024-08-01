@@ -7,8 +7,12 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { useNavigate } from 'react-router-dom';
+import { appRoutes } from '../../routes/routes';
 
 export function Swiper({ products }) {
+    const navigate = useNavigate();
+
     const prevRef = useRef(null);
     const nextRef = useRef(null);
 
@@ -52,6 +56,7 @@ export function Swiper({ products }) {
                 {products.map((product, index) => (
                     <SwiperSlide key={index}>
                         <Card
+                            onClick={() => navigate(appRoutes.details)}
                             title={product.title}
                             description={product.description}
                             imageUrl={product.imageUrl}

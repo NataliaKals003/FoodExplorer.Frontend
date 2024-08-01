@@ -8,12 +8,20 @@ import { Footer } from '../../components/Footer/index.jsx';
 import dishSalad from '../../assets/dishSalad.svg'
 import { IoChevronBack } from "react-icons/io5";
 import { PiReceiptBold } from "react-icons/pi";
+import { useNavigate } from 'react-router-dom';
+import { appRoutes } from '../../routes/routes.js';
 
 export function Details() {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <Header />
-      <ButtonText className="backButton" icon={IoChevronBack} title="voltar" />
+      <ButtonText
+        onClick={() => navigate(appRoutes.home)}
+        className="backButton"
+        icon={IoChevronBack}
+        title="voltar" />
       <Content>
         <img src={dishSalad} alt="Salad" />
         <div className='text-content'>
