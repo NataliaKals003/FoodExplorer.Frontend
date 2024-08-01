@@ -11,37 +11,43 @@ export function Home() {
             title: "Leo",
             description: "Delicioso folheado de pêssego com folhas de hortelã.",
             imageUrl: salad,
-            price: 32.97
+            price: 32.97,
+            id: 1
         },
         {
             title: "Natalia",
             description: "Delicioso folheado de pêssego com folhas de hortelã.",
             imageUrl: salad,
-            price: 32.97
+            price: 32.97,
+            id: 2
         },
         {
             title: "Natalia",
             description: "Delicioso folheado de pêssego com folhas de hortelã.",
             imageUrl: salad,
-            price: 32.97
+            price: 32.97,
+            id: 3
         },
         {
             title: "Natalia",
             description: "Delicioso folheado de pêssego com folhas de hortelã.",
             imageUrl: salad,
-            price: 32.97
+            price: 32.97,
+            id: 4
         },
         {
             title: "Natalia",
             description: "Delicioso folheado de pêssego com folhas de hortelã.",
             imageUrl: salad,
-            price: 32.97
+            price: 32.97,
+            id: 5
         },
         {
             title: "Natalia",
             description: "Delicioso folheado de pêssego com folhas de hortelã.",
             imageUrl: salad,
-            price: 32.97
+            price: 32.97,
+            id: 6
         }
     ];
 

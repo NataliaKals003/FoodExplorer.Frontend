@@ -4,7 +4,7 @@ import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
   .backButton {
@@ -21,7 +21,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  flex-grow: 1;
+  flex: 1;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -66,6 +66,7 @@ export const Content = styled.div`
         padding: 0.5rem 1rem;
         font-size: 1rem;
         cursor: pointer;
+        width: auto;
         
         .text-desktop {
           display: inline;

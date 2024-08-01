@@ -3,8 +3,12 @@ import polygon from '../../assets/Polygon.svg';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { ButtonText } from '../../components/ButtonText';
+import { useNavigate } from 'react-router-dom';
+import { authRoutes } from '../../routes/routes';
 
 export function SignIn() {
+    const navigate = useNavigate();
+
     return (
         <Container>
             <Logo>
@@ -31,6 +35,7 @@ export function SignIn() {
                     />
                     <Button title="Entrar" />
                     <ButtonText
+                        onClick={() => navigate(authRoutes.signUp)}
                         className="createAcount"
                         title="Criar uma conta" />
                 </Content>
