@@ -16,7 +16,6 @@ export const Container = styled.button`
         transform: scale(1.05); 
         filter: brightness(1.2);
     }
-    
 `;
 
 export const Content = styled.div`
@@ -31,7 +30,6 @@ export const Content = styled.div`
         margin: 1rem 1rem 0 0;
 
         @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
-
             .heartFavourite, .heart{
                 margin: 0.5rem;
                 height: 1.2rem;

@@ -56,7 +56,7 @@ export function Swiper({ products }) {
                 {products.map((product, index) => (
                     <SwiperSlide key={index}>
                         <Card
-                            onClick={() => navigate(appRoutes.details)}
+                            onClick={() => navigate(appRoutes.details.replace(':id', product.id))}
                             title={product.title}
                             description={product.description}
                             imageUrl={product.imageUrl}
