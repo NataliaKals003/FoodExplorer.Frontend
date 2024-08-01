@@ -6,5 +6,6 @@ export const authRoutes = {
 export const appRoutes = {
     home: '/',
     details: '/details/:id',
-    manageDish: '/manage-dish/:id',
+    createDish: '/dish',
+    manageDish: '/dish/:id',
 };
