@@ -15,22 +15,22 @@ export function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    function handleSignUp() {
+    function handleSingUp() {
         if (!name || !email || !password) {
-            return alert("Preenha todos os campos")
+            return alert("Fill in all fields");
         }
-
         api.post("/users", { name, email, password })
             .then(() => {
-                alert("Usuario cadastrado com sucesso!")
+                alert("User registered successfully");
+                navigate("/")
             })
             .catch(error => {
                 if (error.response) {
                     alert(error.response.data.message);
                 } else {
-                    alert("Nao foi possivel cadastrar");
+                    alert("It was not possible to register the user")
                 }
-            })
+            });
     }
 
     const navigate = useNavigate();
@@ -66,7 +66,7 @@ export function SignUp() {
                         maxLength={6}
                         onChange={e => setPassword(e.target.value)}
                     />
-                    <Button title="Criar conta" onClick={handleSignUp} />
+                    <Button title="Criar conta" onClick={handleSingUp} />
                     <ButtonText
                         onClick={() => navigate(authRoutes.signIn)}
                         className="createAcount"

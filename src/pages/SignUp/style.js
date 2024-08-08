@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LAYOUT_BREAKPOINTS } from "../../styles/layoutBreakpoints";
 
 export const Container = styled.div`
     height: 100vh;
@@ -7,6 +8,13 @@ export const Container = styled.div`
     justify-content: space-around;
     gap: 3rem;
     overflow-y: auto;
+    margin: 1rem;
+
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+    }
 `;
 
 export const Logo = styled.div`
@@ -32,6 +40,10 @@ export const Form = styled.form`
     align-items: center;
     border-radius: 1rem;
     background-color: ${({ theme }) => theme.COLORS.DARK_700};
+
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        background: none;
+    }
 `;
 
 export const Content = styled.div`
@@ -65,6 +77,7 @@ export const Content = styled.div`
         border-radius: 0.5rem;
         margin-bottom: 2rem;
         font-size: 1rem;
+        margin-top: 0;
     }
 
     > Button {
