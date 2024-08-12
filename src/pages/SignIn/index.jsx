@@ -5,8 +5,19 @@ import { Button } from '../../components/Button';
 import { ButtonText } from '../../components/ButtonText';
 import { useNavigate } from 'react-router-dom';
 import { authRoutes } from '../../routes/routes';
+import { useAuth } from '../../hooks/auth';
+import { useState } from 'react';
 
 export function SignIn() {
+    const { signIn } = useAuth();
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    function handleSignIn() {
+        signIn({ email, password })
+    }
+
     const navigate = useNavigate();
 
     return (
@@ -24,6 +35,7 @@ export function SignIn() {
                         placeholder="Exemplo: exemplo@exemplo.com.br"
                         type="text"
                         dark={true}
+                        onChange={e => setEmail(e.target.value)}
                     />
                     <span>Senha</span>
                     <Input
@@ -32,8 +44,12 @@ export function SignIn() {
                         type="password"
                         maxLength={6}
                         dark={true}
+                        onChange={e => setPassword(e.target.value)}
                     />
-                    <Button title="Entrar" />
+                    <Button
+                        title="Entrar"
+                        onClick={handleSignIn}
+                    />
                     <ButtonText
                         onClick={() => navigate(authRoutes.signUp)}
                         className="createAcount"

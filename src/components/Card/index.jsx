@@ -28,7 +28,7 @@ export function Card({ title, description, price, imageUrl, ...rest }) {
             <Footer>
                 <Amount className='cardAmount' />
                 <Button className='cardButton'>
-                    <span>incluir</span>
+                    incluir
                 </Button>
             </Footer>
         </Container>

@@ -15,6 +15,8 @@ export function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const navigate = useNavigate();
+
     function handleSingUp() {
         if (!name || !email || !password) {
             return alert("Fill in all fields");
@@ -32,8 +34,6 @@ export function SignUp() {
                 }
             });
     }
-
-    const navigate = useNavigate();
 
     return (
         <Container>
