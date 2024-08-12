@@ -5,14 +5,14 @@ export const Container = styled.div`
     align-items: center;
 `;
 
-export const ButtonPlus = styled.div`
+export const ButtonPlus = styled.button`
     background: none;
     border: none;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     margin-left: 0.87rem;
 `;
 
-export const ButtonMinus = styled.div`
+export const ButtonMinus = styled.button`
     background: none;
     border: none;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};

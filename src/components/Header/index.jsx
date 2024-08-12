@@ -8,8 +8,11 @@ import { BsList } from "react-icons/bs";
 import polygon from '../../assets/Polygon.svg';
 import { useState } from 'react';
 import { InputHeader } from "../InputHeader";
+import { useAuth } from "../../hooks/auth";
 
 export function Header() {
+    const { signOut } = useAuth();
+
     const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
     const orderCount = 0;
 
@@ -42,7 +45,9 @@ export function Header() {
                 className="headerButton"
                 icon={PiReceiptBold}
                 title={`Pedidos (${orderCount})`} />
-            <Logout><LuLogOut /></Logout>
+            <Logout onClick={signOut}>
+                <LuLogOut />
+            </Logout>
             {isSideMenuOpen && <SideMenu closeMenu={toggleSideMenu} />}
         </Container >
     );

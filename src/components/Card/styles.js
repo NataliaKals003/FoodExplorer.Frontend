@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 
-export const Container = styled.button`
+export const Container = styled.div`
     background-color: ${({ theme }) => theme.COLORS.DARK_200};
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
     border: 1px solid ${({ theme }) => theme.COLORS.DARK_300};
