@@ -1,10 +1,18 @@
 import { Container } from "./styles";
 import { TagItem } from "../TagIten";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export function Ingredients({ title }) {
+export function Ingredients({ value, title, onIngredientsChange, hasUnresolvedIngredient }) {
     const [ingredients, setIngredients] = useState([]);
     const [newIngredient, setNewIngredient] = useState("");
+
+    useEffect(() => {
+        onIngredientsChange(ingredients);
+    }, [ingredients, onIngredientsChange]);
+
+    useEffect(() => {
+        hasUnresolvedIngredient(newIngredient.trim().length > 0);
+    }, [newIngredient]);
 
     const handleAddIngredient = () => {
         if (newIngredient.trim()) {
@@ -24,7 +32,7 @@ export function Ingredients({ title }) {
         <Container>
             <span>{title}</span>
             <section title="Ingredientes">
-                {ingredients.map((ingredient, index) => (
+                {value.map((ingredient, index) => (
                     <TagItem
                         key={String(index)}
                         value={ingredient}

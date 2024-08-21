@@ -1,20 +1,23 @@
-import { Container } from './styles'
-import { Card } from '../Card'
-import React, { useRef } from 'react';;
+import { Container } from './styles';
+import { Card } from '../Card';
+import React, { useRef } from 'react';
 import { Swiper as SwiperComponent, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { useNavigate } from 'react-router-dom';
-import { appRoutes } from '../../routes/routes';
 
 export function Swiper({ products }) {
-    const navigate = useNavigate();
-
     const prevRef = useRef(null);
     const nextRef = useRef(null);
+    const navigate = useNavigate(); // Hook for navigation
+
+    // Function to handle card click
+    const handleCardClick = (dishId) => {
+        navigate(`/details/${dishId}`);
+    };
 
     return (
         <Container>
@@ -56,11 +59,11 @@ export function Swiper({ products }) {
                 {products.map((product, index) => (
                     <SwiperSlide key={index}>
                         <Card
-                            onClick={() => navigate(appRoutes.details.replace(':id', product.id))}
-                            title={product.title}
-                            description={product.description}
-                            imageUrl={product.imageUrl}
-                            price={product.price}
+                            name={product.dishName}
+                            description={product.dishDescription}
+                            imageUrl={product.dishImage}
+                            price={product.dishPrice}
+                            onClick={() => handleCardClick(product.id)} // Pass the dish ID
                         />
                     </SwiperSlide>
                 ))}

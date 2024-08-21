@@ -24,6 +24,7 @@ export const Content = styled.div`
     align-items: center;
     
     .heartFavourite, .heart {
+        cursor: pointer;
         height: 1.5rem;
         width: 1.5rem;
         align-self: end;

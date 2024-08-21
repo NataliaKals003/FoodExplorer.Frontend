@@ -1,55 +1,27 @@
 import { Container, Banner, Content, ImageContainer, TextBanner } from './styles';
 import { Header } from '../../components/Header';
 import macarons from '../../assets/macarons.svg';
-import salad from '../../assets/dishSalad.svg';
 import { Swiper } from '../../components/Swiper';
 import { Footer } from '../../components/Footer';
+import { useEffect, useState } from 'react';
+import { api } from '../../services/api';
+import { useNavigate } from 'react-router-dom';
 
 export function Home() {
-    const products = [
-        {
-            title: "Leo",
-            description: "Delicioso folheado de pêssego com folhas de hortelã.",
-            imageUrl: salad,
-            price: 32.97,
-            id: 1
-        },
-        {
-            title: "Natalia",
-            description: "Delicioso folheado de pêssego com folhas de hortelã.",
-            imageUrl: salad,
-            price: 32.97,
-            id: 2
-        },
-        {
-            title: "Natalia",
-            description: "Delicioso folheado de pêssego com folhas de hortelã.",
-            imageUrl: salad,
-            price: 32.97,
-            id: 3
-        },
-        {
-            title: "Natalia",
-            description: "Delicioso folheado de pêssego com folhas de hortelã.",
-            imageUrl: salad,
-            price: 32.97,
-            id: 4
-        },
-        {
-            title: "Natalia",
-            description: "Delicioso folheado de pêssego com folhas de hortelã.",
-            imageUrl: salad,
-            price: 32.97,
-            id: 5
-        },
-        {
-            title: "Natalia",
-            description: "Delicioso folheado de pêssego com folhas de hortelã.",
-            imageUrl: salad,
-            price: 32.97,
-            id: 6
+    const [dishes, setDishes] = useState([]);
+
+    useEffect(() => {
+        async function fetchDishes() {
+            try {
+                const response = await api.get('/dishes');
+                setDishes(response.data);
+            } catch (error) {
+                console.error("Error fetching dishes", error);
+            }
         }
-    ];
+
+        fetchDishes();
+    }, []);
 
     return (
         <Container>
@@ -67,17 +39,17 @@ export function Home() {
                 <div className='Main'>
                     <h2>Refeições</h2>
                     <h3>Refeições</h3>
-                    <Swiper products={products} />
+                    <Swiper products={dishes.filter(dish => dish.categoryId === 1)} />
                 </div>
                 <div className='Desert'>
                     <h2>Sobremesas</h2>
                     <h3>Pratos principais</h3>
-                    <Swiper products={products} />
+                    <Swiper products={dishes.filter(dish => dish.categoryId === 2)} />
                 </div>
                 <div className='Drink'>
                     <h2>Bebidas</h2>
                     <h3>Pratos principais</h3>
-                    <Swiper products={products} />
+                    <Swiper products={dishes.filter(dish => dish.categoryId === 3)} />
                 </div>
             </Content>
             <Footer />

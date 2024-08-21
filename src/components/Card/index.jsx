@@ -5,13 +5,12 @@ import { Amount } from '../Amount';
 import { Button } from '../Button';
 import { useState } from 'react';
 
-export function Card({ title, description, price, imageUrl, ...rest }) {
-
+export function Card({ name, description, price, imageUrl, dishImage, ...rest }) {
     const [isFavourite, setIsFavourite] = useState(false);
 
-    const toggleFavourite = () => {
+    const toggleFavourite = (e) => {
+        e.stopPropagation();
         setIsFavourite(prev => !prev);
-        // TODO(natalia): Invoke api
     };
 
     return (
@@ -20,10 +19,10 @@ export function Card({ title, description, price, imageUrl, ...rest }) {
                 {isFavourite
                     ? <IoIosHeart className="heartFavourite" onClick={toggleFavourite} />
                     : <IoIosHeartEmpty className="heart" onClick={toggleFavourite} />}
-                <img src={imageUrl} alt={title} />
-                <h1>{title}</h1>
+                <img src={imageUrl} alt={dishImage} />
+                <h1>{name}</h1>
                 <p>{description}</p>
-                <span className='price'>{price}</span>
+                <span className='price'>R$ {price}</span>
             </Content>
             <Footer>
                 <Amount className='cardAmount' />

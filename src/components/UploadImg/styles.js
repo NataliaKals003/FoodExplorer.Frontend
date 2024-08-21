@@ -7,6 +7,15 @@ export const Container = styled.div`
     justify-content: flex-start;
     color: ${({ theme }) => theme.COLORS.LIGHT_400};    
 
+    .preview-img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 8px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
         width: 100%;
     }

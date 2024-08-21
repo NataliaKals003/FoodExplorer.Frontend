@@ -67,7 +67,7 @@ export const ImageContainer = styled.div`
         transform: translate(-15%, 14%);
         img {
             width: 34vw;
-            clip-path: inset(0 0 51% 0);
+            clip-path: inset(0 0 46% 0);
         }
     }
 
