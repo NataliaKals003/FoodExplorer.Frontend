@@ -1,31 +1,31 @@
-import { useCallback, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Container, Form, DishDetails, DishAttributes, ButtonContainer } from "./styles";
+import { useCallback, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Container, Form, DishDetails, DishAttributes, ButtonContainer } from './styles';
 import { Header } from '../../components/Header';
-import { ButtonText } from "../../components/ButtonText";
-import { Input } from "../../components/Input";
-import { UploadImg } from "../../components/UploadImg";
-import { Footer } from "../../components/Footer";
-import { IoChevronBack } from "react-icons/io5";
-import { FiUpload } from "react-icons/fi";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { SelectDish } from "../../components/SelectDish";
-import { Ingredients } from "../../components/Ingredients";
-import { TextArea } from "../../components/TextArea";
-import { Button } from "../../components/Button";
-import { api } from "../../services/api";
+import { ButtonText } from '../../components/ButtonText';
+import { Input } from '../../components/Input';
+import { UploadImg } from '../../components/UploadImg';
+import { Footer } from '../../components/Footer';
+import { IoChevronBack } from 'react-icons/io5';
+import { FiUpload } from 'react-icons/fi';
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { SelectDish } from '../../components/SelectDish';
+import { Ingredients } from '../../components/Ingredients';
+import { TextArea } from '../../components/TextArea';
+import { Button } from '../../components/Button';
+import { api } from '../../services/api';
 
 export function ManageDish() {
     const { id } = useParams();
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-        name: "",
+        name: '',
         ingredients: [],
-        price: "",
-        description: "",
+        price: '',
+        description: '',
         categoryId: undefined,
-        imageFile: ""
+        imageFile: '',
     });
 
     const [categoryOptions, setCategoryOptions] = useState([]);
@@ -33,34 +33,36 @@ export function ManageDish() {
 
     const handleChange = useCallback((e) => {
         const { name, value } = e.target;
-        setFormData(prevData => ({
+        setFormData((prevData) => ({
             ...prevData,
-            [name]: value
+            [name]: value,
         }));
     }, []);
 
     const handleImageUpload = useCallback((file) => {
-        setFormData(prevData => ({
+        setFormData((prevData) => ({
             ...prevData,
-            imageFile: file
+            imageFile: file,
+            imageUrl: null,
         }));
         console.log('Imagem carregada:', file.name);
     }, []);
 
-    const handleIngredientsChange = useCallback((newIngredients) => {
-        setFormData(prevData => ({
+    const handleIngredientsChange = useCallback((newIngredient) => {
+        setFormData((prevData) => ({
             ...prevData,
-            ingredients: newIngredients
+            ingredients: newIngredient,
         }));
+        console.log(newIngredient);
     }, []);
 
     const handleCategoryChange = useCallback((selectedCategoryId) => {
         const categoryId = Number(selectedCategoryId);
 
         if (!isNaN(categoryId)) {
-            setFormData(prevData => ({
+            setFormData((prevData) => ({
                 ...prevData,
-                categoryId: categoryId
+                categoryId: categoryId,
             }));
         } else {
             console.warn('Invalid category ID:', selectedCategoryId);
@@ -69,11 +71,11 @@ export function ManageDish() {
 
     const handleSaveDish = useCallback(async () => {
         if (!formData.name || !formData.description || !formData.price || !formData.categoryId) {
-            return alert("Fill in all fields");
+            return alert('Fill in all fields');
         }
 
         if (isNaN(parseFloat(formData.price))) {
-            return alert("In the price field you must enter a number");
+            return alert('In the price field you must enter a number');
         }
 
         if (hasUnresolvedIngredient) {
@@ -87,9 +89,9 @@ export function ManageDish() {
         formDataToSend.append('price', formData.price);
         formDataToSend.append('categoryId', formData.categoryId);
         formDataToSend.append('ingredients', formData.ingredients.join(','));
+        console.log(formData.ingredients);
 
-        console.log("ingredients", formData.ingredients)
-
+        console.log('Saving dish imageFile:', formData.imageFile);
         if (formData.imageFile) {
             formDataToSend.append('imageFile', formData.imageFile);
         }
@@ -98,23 +100,39 @@ export function ManageDish() {
             if (id) {
                 await api.put(`/dishes/${id}`, formDataToSend, {
                     headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
+                        'Content-Type': 'multipart/form-data',
+                    },
                 });
+                alert('Dish updated successfully');
             } else {
                 await api.post(`/dishes`, formDataToSend, {
                     headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
+                        'Content-Type': 'multipart/form-data',
+                    },
                 });
+                alert('Dish created successfully');
             }
-            alert("Dish created successfully")
-            navigate("/");
+            navigate('/');
         } catch (error) {
-            console.error("Error saving dish:", error);
-            alert("Failed to save the dish.");
+            console.error('Error saving dish:', error);
+            alert('Failed to save the dish.');
         }
     }, [formData, hasUnresolvedIngredient, id, navigate]);
+
+    const handleDelete = useCallback(async () => {
+        const confirmDelete = window.confirm('Are you sure you want to delete this dish?');
+
+        if (confirmDelete) {
+            try {
+                await api.delete(`/dishes/${id}`);
+                alert('Dish deleted successfully');
+                navigate('/');
+            } catch (error) {
+                console.error('Error deleting dish:', error);
+                alert('Failed to delete the dish. Please try again.');
+            }
+        }
+    });
 
     useEffect(() => {
         if (id) {
@@ -122,44 +140,43 @@ export function ManageDish() {
                 try {
                     const response_dish = await api.get(`/dishes/${id}`);
                     const dish = response_dish.data;
+                    // console.log('dish:', dish);
 
                     setFormData({
-                        name: dish.dishName,
+                        name: dish.name,
                         ingredients: dish.ingredients,
-                        price: dish.dishPrice,
-                        description: dish.dishDescription,
+                        price: dish.price,
+                        description: dish.description,
                         categoryId: dish.categoryId,
-                        imageFile: dish.dishImage,
+                        imageFile: null,
+                        imageUrl: dish.image,
                     });
-                    console.log(setFormData);
                 } catch (error) {
-                    console.error("Error fetching dish data:", error.response ? error.response.data : error.message);
-                    alert("Failed to load dish data.");
+                    console.error('Error fetching dish data:', error.response ? error.response.data : error.message);
+                    alert('Failed to load dish data.');
                 }
             };
-
             fetchDish();
-            console.log('Fetched dish data:', dish);
         }
     }, [id]);
 
     useEffect(() => {
         if (categoryOptions.length > 0 && !formData.categoryId) {
-            setFormData(prevData => ({
+            setFormData((prevData) => ({
                 ...prevData,
-                categoryId: categoryOptions[0].id
+                categoryId: categoryOptions[0].id,
             }));
         }
     }, [categoryOptions]);
 
-    useEffect(() => {
-        console.log('formData', formData);
-    }, [formData]);
+    // useEffect(() => {
+    //     console.log('formData', formData);
+    // }, [formData]);
 
     useEffect(() => {
         async function fetchCategories() {
             try {
-                const response = await api.get("/dish_categories");
+                const response = await api.get('/dish_categories');
                 setCategoryOptions(response.data);
             } catch (error) {
                 console.error('Failed to fetch categories', error);
@@ -171,25 +188,21 @@ export function ManageDish() {
     return (
         <Container>
             <Header />
-            <ButtonText
-                className="backButton"
-                icon={IoChevronBack}
-                title="voltar"
-                onClick={() => navigate("/")}
-            />
+            <ButtonText className="backButton" icon={IoChevronBack} title="voltar" onClick={() => navigate('/')} />
 
             <main>
                 <Form>
-                    <h1>{id ? "Editar prato" : "Adicionar prato"}</h1>
+                    <h1>{id ? 'Editar prato' : 'Adicionar prato'}</h1>
                     <DishDetails>
                         <UploadImg
                             title="Imagem do prato"
                             buttonLabel="Selecione imagem"
                             icon={FiUpload}
                             onImageUpload={handleImageUpload}
+                            imageUrl={formData.imageUrl}
                         />
                         <Input
-                            title="Name"
+                            title="Nome"
                             name="name"
                             placeholder="Ex.: Salada Ceasar"
                             type="text"
@@ -200,9 +213,9 @@ export function ManageDish() {
                         <SelectDish
                             title="Categoria"
                             value={formData.categoryId}
-                            options={categoryOptions.map(cat => ({
+                            options={categoryOptions.map((cat) => ({
                                 value: cat.id,
-                                label: cat.name
+                                label: cat.name,
                             }))}
                             icon={MdOutlineKeyboardArrowDown}
                             onChange={handleCategoryChange}
@@ -232,16 +245,10 @@ export function ManageDish() {
                         onChange={handleChange}
                     />
                     <ButtonContainer>
-                        {id && (
-                            <Button
-                                className="deleteDish"
-                                title="Excluir prato"
-                            // onClick={handleDelete}
-                            />
-                        )}
+                        {id && <Button className="deleteDish" title="Excluir prato" onClick={handleDelete} />}
                         <Button
                             className="saveDish"
-                            title={id ? "Salvar alterações" : "Criar prato"}
+                            title={id ? 'Salvar alterações' : 'Criar prato'}
                             onClick={handleSaveDish}
                         />
                     </ButtonContainer>

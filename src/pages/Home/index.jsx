@@ -16,7 +16,7 @@ export function Home() {
                 const response = await api.get('/dishes');
                 setDishes(response.data);
             } catch (error) {
-                console.error("Error fetching dishes", error);
+                console.error('Error fetching dishes', error);
             }
         }
 
@@ -36,24 +36,23 @@ export function Home() {
                 </TextBanner>
             </Banner>
             <Content>
-                <div className='Main'>
+                <div className="Main">
                     <h2>Refeições</h2>
                     <h3>Refeições</h3>
-                    <Swiper products={dishes.filter(dish => dish.categoryId === 1)} />
+                    <Swiper products={dishes.filter((dish) => dish.categoryId === 1)} />
                 </div>
-                <div className='Desert'>
+                <div className="Desert">
                     <h2>Sobremesas</h2>
                     <h3>Pratos principais</h3>
-                    <Swiper products={dishes.filter(dish => dish.categoryId === 2)} />
+                    <Swiper products={dishes.filter((dish) => dish.categoryId === 2)} />
                 </div>
-                <div className='Drink'>
+                <div className="Drink">
                     <h2>Bebidas</h2>
                     <h3>Pratos principais</h3>
-                    <Swiper products={dishes.filter(dish => dish.categoryId === 3)} />
+                    <Swiper products={dishes.filter((dish) => dish.categoryId === 3)} />
                 </div>
             </Content>
             <Footer />
         </Container>
     );
 }
-

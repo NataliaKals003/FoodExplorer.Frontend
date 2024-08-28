@@ -1,8 +1,8 @@
-import { Routes, Route } from "react-router-dom";
-import { Details } from "../pages/Details";
-import { Home } from "../pages/Home";
-import { ManageDish } from "../pages/ManageDish";
-import { appRoutes } from "./routes";
+import { Routes, Route } from 'react-router-dom';
+import { Details } from '../pages/Details';
+import { Home } from '../pages/Home';
+import { ManageDish } from '../pages/ManageDish';
+import { appRoutes } from './routes';
 
 export function AppRoutes() {
     return (
@@ -12,5 +12,5 @@ export function AppRoutes() {
             <Route path={appRoutes.createDish} element={<ManageDish />} />
             <Route path={appRoutes.manageDish} element={<ManageDish />} />
         </Routes>
-    )
+    );
 }

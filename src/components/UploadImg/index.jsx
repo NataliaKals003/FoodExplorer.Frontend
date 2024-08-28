@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from './styles';
 
-export function UploadImg({ title, buttonLabel, icon: Icon, onImageUpload }) {
+export function UploadImg({ title, buttonLabel, icon: Icon, onImageUpload, imageUrl }) {
     const [previewUrl, setPreviewUrl] = useState(null);
-    const [imageName, setImageName] = useState(title); // Estado para armazenar o nome da imagem
+    const [imageName, setImageName] = useState(title);
+
+    useEffect(() => {
+        if (imageUrl) {
+            setPreviewUrl(imageUrl);
+        }
+    }, [imageUrl]);
 
     const handleChange = (event) => {
         const file = event.target.files[0];

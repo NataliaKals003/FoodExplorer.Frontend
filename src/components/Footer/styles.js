@@ -1,17 +1,17 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 
 export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.5rem 6rem; 
+    padding: 1.5rem 6rem;
     gap: 8px;
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
 
     div {
         font-family: 'DM Sans', sans-serif;
-        font-size: .75rem;
+        font-size: 0.75rem;
     }
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.SM}) {
@@ -23,7 +23,6 @@ export const Container = styled.div`
         padding: 1.8rem 1.6rem;
         font-size: 0.75rem;
     }
-
 `;
 
 export const Logo = styled.div`
@@ -59,5 +58,3 @@ export const Logo = styled.div`
         }
     }
 `;
-
-

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
     border: none;
@@ -19,7 +19,6 @@ export const Container = styled.div`
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
         border: none;
         padding: 0.87rem;
-        resize: vertical; 
+        resize: vertical;
     }
 `;
-

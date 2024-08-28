@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 
 export const Container = styled.div`
@@ -8,12 +8,15 @@ export const Container = styled.div`
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
-    max-width: 300px; 
-    margin: 0 auto; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
-    
+    max-width: 300px;
+    margin: 0 auto;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        filter 0.3s ease;
+
     &:hover {
-        transform: scale(1.05); 
+        transform: scale(1.05);
         filter: brightness(1.2);
     }
 `;
@@ -22,8 +25,9 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    .heartFavourite, .heart {
+
+    .heartFavourite,
+    .heart {
         cursor: pointer;
         height: 1.5rem;
         width: 1.5rem;
@@ -31,7 +35,8 @@ export const Content = styled.div`
         margin: 1rem 1rem 0 0;
 
         @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
-            .heartFavourite, .heart{
+            .heartFavourite,
+            .heart {
                 margin: 0.5rem;
                 height: 1.2rem;
                 width: 1.2rem;
@@ -45,16 +50,18 @@ export const Content = styled.div`
 
     > img {
         border-radius: 50%;
-        margin: -1rem 0rem 1rem; 
+        margin: -1rem 0rem 1rem;
         width: 11rem;
         height: 11rem;
+        cursor: pointer;
     }
 
     h1 {
-        font-family: "Poppins", sans-serif;
-        text-align: center; 
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
         font-size: 1.5rem;
         font-weight: 700;
+        cursor: pointer;
     }
 
     p {
@@ -63,21 +70,20 @@ export const Content = styled.div`
         margin: 1rem 1.5rem;
         text-align: center;
         word-wrap: break-word;
-        color: ${({ theme }) => theme.COLORS.LIGHT_400};;
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
     }
 
     .price {
         font-weight: 400;
         color: ${({ theme }) => theme.COLORS.CAKE_200};
         margin-bottom: 0.75rem;
-        text-align: center; 
+        text-align: center;
         font-size: 2rem;
     }
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
-
         img {
-            margin: -1rem 3rem 1rem; 
+            margin: -1rem 3rem 1rem;
             width: 6rem;
             height: 6rem;
         }
@@ -110,8 +116,8 @@ export const Footer = styled.footer`
         margin-bottom: 0;
 
         span {
-            font-size: 1rem;
-            font-weight: 300;
+            font-size: 1.25rem;
+            font-weight: 700;
         }
     }
 

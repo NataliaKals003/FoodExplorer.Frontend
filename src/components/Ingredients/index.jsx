@@ -2,9 +2,15 @@ import { Container } from "./styles";
 import { TagItem } from "../TagIten";
 import { useEffect, useState } from "react";
 
-export function Ingredients({ value, title, onIngredientsChange, hasUnresolvedIngredient }) {
-    const [ingredients, setIngredients] = useState([]);
+export function Ingredients({ value = [], title, onIngredientsChange, hasUnresolvedIngredient }) {
+    const [ingredients, setIngredients] = useState(value);
     const [newIngredient, setNewIngredient] = useState("");
+
+    useEffect(() => {
+        if (value !== ingredients) {
+            setIngredients(value);
+        }
+    }, [value]);
 
     useEffect(() => {
         onIngredientsChange(ingredients);
@@ -14,17 +20,19 @@ export function Ingredients({ value, title, onIngredientsChange, hasUnresolvedIn
         hasUnresolvedIngredient(newIngredient.trim().length > 0);
     }, [newIngredient]);
 
-    const handleAddIngredient = () => {
+    function handleAddIngredient() {
         if (newIngredient.trim()) {
-            setIngredients([...ingredients, newIngredient]);
+            setIngredients(prevState => [...prevState, newIngredient.trim()]);
             setNewIngredient("");
         }
-    };
+    }
 
-    const handleRemoveIngredient = (ingredientToRemove) => {
-        const removeTag = window.confirm(`Você deseja remover ${ingredientToRemove}?`);
-        if (removeTag) {
-            setIngredients(prevState => prevState.filter(ingredient => ingredient !== ingredientToRemove));
+    function handleRemoveIngredient(ingredientToRemove) {
+        if (ingredientToRemove) {
+            const removeIngredient = window.confirm(`Você deseja remover ${ingredientToRemove}?`);
+            if (removeIngredient) {
+                setIngredients(prevState => prevState.filter(ingredient => ingredient !== ingredientToRemove));
+            }
         }
     };
 
@@ -32,7 +40,7 @@ export function Ingredients({ value, title, onIngredientsChange, hasUnresolvedIn
         <Container>
             <span>{title}</span>
             <section title="Ingredientes">
-                {value.map((ingredient, index) => (
+                {ingredients.map((ingredient, index) => (
                     <TagItem
                         key={String(index)}
                         value={ingredient}

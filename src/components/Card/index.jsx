@@ -5,7 +5,7 @@ import { Amount } from '../Amount';
 import { Button } from '../Button';
 import { useState } from 'react';
 
-export function Card({ name, description, price, imageUrl, dishImage, ...rest }) {
+export function Card({ product, onClick }) {
     const [isFavourite, setIsFavourite] = useState(false);
 
     const toggleFavourite = (e) => {
@@ -14,15 +14,15 @@ export function Card({ name, description, price, imageUrl, dishImage, ...rest })
     };
 
     return (
-        <Container {...rest}>
+        <Container>
             <Content>
                 {isFavourite
                     ? <IoIosHeart className="heartFavourite" onClick={toggleFavourite} />
                     : <IoIosHeartEmpty className="heart" onClick={toggleFavourite} />}
-                <img src={imageUrl} alt={dishImage} />
-                <h1>{name}</h1>
-                <p>{description}</p>
-                <span className='price'>R$ {price}</span>
+                <img src={product.image} alt={product.image} onClick={onClick} />
+                <h1 onClick={onClick}>{`${product.name} >`}</h1>
+                <p>{product.description}</p>
+                <span className='price'>R$ {product.price}</span>
             </Content>
             <Footer>
                 <Amount className='cardAmount' />

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { LAYOUT_BREAKPOINTS } from "../../styles/layoutBreakpoints";
+import styled from 'styled-components';
+import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 
 export const Container = styled.div`
     height: 100vh;
@@ -13,7 +13,7 @@ export const Container = styled.div`
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
         display: flex;
         flex-direction: column;
-        justify-content: end;
+        justify-content: center;
     }
 `;
 
@@ -90,5 +90,11 @@ export const Content = styled.div`
         font-family: 'Poppins';
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         margin-top: 2rem;
+    }
+
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        > h2 {
+            display: none;
+        }
     }
 `;

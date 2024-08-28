@@ -12,18 +12,18 @@ import 'swiper/css/pagination';
 export function Swiper({ products }) {
     const prevRef = useRef(null);
     const nextRef = useRef(null);
-    const navigate = useNavigate(); // Hook for navigation
+    const navigate = useNavigate();
 
-    // Function to handle card click
-    const handleCardClick = (dishId) => {
-        navigate(`/details/${dishId}`);
+    const handleCardClick = (id) => {
+        console.log('handleCardClick id', id);
+        navigate(`/dish/details/${id}`);
     };
 
     return (
         <Container>
             <SwiperComponent
                 modules={[Navigation]}
-                slidesPerView={4}
+                slidesPerView={3}
                 centeredSlides={true}
                 pagination={{ clickable: false }}
                 navigation={{
@@ -53,16 +53,13 @@ export function Swiper({ products }) {
                     1280: { slidesPerView: 3, spaceBetween: 50 },
                     1330: { slidesPerView: 4, spaceBetween: 20 },
                     1420: { slidesPerView: 4, spaceBetween: 50 },
-                    2000: { slidesPerView: 5, spaceBetween: 10 },
+                    2000: { slidesPerView: 4, spaceBetween: 10 },
                 }}
             >
                 {products.map((product, index) => (
                     <SwiperSlide key={index}>
                         <Card
-                            name={product.dishName}
-                            description={product.dishDescription}
-                            imageUrl={product.dishImage}
-                            price={product.dishPrice}
+                            product={product}
                             onClick={() => handleCardClick(product.id)} // Pass the dish ID
                         />
                     </SwiperSlide>

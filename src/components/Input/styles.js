@@ -1,12 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
-
 
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    color: ${({ theme }) => theme.COLORS.LIGHT_400}; 
+    color: ${({ theme }) => theme.COLORS.LIGHT_400};
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
         width: 100%;

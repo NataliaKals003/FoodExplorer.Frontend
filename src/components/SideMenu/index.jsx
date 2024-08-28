@@ -3,8 +3,11 @@ import { Footer } from '../Footer';
 import { InputHeader } from "../InputHeader";
 import { AiOutlineClose } from 'react-icons/ai';
 import { IoSearchOutline } from "react-icons/io5";
+import { useAuth } from "../../hooks/auth";
 
 export function SideMenu({ closeMenu }) {
+    const { signOut } = useAuth();
+
     return (
         <Container >
             <MenuHader>
@@ -21,7 +24,7 @@ export function SideMenu({ closeMenu }) {
                     mobile={true}
                 />
             </Search>
-            <Logout>Sair</Logout>
+            <Logout onClick={signOut}>Sair</Logout>
             <div style={{ marginTop: 'auto' }} />
             <Footer />
         </Container>

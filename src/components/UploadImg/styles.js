@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    color: ${({ theme }) => theme.COLORS.LIGHT_400};    
+    color: ${({ theme }) => theme.COLORS.LIGHT_400};
 
     .preview-img {
         width: 150px;
@@ -14,10 +14,6 @@ export const Container = styled.div`
         border-radius: 8px;
         max-width: 100%;
         max-height: 100%;
-    }
-
-    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
-        width: 100%;
     }
 
     > label {
@@ -29,8 +25,8 @@ export const Container = styled.div`
         padding: 0.75rem 2rem;
         border-radius: 0.5rem;
         width: auto;
-        
-        > svg {
+
+        .upload-icon {
             font-size: 1.5rem;
             margin-right: 0.5rem;
         }
@@ -44,5 +40,13 @@ export const Container = styled.div`
 
     input {
         display: none;
+    }
+
+    @media (max-width: ${LAYOUT_BREAKPOINTS.LG}) {
+        width: 100%;
+    }
+
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        width: 100%;
     }
 `;

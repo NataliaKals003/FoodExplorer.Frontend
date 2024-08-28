@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 
 export const Container = styled.div`
@@ -13,7 +13,7 @@ export const Banner = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: ${({ theme }) => theme.COLORS.GRADIANTS_200};
     height: 16.25rem;
     margin: 10rem 10rem 0rem 10rem;
@@ -21,7 +21,6 @@ export const Banner = styled.div`
     position: relative;
     overflow: visible;
     margin-bottom: 3.8rem;
-
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.XL}) {
         height: 11.25rem;
@@ -62,7 +61,6 @@ export const ImageContainer = styled.div`
         transition: all 0.1s ease;
     }
 
-    
     @media (min-width: 1490px) {
         transform: translate(-15%, 14%);
         img {
@@ -87,7 +85,7 @@ export const ImageContainer = styled.div`
         }
     }
 
-    @media (max-width: 768px){
+    @media (max-width: 768px) {
         transform: translate(-15%, 0%);
         img {
             width: 34vw;

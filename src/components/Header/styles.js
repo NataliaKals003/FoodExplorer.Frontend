@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { LAYOUT_BREAKPOINTS } from "../../styles/layoutBreakpoints";
+import styled from 'styled-components';
+import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 
 export const Container = styled.header`
     grid-area: header;
@@ -25,7 +25,7 @@ export const Container = styled.header`
             justify-content: center;
         }
     }
-    
+
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
         padding: 3.5rem 1.75rem 1.5rem 1.75rem;
 
@@ -37,7 +37,6 @@ export const Container = styled.header`
     @media (max-width: ${LAYOUT_BREAKPOINTS.SM}) {
         padding: 3.5rem 1.75rem 1.5rem 1.75rem;
     }
-
 `;
 
 export const Logo = styled.div`
@@ -58,29 +57,29 @@ export const Logo = styled.div`
     span {
         @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
             font-size: 1.5rem;
-        }  
+        }
     }
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.XS}) {
-    font-size: 1.5rem;
-    flex: 1;
-    padding: 0 1rem,;
-  }
+        font-size: 1.5rem;
+        flex: 1;
+        padding: 0 1rem;
+    }
 `;
 
 export const Logout = styled.button`
     border: none;
     background: none;
-    
-    >svg {
+
+    > svg {
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         font-size: 2rem;
         margin-left: 2rem;
     }
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
-            display: none;
-        }
+        display: none;
+    }
 `;
 
 export const Search = styled.div`
@@ -90,12 +89,12 @@ export const Search = styled.div`
     flex: 1;
     margin: 0 2rem;
     height: 100px;
-    
+
     .header {
         display: flex;
         align-items: center;
         padding: 0.75rem 6rem;
-        
+
         > svg {
             margin-right: 0.5rem;
         }
@@ -110,12 +109,11 @@ export const Menu = styled.button`
     background-color: transparent;
     border: none;
     display: none;
-    
+
     > svg {
-        
-        margin-right: .5rem;
+        margin-right: 0.5rem;
         font-size: 2rem;
-        color:  ${({ theme }) => theme.COLORS.LIGHT_100};
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
     }
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
@@ -124,9 +122,9 @@ export const Menu = styled.button`
 `;
 
 export const OrdersIcon = styled.div`
-        position: relative;
-        display: none;
-        align-items: center;
+    position: relative;
+    display: none;
+    align-items: center;
 
     > svg {
         font-size: 2rem;

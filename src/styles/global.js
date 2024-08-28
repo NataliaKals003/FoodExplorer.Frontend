@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import { LAYOUT_BREAKPOINTS } from "./layoutBreakpoints";
+import { createGlobalStyle } from 'styled-components';
+import { LAYOUT_BREAKPOINTS } from './layoutBreakpoints';
 
 export default createGlobalStyle`
     * {
