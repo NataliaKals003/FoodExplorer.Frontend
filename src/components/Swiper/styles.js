@@ -34,7 +34,7 @@ export const Container = styled.div`
     &:after {
         content: '';
         position: absolute;
-        width: 224px;
+        width: 10%;
         height: 100%;
         right: 0px;
         top: 0px;
@@ -54,25 +54,37 @@ export const Container = styled.div`
     }
 
     .swiper-slide {
-        display: flex;
+        /* display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center; */
         padding: 0 10px;
         transition:
             opacity 0.3s ease,
             transform 0.3s ease;
     }
 
-    .swiper-button-next,
+    /* .swiper-button-next,
     .swiper-button-prev {
         display: none;
+    } */
+
+    .custom-swiper-button-next {
+        right: 10px;
+    }
+    .custom-swiper-button-prev {
+        left: 10px;
     }
 
     .custom-swiper-button-next,
     .custom-swiper-button-prev {
-        width: 2rem;
+        /* width: 2rem;
         height: 2rem;
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        cursor: pointer; */
         position: absolute;
         top: 50%;
         transform: translateY(-50%);

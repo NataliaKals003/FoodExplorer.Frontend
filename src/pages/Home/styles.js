@@ -16,7 +16,7 @@ export const Banner = styled.div`
     font-family: 'Poppins', sans-serif;
     background: ${({ theme }) => theme.COLORS.GRADIANTS_200};
     height: 16.25rem;
-    margin: 10rem 10rem 0rem 10rem;
+    margin: 10.25rem 7.6rem 0rem 7.6rem;
     border-radius: 8px;
     position: relative;
     overflow: visible;
@@ -174,7 +174,7 @@ export const TextBanner = styled.div`
 
 export const Content = styled.div`
     flex-grow: 1;
-    margin: 0rem 10rem 0rem 10rem;
+    margin: 0rem 7.6rem 0rem 7.6rem;
 
     h3 {
         display: none;

@@ -5,7 +5,6 @@ import { Swiper } from '../../components/Swiper';
 import { Footer } from '../../components/Footer';
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
-import { useNavigate } from 'react-router-dom';
 
 export function Home() {
     const [dishes, setDishes] = useState([]);

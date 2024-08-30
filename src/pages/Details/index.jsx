@@ -5,40 +5,54 @@ import { Tag } from '../../components/Tag/index.jsx';
 import { Amount } from '../../components/Amount/index.jsx';
 import { Button } from '../../components/Button/index.jsx';
 import { Footer } from '../../components/Footer/index.jsx';
-import dishSalad from '../../assets/dishSalad.svg';
 import { IoChevronBack } from 'react-icons/io5';
 import { PiReceiptBold } from 'react-icons/pi';
 import { useNavigate, useParams } from 'react-router-dom';
-import { appRoutes } from '../../routes/routes.js';
+import { adminRoutes } from '../../routes/routes.js';
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
+import { useAuth } from '../../hooks/auth.jsx';
 
-export function Details() {
+export function Details({ product }) {
+    const { user } = useAuth();
+
+    const userAdmin = user.role === 'admin';
+    const userCustomer = user.role === 'customer';
+
     const navigate = useNavigate();
 
     const [data, setData] = useState(null);
-    const params = useParams();
-
-    async function fetchDish() {
-        try {
-            const response = await api.get(`/dishes/${params.id}`);
-            console.log('response', response);
-            setData(response.data);
-        } catch (error) {
-            console.error('Error fetching dish:', error);
-        }
-    }
+    const { id } = useParams();
 
     useEffect(() => {
+        const fetchDish = async () => {
+            try {
+                const response = await api.get(`/dishes/${id}`);
+                console.log('response', response);
+                setData(response.data);
+            } catch (error) {
+                console.error('Error fetching dish:', error);
+            }
+        };
+
         fetchDish();
-    }, []);
+    }, [id]);
+
+    const handleEditDishClick = () => {
+        navigate(`/dish/${id}`);
+    };
 
     return (
         <Container>
             <Header />
             {data && (
                 <Content>
-                    <ButtonText onClick={() => navigate(appRoutes.home)} className="backButton" icon={IoChevronBack} title="voltar" />
+                    <ButtonText
+                        onClick={() => navigate(adminRoutes.home)}
+                        className="backButton"
+                        icon={IoChevronBack}
+                        title="voltar"
+                    />
                     <img src={data.image} alt={data.image} />
                     <div className="text-content">
                         <h1>{data.name}</h1>
@@ -49,12 +63,24 @@ export function Details() {
                             })}
                         </TagsContainer>
                         <div className="bottom-content">
-                            <Amount />
+                            {userCustomer && <Amount className="amount" />}
                             <Button className="include">
-                                <span className="text-desktop">incluir ∙ R$ {data.price}</span>
-                                <span className="text-mobile">
-                                    <PiReceiptBold className="icon" size={15} /> pedir ∙ R$ {data.price}
-                                </span>
+                                {userCustomer ? (
+                                    <span className="text-desktop">Incluir ∙ R$ {data.price} </span>
+                                ) : (
+                                    <span product={product} onClick={handleEditDishClick} className="text-desktop">
+                                        Editar prato
+                                    </span>
+                                )}
+                                {userCustomer ? (
+                                    <span className="text-mobile">
+                                        <PiReceiptBold className="icon" size={15} /> pedir ∙ R$ {data.price}
+                                    </span>
+                                ) : (
+                                    <span product={product} onClick={handleEditDishClick} className="text-mobile">
+                                        Editar prato
+                                    </span>
+                                )}
                             </Button>
                         </div>
                     </div>

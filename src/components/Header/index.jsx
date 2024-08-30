@@ -1,17 +1,23 @@
-import { Container, Logo, Logout, Search, Menu, OrdersIcon } from "./styles";
+import { Container, Logo, Logout, Search, Menu, OrdersIcon } from './styles';
 import { Button } from '../Button';
-import { SideMenu } from "../SideMenu";
-import { LuLogOut } from "react-icons/lu";
-import { PiReceiptBold } from "react-icons/pi";
-import { IoSearchOutline } from "react-icons/io5";
-import { BsList } from "react-icons/bs";
+import { SideMenu } from '../SideMenu';
+import { LuLogOut } from 'react-icons/lu';
+import { PiReceiptBold } from 'react-icons/pi';
+import { IoSearchOutline } from 'react-icons/io5';
+import { BsList } from 'react-icons/bs';
 import polygon from '../../assets/Polygon.svg';
 import { useState } from 'react';
-import { InputHeader } from "../InputHeader";
-import { useAuth } from "../../hooks/auth";
+import { InputHeader } from '../InputHeader';
+import { useAuth } from '../../hooks/auth';
+import { useNavigate } from 'react-router-dom';
 
 export function Header() {
-    const { signOut } = useAuth();
+    const { signOut, user } = useAuth();
+
+    const navigate = useNavigate();
+
+    const userAdmin = user.role === 'admin';
+    const userCustomer = user.role === 'customer';
 
     const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
     const orderCount = 0;
@@ -20,22 +26,30 @@ export function Header() {
         setIsSideMenuOpen(!isSideMenuOpen);
     };
 
+    const handleLogout = () => {
+        if (window.confirm('Você deseja sair?')) {
+            signOut();
+        }
+    };
+
+    const handleNewDishClick = () => {
+        navigate(`/dish`);
+    };
+
     return (
-        <Container >
+        <Container>
             <Menu>
                 <BsList onClick={toggleSideMenu} />
             </Menu>
             <Logo>
                 <img src={polygon} alt="Polygon" />
-                <div>
+                <div className="title">
                     <span>food explorer</span>
+                    {userAdmin && <strong>admin</strong>}
                 </div>
             </Logo>
             <Search>
-                <InputHeader
-                    placeholder="Seach by dishes or ingredients"
-                    icon={IoSearchOutline}
-                    type="text" />
+                <InputHeader placeholder="Seach by dishes or ingredients" icon={IoSearchOutline} type="text" />
             </Search>
             <OrdersIcon>
                 <PiReceiptBold />
@@ -43,12 +57,13 @@ export function Header() {
             </OrdersIcon>
             <Button
                 className="headerButton"
-                icon={PiReceiptBold}
-                title={`Pedidos (${orderCount})`} />
-            <Logout onClick={signOut}>
+                icon={userCustomer && PiReceiptBold}
+                title={userAdmin ? <span onClick={handleNewDishClick}>Novo prato</span> : `Pedidos (${orderCount})`}
+            />
+            <Logout onClick={handleLogout}>
                 <LuLogOut />
             </Logout>
             {isSideMenuOpen && <SideMenu closeMenu={toggleSideMenu} />}
-        </Container >
+        </Container>
     );
 }

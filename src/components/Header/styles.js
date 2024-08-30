@@ -42,21 +42,40 @@ export const Container = styled.header`
 export const Logo = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: center;
     font-style: normal;
     font-weight: 700;
     font-size: 1.5rem;
 
     > img {
         margin-right: 0.62rem;
-        width: 1.25rem;
-        height: 1.25rem;
-        size: 1rem;
+        width: 1.87rem;
+        height: 1.87rem;
     }
 
-    span {
-        @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+    .title {
+        display: flex;
+        flex-direction: column;
+    }
+
+    strong {
+        font-size: 0.75rem;
+        align-self: flex-end;
+        font-weight: 400;
+        color: ${({ theme }) => theme.COLORS.CAKE_200};
+    }
+
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        .title {
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        span {
             font-size: 1.5rem;
+        }
+        strong {
+            align-self: center;
+            margin-left: 8px;
         }
     }
 

@@ -46,17 +46,20 @@ export const Content = styled.div`
         .bottom-content {
             font-family: 'Roboto';
             font-weight: 500;
-            margin-top: 3rem;
             display: flex;
             align-items: center;
 
+            .amount {
+                margin-right: 2rem;
+            }
+
             .include {
-                margin-left: 1rem;
                 background: ${({ theme }) => theme.COLORS.PRIMARY};
                 font-size: 1rem;
                 cursor: pointer;
-                width: fit-content;
                 text-align: center;
+                width: auto;
+                justify-content: center;
 
                 .icon {
                     display: none;
@@ -81,7 +84,7 @@ export const Content = styled.div`
     }
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.LG}) {
-        /* margin: 1rem 3.5rem 2rem 3.5rem; */
+        margin: 2rem 2.6rem 2rem 2.6rem;
         .backButton {
             font-weight: 400;
             font-size: 1.4rem;
@@ -108,7 +111,6 @@ export const Content = styled.div`
 
                 .include {
                     font-size: 0.9rem;
-                    width: max-content;
 
                     .text-desktop {
                         display: block;
@@ -159,8 +161,13 @@ export const Content = styled.div`
             .bottom-content {
                 justify-content: center;
 
+                .amount {
+                    margin-right: 1rem;
+                }
+
                 .include {
                     font-size: 0.8rem;
+                    width: 100%;
 
                     .text-desktop {
                         display: none;

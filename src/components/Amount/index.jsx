@@ -1,17 +1,17 @@
-import { Container, ButtonPlus, ButtonMinus, AmountDisplay } from "./styles";
-import { GoPlus } from "react-icons/go";
-import { FiMinus } from "react-icons/fi";
-import { useState } from "react";
+import { Container, ButtonPlus, ButtonMinus, AmountDisplay } from './styles';
+import { GoPlus } from 'react-icons/go';
+import { FiMinus } from 'react-icons/fi';
+import { useState } from 'react';
 
 export function Amount({ className }) {
     const [amount, setAmount] = useState(0);
 
     const increaseAmount = () => {
-        setAmount(prevAmount => prevAmount + 1);
+        setAmount((prevAmount) => prevAmount + 1);
     };
 
     const decreaseAmount = () => {
-        setAmount(prevAmount => (prevAmount > 0 ? prevAmount - 1 : 0));
+        setAmount((prevAmount) => (prevAmount > 0 ? prevAmount - 1 : 0));
     };
 
     const formattedAmount = amount === 0 ? '0' : amount < 10 ? `0${amount}` : amount.toString();

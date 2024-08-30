@@ -27,21 +27,13 @@ export const Content = styled.div`
     align-items: center;
 
     .heartFavourite,
-    .heart {
+    .heart,
+    .edit {
         cursor: pointer;
         height: 1.5rem;
         width: 1.5rem;
         align-self: end;
-        margin: 1rem 1rem 0 0;
-
-        @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
-            .heartFavourite,
-            .heart {
-                margin: 0.5rem;
-                height: 1.2rem;
-                width: 1.2rem;
-            }
-        }
+        margin: 1rem 1.12rem 0 0;
     }
 
     .heartFavourite {
@@ -50,7 +42,7 @@ export const Content = styled.div`
 
     > img {
         border-radius: 50%;
-        margin: -1rem 0rem 1rem;
+        margin: 1.64rem 4rem 1rem 4rem;
         width: 11rem;
         height: 11rem;
         cursor: pointer;
@@ -67,25 +59,40 @@ export const Content = styled.div`
     p {
         font-weight: 400;
         font-size: 0.7rem;
-        margin: 1rem 1.5rem;
+        margin: 0.93rem 1.5rem;
         text-align: center;
         word-wrap: break-word;
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
     }
 
-    .price {
+    .priceAdmin {
         font-weight: 400;
         color: ${({ theme }) => theme.COLORS.CAKE_200};
-        margin-bottom: 0.75rem;
+        margin-bottom: 4.15rem;
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    .priceCustomer {
+        font-weight: 400;
+        color: ${({ theme }) => theme.COLORS.CAKE_200};
         text-align: center;
         font-size: 2rem;
     }
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        .heartFavourite,
+        .heart,
+        .edit {
+            margin: 0.5rem;
+            height: 1.2rem;
+            width: 1.2rem;
+        }
+
         img {
             margin: -1rem 3rem 1rem;
-            width: 6rem;
-            height: 6rem;
+            width: 5.5rem;
+            height: 5.5rem;
         }
 
         p {
@@ -97,7 +104,13 @@ export const Content = styled.div`
             font-weight: 500;
         }
 
-        .price {
+        .priceCustomer {
+            font-size: 1rem;
+            margin-top: 0.75rem;
+            margin-bottom: 0;
+        }
+
+        .priceAdmin {
             font-size: 1rem;
             margin-top: 0.75rem;
         }
@@ -107,17 +120,18 @@ export const Content = styled.div`
 export const Footer = styled.footer`
     display: flex;
     align-items: center;
-    margin: 0 3rem 1.5rem;
+    margin: 1rem 3rem 1.5rem;
     flex-direction: row;
     justify-content: center;
     gap: 1rem;
 
     .cardAmount {
         margin-bottom: 0;
+        margin-top: 0.75rem;
 
         span {
             font-size: 1.25rem;
-            font-weight: 700;
+            font-weight: 400;
         }
     }
 

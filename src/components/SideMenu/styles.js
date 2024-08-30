@@ -54,7 +54,7 @@ export const Search = styled.div`
     }
 `;
 
-export const Logout = styled.button`
+export const TextMenu = styled.button`
     background: none;
     border: none;
     color: ${({ theme }) => theme.COLORS.LIGHT_300};

@@ -82,6 +82,10 @@ export function ManageDish() {
             return alert(`You created an ingredient but didn't add it. To add it, please click the plus button.`);
         }
 
+        // if (!formData.imageFile) {
+        //     return alert('Please upload an image');
+        // }
+
         const formDataToSend = new FormData();
 
         formDataToSend.append('name', formData.name);
@@ -140,7 +144,6 @@ export function ManageDish() {
                 try {
                     const response_dish = await api.get(`/dishes/${id}`);
                     const dish = response_dish.data;
-                    // console.log('dish:', dish);
 
                     setFormData({
                         name: dish.name,
