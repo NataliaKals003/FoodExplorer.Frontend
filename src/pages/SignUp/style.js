@@ -5,20 +5,18 @@ export const Container = styled.div`
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    gap: 3rem;
-    overflow-y: auto;
-    margin: 1rem;
+    justify-content: center;
+    gap: 13rem;
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
-        display: flex;
         flex-direction: column;
-        justify-content: center;
+        gap: 4.5rem;
     }
 `;
 
 export const Logo = styled.div`
     display: flex;
+    align-items: center;
 
     > img {
         margin-right: 0.62rem;
@@ -93,6 +91,7 @@ export const Content = styled.div`
     }
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        padding: 0;
         > h2 {
             display: none;
         }
