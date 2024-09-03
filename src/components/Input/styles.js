@@ -26,5 +26,15 @@ export const Container = styled.div`
         &.dark {
             background-color: ${({ theme }) => theme.COLORS.DARK_900};
         }
+
+        &[type='number']::-webkit-outer-spin-button,
+        &[type='number']::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        &[type='number'] {
+            -moz-appearance: textfield;
+        }
     }
 `;

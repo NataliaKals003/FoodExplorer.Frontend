@@ -5,6 +5,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { IoSearchOutline } from 'react-icons/io5';
 import { useAuth } from '../../hooks/auth';
 import { useNavigate } from 'react-router-dom';
+import { routes } from '../../routes/routes';
 
 export function SideMenu({ closeMenu }) {
     const { signOut, user } = useAuth();
@@ -13,15 +14,18 @@ export function SideMenu({ closeMenu }) {
 
     const navigate = useNavigate();
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
         if (window.confirm('Você deseja sair?')) {
-            signOut();
+            await signOut();
+            navigate(routes.signIn);
+            location.reload();
         }
     };
 
     const handleNewDishClick = () => {
         navigate(`/dish`);
     };
+
     return (
         <Container>
             <MenuHader>
@@ -38,7 +42,7 @@ export function SideMenu({ closeMenu }) {
                     mobile={true}
                 />
             </Search>
-            {userAdmin && <TextMenu onClick={handleNewDishClick}>Novo prato</TextMenu>}
+            {userAdmin && <TextMenu onClick={handleNewDishClick}>New dish</TextMenu>}
             <TextMenu onClick={handleLogout}>Sair</TextMenu>
             <div style={{ marginTop: 'auto' }} />
             <Footer />

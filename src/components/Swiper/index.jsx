@@ -29,7 +29,6 @@ export function Swiper({ products }) {
                 modules={[Navigation, Pagination]}
                 slidesPerView={5}
                 spaceBetween={6}
-                centeredSlides={true}
                 pagination={{ clickable: true }}
                 loop={true}
                 navigation={{
@@ -47,17 +46,16 @@ export function Swiper({ products }) {
                     280: { slidesPerView: 1 },
                     320: { slidesPerView: 2, spaceBetween: 20 },
                     375: { slidesPerView: 2, spaceBetween: 10 },
-                    425: { slidesPerView: 3, spaceBetween: 80 },
-                    550: { slidesPerView: 4, spaceBetween: 50 },
+                    425: { slidesPerView: 3, spaceBetween: 10 },
+                    550: { slidesPerView: 4, spaceBetween: 10 },
                     650: { slidesPerView: 4, spaceBetween: 10 },
                     760: { slidesPerView: 2, spaceBetween: 10 },
-                    830: { slidesPerView: 3, spaceBetween: 80 },
-                    940: { slidesPerView: 3, spaceBetween: 80 },
-                    1024: { slidesPerView: 3, spaceBetween: 50 },
-                    1330: { slidesPerView: 3, spaceBetween: 10 },
-                    1280: { slidesPerView: 3, spaceBetween: 50 },
-                    1330: { slidesPerView: 2, spaceBetween: 20 },
-                    1420: { slidesPerView: 3, spaceBetween: 10 },
+                    830: { slidesPerView: 3, spaceBetween: 10 },
+                    940: { slidesPerView: 3, spaceBetween: 10 },
+                    1024: { slidesPerView: 3, spaceBetween: 5 },
+                    1280: { slidesPerView: 3, spaceBetween: 5 },
+                    1330: { slidesPerView: 4, spaceBetween: 5 },
+                    1420: { slidesPerView: 4, spaceBetween: 5 },
                     2000: { slidesPerView: 4, spaceBetween: 5 },
                 }}
             >

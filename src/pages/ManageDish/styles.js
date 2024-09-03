@@ -88,7 +88,6 @@ export const ButtonContainer = styled.div`
     gap: 2rem;
     margin-top: 2rem;
     justify-content: flex-end;
-    /* width: fit-content; */
 
     .saveDish,
     .deleteDish {

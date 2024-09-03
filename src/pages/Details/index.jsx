@@ -8,7 +8,7 @@ import { Footer } from '../../components/Footer/index.jsx';
 import { IoChevronBack } from 'react-icons/io5';
 import { PiReceiptBold } from 'react-icons/pi';
 import { useNavigate, useParams } from 'react-router-dom';
-import { adminRoutes } from '../../routes/routes.js';
+import { routes } from '../../routes/routes.js';
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
 import { useAuth } from '../../hooks/auth.jsx';
@@ -16,8 +16,8 @@ import { useAuth } from '../../hooks/auth.jsx';
 export function Details({ product }) {
     const { user } = useAuth();
 
-    const userAdmin = user.role === 'admin';
-    const userCustomer = user.role === 'customer';
+    const userAdmin = user?.role === 'admin';
+    const userCustomer = user?.role === 'customer';
 
     const navigate = useNavigate();
 
@@ -48,7 +48,7 @@ export function Details({ product }) {
             {data && (
                 <Content>
                     <ButtonText
-                        onClick={() => navigate(adminRoutes.home)}
+                        onClick={() => navigate(routes.home)}
                         className="backButton"
                         icon={IoChevronBack}
                         title="voltar"

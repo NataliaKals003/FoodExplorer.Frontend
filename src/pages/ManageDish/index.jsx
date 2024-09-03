@@ -82,10 +82,6 @@ export function ManageDish() {
             return alert(`You created an ingredient but didn't add it. To add it, please click the plus button.`);
         }
 
-        // if (!formData.imageFile) {
-        //     return alert('Please upload an image');
-        // }
-
         const formDataToSend = new FormData();
 
         formDataToSend.append('name', formData.name);
@@ -171,10 +167,6 @@ export function ManageDish() {
             }));
         }
     }, [categoryOptions]);
-
-    // useEffect(() => {
-    //     console.log('formData', formData);
-    // }, [formData]);
 
     useEffect(() => {
         async function fetchCategories() {

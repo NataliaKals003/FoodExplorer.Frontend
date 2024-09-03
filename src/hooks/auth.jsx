@@ -4,7 +4,22 @@ import { api } from '../services/api';
 export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
-    const [data, setData] = useState({});
+    const [user, setUser] = useState(undefined);
+
+    // Initialize auth
+    useEffect(() => {
+        const token = localStorage.getItem('@foodexplorer:token');
+        const user = localStorage.getItem('@foodexplorer:user');
+
+        // If there is auth details on local storage, use it.
+        if (token && user) {
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            setUser(JSON.parse(user));
+            return;
+        }
+
+        setUser(null);
+    }, []);
 
     async function signIn({ email, password }) {
         try {
@@ -15,7 +30,7 @@ function AuthProvider({ children }) {
             localStorage.setItem('@foodexplorer:token', token);
 
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            setData({ user, token });
+            setUser(user);
         } catch (error) {
             if (error.response) {
                 alert(error.response.data.message);
@@ -25,70 +40,19 @@ function AuthProvider({ children }) {
         }
     }
 
-    function signOut() {
+    async function signOut() {
         localStorage.removeItem('@foodexplorer:token');
         localStorage.removeItem('@foodexplorer:user');
 
-        setData({});
+        setUser(null);
     }
-
-    // async function createDish({ dish, imageFile }) {
-    //     try {
-    //         await api.post(`/dishes/`, dish);
-    //         localStorage.setItem("@foodexplorer:dish", JSON.stringify(dish));
-
-    //         setData({ dish, token: data.token });
-    //         alert("Dish successfully created")
-    //     } catch (error) {
-    //         if (error.response) {
-    //             console.error('Error response data:', error.response.data);
-    //             alert(error.response.data.message || 'Error creating dish');
-    //         } else {
-    //             console.error('Error message:', error.message);
-    //             alert('Error creating dish');
-    //         }
-    //     }
-    // }
-
-    // async function updateDish({ dish, imageFile }) {
-    //     try {
-    //         await api.put(`/dishes/${dish.id}`, dish);
-    //         localStorage.setItem("@foodexplorer:dish", JSON.stringify(dish));
-
-    //         setData({ dish, token: data.token });
-    //         alert("Dish successfully updated")
-
-    //     } catch (error) {
-    //         if (error.response) {
-    //             alert(error.response.data.message);
-    //         } else {
-    //             alert("Error update dish");
-    //         }
-    //     }
-    // }
-
-    useEffect(() => {
-        const token = localStorage.getItem('@foodexplorer:token');
-        const user = localStorage.getItem('@foodexplorer:user');
-
-        if (token && user) {
-            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
-            setData({
-                token,
-                user: JSON.parse(user),
-            });
-        }
-    }, []);
 
     return (
         <AuthContext.Provider
             value={{
+                user,
                 signIn,
                 signOut,
-                user: data.user,
-                // updateDish,
-                // createDish,
             }}
         >
             {children}

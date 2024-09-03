@@ -1,16 +1,8 @@
-export const authRoutes = {
-    signIn: '/',
+export const routes = {
+    signIn: '/sign-in',
     signUp: '/sign-up',
-};
-
-export const adminRoutes = {
     home: '/',
-    details: '/dish/details/:id',
+    dishDetails: '/dish/details/:id',
     createDish: '/dish',
     manageDish: '/dish/:id',
-};
-
-export const customerRoutes = {
-    home: '/',
-    details: '/dish/details/:id',
 };

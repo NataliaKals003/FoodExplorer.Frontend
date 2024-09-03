@@ -13,12 +13,11 @@ export const Container = styled.div`
         position: absolute;
         width: 10%;
         height: 100%;
-        left: -1.46px;
-        top: 0.06px;
-        background: ${({ theme }) => theme.COLORS.GRADIANTS_100};
+        left: 0px;
+        top: 0px;
+        background: linear-gradient(90deg, rgba(0, 10, 15, 1) 0%, rgba(0, 10, 15, 0) 100%);
         mask-composite: exclude;
         box-shadow: -15px 0 20px -10px rgba(0, 0, 0, 0.7);
-        transform: matrix(-1, 0, 0, 1, 0, 0);
         z-index: 2;
 
         @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
@@ -38,7 +37,7 @@ export const Container = styled.div`
         height: 100%;
         right: 0px;
         top: 0px;
-        background: ${({ theme }) => theme.COLORS.GRADIANTS_100};
+        background: linear-gradient(90deg, rgba(0, 10, 15, 0) 0%, rgba(0, 10, 15, 1) 100%);
         mask-composite: exclude;
         box-shadow: 15px 0 20px -10px rgba(0, 0, 0, 0.7);
         z-index: 2;
@@ -54,19 +53,12 @@ export const Container = styled.div`
     }
 
     .swiper-slide {
-        /* display: flex;
-        justify-content: center;
-        align-items: center; */
+        align-items: center;
         padding: 0 10px;
         transition:
             opacity 0.3s ease,
             transform 0.3s ease;
     }
-
-    /* .swiper-button-next,
-    .swiper-button-prev {
-        display: none;
-    } */
 
     .custom-swiper-button-next {
         right: 10px;
@@ -77,14 +69,6 @@ export const Container = styled.div`
 
     .custom-swiper-button-next,
     .custom-swiper-button-prev {
-        /* width: 2rem;
-        height: 2rem;
-        color: ${({ theme }) => theme.COLORS.LIGHT_100};
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 10;
-        cursor: pointer; */
         position: absolute;
         top: 50%;
         transform: translateY(-50%);

@@ -1,23 +1,91 @@
-import { BrowserRouter } from 'react-router-dom';
-import { AdminRoutes } from './admin.routes';
-import { CustomerRoutes } from './customer.routes';
-import { AuthRoutes } from './auth.routes';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '../hooks/auth';
-import { USER_ROLE } from '../utils/roles';
+import { SignIn } from '../pages/SignIn';
+import { SignUp } from '../pages/SignUp';
+import { Details } from '../pages/Details';
+import { Home } from '../pages/Home';
+import { NotFound } from '../pages/NotFound';
+import { ManageDish } from '../pages/ManageDish';
+import { routes } from './routes';
+import { useEffect, useState } from 'react';
 
-export function Routes() {
+export function App() {
     const { user } = useAuth();
 
-    function AccessRoute() {
-        switch (user.role) {
-            case USER_ROLE.ADMIN:
-                return <AdminRoutes />;
-            case USER_ROLE.CUSTOMER:
-                return <CustomerRoutes />;
-            default:
-                return <CustomerRoutes />;
-        }
+    if (user === undefined) {
+        return <></>;
     }
 
-    return <BrowserRouter>{user ? <AccessRoute /> : <AuthRoutes />}</BrowserRouter>;
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route
+                    path={routes.signIn}
+                    element={
+                        <NotAuthenticatedRoute>
+                            <SignIn />
+                        </NotAuthenticatedRoute>
+                    }
+                />
+
+                <Route
+                    path={routes.signUp}
+                    element={
+                        <NotAuthenticatedRoute>
+                            <SignUp />
+                        </NotAuthenticatedRoute>
+                    }
+                />
+
+                <Route
+                    path={routes.home}
+                    element={
+                        <AuthenticatedRoute>
+                            <Home />
+                        </AuthenticatedRoute>
+                    }
+                />
+
+                <Route
+                    path={routes.dishDetails}
+                    element={
+                        <AuthenticatedRoute>
+                            <Details />
+                        </AuthenticatedRoute>
+                    }
+                />
+
+                <Route
+                    path={routes.createDish}
+                    element={
+                        <AuthenticatedRoute>
+                            <ManageDish />
+                        </AuthenticatedRoute>
+                    }
+                />
+
+                <Route path="*" exact={true} element={<NotFound />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
+
+const NotAuthenticatedRoute = ({ children }) => {
+    const { user } = useAuth();
+
+    if (user != null) {
+        return <Navigate to={routes.home} replace />;
+    }
+
+    return children;
+};
+
+const AuthenticatedRoute = ({ children }) => {
+    const { user } = useAuth();
+
+    if (user == null) {
+        return <Navigate to={routes.signIn} replace />;
+    }
+
+    return children;
+};

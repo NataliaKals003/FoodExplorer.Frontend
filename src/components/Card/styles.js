@@ -63,6 +63,12 @@ export const Content = styled.div`
         text-align: center;
         word-wrap: break-word;
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
+
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .priceAdmin {

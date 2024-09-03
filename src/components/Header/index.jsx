@@ -34,6 +34,7 @@ export function Header() {
 
     const handleNewDishClick = () => {
         navigate(`/dish`);
+        location.reload();
     };
 
     return (
@@ -58,7 +59,7 @@ export function Header() {
             <Button
                 className="headerButton"
                 icon={userCustomer && PiReceiptBold}
-                title={userAdmin ? <span onClick={handleNewDishClick}>Novo prato</span> : `Pedidos (${orderCount})`}
+                title={userAdmin ? <span onClick={handleNewDishClick}>New dish</span> : `Orders (${orderCount})`}
             />
             <Logout onClick={handleLogout}>
                 <LuLogOut />
