@@ -96,8 +96,32 @@ export const ImageContainer = styled.div`
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
         transform: translate(-10%, 5%);
         img {
-            width: 30vw;
+            width: 20vw;
             clip-path: inset(0 0 24% 0);
+        }
+    }
+
+    @media (max-width: 600px) {
+        transform: translate(-16%, 7%);
+        img {
+            width: 30vw;
+            clip-path: inset(0 0 31% 0);
+        }
+    }
+
+    @media (max-width: 400px) {
+        transform: translate(-16%, 7%);
+        img {
+            width: 40vw;
+            clip-path: inset(0 0 31% 0);
+        }
+    }
+
+    @media (max-width: 400px) {
+        transform: translate(-16%, 7%);
+        img {
+            width: 40vw;
+            clip-path: inset(0 0 31% 0);
         }
     }
 
