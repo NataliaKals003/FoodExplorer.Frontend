@@ -32,10 +32,30 @@ export const Container = styled.header`
         .headerButton {
             display: none;
         }
+
+        .historyOrderButton {
+            display: none;
+        }
+
+        .favouriteOrderButton {
+            display: none;
+        }
     }
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.SM}) {
         padding: 3.5rem 1.75rem 1.5rem 1.75rem;
+    }
+
+    .historyOrderButton {
+        font-weight: 400;
+        font-size: 1rem;
+        margin-right: 1.5rem;
+    }
+
+    .favouriteOrderButton {
+        font-weight: 400;
+        font-size: 1rem;
+        margin-right: 1.5rem;
     }
 `;
 

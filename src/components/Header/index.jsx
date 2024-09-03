@@ -1,5 +1,6 @@
 import { Container, Logo, Logout, Search, Menu, OrdersIcon } from './styles';
 import { Button } from '../Button';
+import { ButtonText } from '../ButtonText';
 import { SideMenu } from '../SideMenu';
 import { LuLogOut } from 'react-icons/lu';
 import { PiReceiptBold } from 'react-icons/pi';
@@ -52,6 +53,20 @@ export function Header() {
             <Search>
                 <InputHeader placeholder="Seach by dishes or ingredients" icon={IoSearchOutline} type="text" />
             </Search>
+            {userAdmin && (
+                <ButtonText
+                    onClick={() => navigate(routes.historyOrder)}
+                    className="historyOrderButton"
+                    title="Order history"
+                />
+            )}
+            {userCustomer && (
+                <ButtonText
+                    onClick={() => navigate(routes.historyOrder)}
+                    className="favouriteOrderButton"
+                    title="My favourites"
+                />
+            )}
             <OrdersIcon>
                 <PiReceiptBold />
                 <span>{orderCount}</span>

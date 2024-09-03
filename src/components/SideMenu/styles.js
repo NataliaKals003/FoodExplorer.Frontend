@@ -65,4 +65,5 @@ export const TextMenu = styled.button`
     border-bottom: solid 3px ${({ theme }) => theme.COLORS.DARK_1000};
     padding-bottom: 0.5rem;
     padding-left: 1rem;
+    padding-top: 0.6rem;
 `;

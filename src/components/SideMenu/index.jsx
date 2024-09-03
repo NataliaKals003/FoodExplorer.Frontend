@@ -11,6 +11,7 @@ export function SideMenu({ closeMenu }) {
     const { signOut, user } = useAuth();
 
     const userAdmin = user.role === 'admin';
+    const userCustomer = user.role === 'customer';
 
     const navigate = useNavigate();
 
@@ -43,7 +44,9 @@ export function SideMenu({ closeMenu }) {
                 />
             </Search>
             {userAdmin && <TextMenu onClick={handleNewDishClick}>New dish</TextMenu>}
-            <TextMenu onClick={handleLogout}>Sair</TextMenu>
+            {userAdmin && <TextMenu>Order history</TextMenu>}
+            {userCustomer && <TextMenu>My favourites</TextMenu>}
+            <TextMenu onClick={handleLogout}>Exit</TextMenu>
             <div style={{ marginTop: 'auto' }} />
             <Footer />
         </Container>
