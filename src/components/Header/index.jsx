@@ -38,6 +38,20 @@ export function Header() {
         location.reload();
     };
 
+    const handleFavouriteClick = () => {
+        navigate(`/favourite`);
+        location.reload();
+    };
+
+    const handleOrderHistoryClick = () => {
+        navigate(`/order-history`);
+        location.reload();
+    };
+
+    const handleHomeClick = () => {
+        navigate(`/`);
+    };
+
     return (
         <Container>
             <Menu>
@@ -46,7 +60,7 @@ export function Header() {
             <Logo>
                 <img src={polygon} alt="Polygon" />
                 <div className="title">
-                    <span>food explorer</span>
+                    <span onClick={handleHomeClick}>food explorer</span>
                     {userAdmin && <strong>admin</strong>}
                 </div>
             </Logo>
@@ -54,18 +68,10 @@ export function Header() {
                 <InputHeader placeholder="Seach by dishes or ingredients" icon={IoSearchOutline} type="text" />
             </Search>
             {userAdmin && (
-                <ButtonText
-                    onClick={() => navigate(routes.historyOrder)}
-                    className="historyOrderButton"
-                    title="Order history"
-                />
+                <ButtonText onClick={handleOrderHistoryClick} className="historyOrderButton" title="Order history" />
             )}
             {userCustomer && (
-                <ButtonText
-                    onClick={() => navigate(routes.historyOrder)}
-                    className="favouriteOrderButton"
-                    title="My favourites"
-                />
+                <ButtonText onClick={handleFavouriteClick} className="favouriteOrderButton" title="My favourites" />
             )}
             <OrdersIcon>
                 <PiReceiptBold />
@@ -73,8 +79,9 @@ export function Header() {
             </OrdersIcon>
             <Button
                 className="headerButton"
-                icon={userCustomer && PiReceiptBold}
-                title={userAdmin ? <span onClick={handleNewDishClick}>New dish</span> : `Orders (${orderCount})`}
+                icon={userCustomer ? PiReceiptBold : undefined}
+                onClick={userAdmin ? handleNewDishClick : handleOrderHistoryClick}
+                title={userAdmin ? 'New dish' : `Orders (${orderCount})`}
             />
             <Logout onClick={handleLogout}>
                 <LuLogOut />

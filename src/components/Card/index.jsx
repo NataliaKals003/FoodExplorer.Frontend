@@ -7,6 +7,7 @@ import { Button } from '../Button';
 import { useState } from 'react';
 import { useAuth } from '../../hooks/auth';
 import { useNavigate } from 'react-router-dom';
+import { api } from '../../services/api';
 
 export function Card({ product, onClick }) {
     const { user } = useAuth();
@@ -22,9 +23,20 @@ export function Card({ product, onClick }) {
 
     const [isFavourite, setIsFavourite] = useState(false);
 
-    const toggleFavourite = (e) => {
+    const toggleFavourite = async (e) => {
         e.stopPropagation();
         setIsFavourite((prev) => !prev);
+
+        if (!isFavourite) {
+            try {
+                await api.post('/favourites', {
+                    dish_id: dishId,
+                    user_id: userCustomer.id,
+                });
+            } catch (error) {
+                console.error('Failed to add to favourites', error);
+            }
+        }
     };
 
     return (

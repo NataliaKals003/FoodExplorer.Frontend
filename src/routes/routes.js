@@ -3,6 +3,8 @@ export const routes = {
     signUp: '/sign-up',
     home: '/',
     dishDetails: '/dish/details/:id',
+    favourites: '/favourite',
     createDish: '/dish',
     manageDish: '/dish/:id',
+    orderHistory: '/order-history',
 };

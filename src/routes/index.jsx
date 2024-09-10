@@ -6,8 +6,9 @@ import { Details } from '../pages/Details';
 import { Home } from '../pages/Home';
 import { NotFound } from '../pages/NotFound';
 import { ManageDish } from '../pages/ManageDish';
+import { Favourite } from '../pages/Favourite';
 import { routes } from './routes';
-import { useEffect, useState } from 'react';
+import { OrderHistory } from '../pages/OrderHistory';
 
 export function App() {
     const { user } = useAuth();
@@ -58,8 +59,26 @@ export function App() {
                 <Route
                     path={routes.createDish}
                     element={
-                        <AuthenticatedRoute>
+                        <AuthenticatedRoute onlyForRole={'admin'}>
                             <ManageDish />
+                        </AuthenticatedRoute>
+                    }
+                />
+
+                <Route
+                    path={routes.favourites}
+                    element={
+                        <AuthenticatedRoute onlyForRole={'customer'}>
+                            <Favourite />
+                        </AuthenticatedRoute>
+                    }
+                />
+
+                <Route
+                    path={routes.orderHistory}
+                    element={
+                        <AuthenticatedRoute>
+                            <OrderHistory />
                         </AuthenticatedRoute>
                     }
                 />
@@ -80,11 +99,16 @@ const NotAuthenticatedRoute = ({ children }) => {
     return children;
 };
 
-const AuthenticatedRoute = ({ children }) => {
+const AuthenticatedRoute = ({ children, onlyForRole }) => {
     const { user } = useAuth();
 
     if (user == null) {
         return <Navigate to={routes.signIn} replace />;
+    }
+
+    if (onlyForRole != null && user.role != onlyForRole) {
+        // Another role trying to access
+        return <Navigate to={routes.home} replace />;
     }
 
     return children;

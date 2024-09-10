@@ -25,6 +25,16 @@ export function SideMenu({ closeMenu }) {
 
     const handleNewDishClick = () => {
         navigate(`/dish`);
+        location.reload();
+    };
+
+    const handleFavouriteClick = () => {
+        navigate(`/favourite`);
+    };
+
+    const handleOrderHistoryClick = () => {
+        navigate(`/order-history`);
+        location.reload();
     };
 
     return (
@@ -44,8 +54,8 @@ export function SideMenu({ closeMenu }) {
                 />
             </Search>
             {userAdmin && <TextMenu onClick={handleNewDishClick}>New dish</TextMenu>}
-            {userAdmin && <TextMenu>Order history</TextMenu>}
-            {userCustomer && <TextMenu>My favourites</TextMenu>}
+            {userAdmin && <TextMenu onClick={handleOrderHistoryClick}>Order history</TextMenu>}
+            {userCustomer && <TextMenu onClick={handleFavouriteClick}>My favourites</TextMenu>}
             <TextMenu onClick={handleLogout}>Exit</TextMenu>
             <div style={{ marginTop: 'auto' }} />
             <Footer />
