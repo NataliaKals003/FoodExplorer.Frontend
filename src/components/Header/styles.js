@@ -46,7 +46,7 @@ export const Container = styled.header`
         padding: 3.5rem 1.75rem 1.5rem 1.75rem;
     }
 
-    .historyOrderButton {
+    .headerTextButton {
         font-weight: 400;
         font-size: 1rem;
         margin-right: 1.5rem;

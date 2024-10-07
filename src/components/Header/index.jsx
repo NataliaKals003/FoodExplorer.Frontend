@@ -48,6 +48,11 @@ export function Header() {
         location.reload();
     };
 
+    const handleOrderDishClick = () => {
+        navigate(`/order`);
+        location.reload();
+    };
+
     const handleHomeClick = () => {
         navigate(`/`);
     };
@@ -67,9 +72,10 @@ export function Header() {
             <Search>
                 <InputHeader placeholder="Seach by dishes or ingredients" icon={IoSearchOutline} type="text" />
             </Search>
-            {userAdmin && (
-                <ButtonText onClick={handleOrderHistoryClick} className="historyOrderButton" title="Order history" />
-            )}
+            <ButtonText onClick={handleOrderHistoryClick} className="headerTextButton" title="Order history" />
+
+            {userAdmin && <ButtonText onClick={handleNewDishClick} className="headerTextButton" title="New dish" />}
+
             {userCustomer && (
                 <ButtonText onClick={handleFavouriteClick} className="favouriteOrderButton" title="My favourites" />
             )}
@@ -79,9 +85,9 @@ export function Header() {
             </OrdersIcon>
             <Button
                 className="headerButton"
-                icon={userCustomer ? PiReceiptBold : undefined}
-                onClick={userAdmin ? handleNewDishClick : handleOrderHistoryClick}
-                title={userAdmin ? 'New dish' : `Orders (${orderCount})`}
+                icon={PiReceiptBold}
+                onClick={userAdmin && handleOrderDishClick}
+                title={userAdmin ? `Orders (${orderCount})` : `Pedidos (${orderCount})`}
             />
             <Logout onClick={handleLogout}>
                 <LuLogOut />

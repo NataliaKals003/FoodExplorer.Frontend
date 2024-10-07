@@ -9,6 +9,7 @@ import { ManageDish } from '../pages/ManageDish';
 import { Favourite } from '../pages/Favourite';
 import { routes } from './routes';
 import { OrderHistory } from '../pages/OrderHistory';
+import { Order } from '../pages/Order';
 
 export function App() {
     const { user } = useAuth();
@@ -64,6 +65,14 @@ export function App() {
                         </AuthenticatedRoute>
                     }
                 />
+                <Route
+                    path={routes.manageDish}
+                    element={
+                        <AuthenticatedRoute onlyForRole={'admin'}>
+                            <ManageDish />
+                        </AuthenticatedRoute>
+                    }
+                />
 
                 <Route
                     path={routes.favourites}
@@ -79,6 +88,15 @@ export function App() {
                     element={
                         <AuthenticatedRoute>
                             <OrderHistory />
+                        </AuthenticatedRoute>
+                    }
+                />
+
+                <Route
+                    path={routes.order}
+                    element={
+                        <AuthenticatedRoute>
+                            <Order />
                         </AuthenticatedRoute>
                     }
                 />

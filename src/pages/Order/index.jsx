@@ -1,15 +1,13 @@
 import { Header } from '../../components/Header/index.jsx';
-import { Footer } from '../../components/Footer';
+import { Footer } from '../../components/Footer/index.jsx';
 import { Container, Content } from './style.js';
-import { OrderTable } from '../../components/OrderTable/index.jsx';
 
-export function OrderHistory() {
+export function Order() {
     return (
         <Container>
             <Header />
             <Content>
-                <h1>Order history</h1>
-                <OrderTable />
+                <h1>Order</h1>
             </Content>
             <Footer />
         </Container>

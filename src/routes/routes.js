@@ -7,4 +7,5 @@ export const routes = {
     createDish: '/dish',
     manageDish: '/dish/:id',
     orderHistory: '/order-history',
+    order: '/order',
 };

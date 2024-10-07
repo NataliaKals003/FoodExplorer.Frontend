@@ -9,7 +9,7 @@ import { Footer } from '../../components/Footer';
 import { IoChevronBack } from 'react-icons/io5';
 import { FiUpload } from 'react-icons/fi';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
-import { SelectDish } from '../../components/SelectDish';
+import { Select } from '../../components/Select';
 import { Ingredients } from '../../components/Ingredients';
 import { TextArea } from '../../components/TextArea';
 import { Button } from '../../components/Button';
@@ -25,6 +25,7 @@ export function ManageDish() {
         price: '',
         description: '',
         categoryId: undefined,
+        categoryName: 'Refeições',
         imageFile: '',
     });
 
@@ -56,18 +57,22 @@ export function ManageDish() {
         console.log(newIngredient);
     }, []);
 
-    const handleCategoryChange = useCallback((selectedCategoryId) => {
-        const categoryId = Number(selectedCategoryId);
+    const handleCategoryChange = useCallback(
+        (selectedCategoryId) => {
+            const selectedCategory = categoryOptions.find((cat) => cat.id === Number(selectedCategoryId));
 
-        if (!isNaN(categoryId)) {
-            setFormData((prevData) => ({
-                ...prevData,
-                categoryId: categoryId,
-            }));
-        } else {
-            console.warn('Invalid category ID:', selectedCategoryId);
-        }
-    }, []);
+            if (selectedCategory) {
+                setFormData((prevData) => ({
+                    ...prevData,
+                    categoryId: selectedCategory.id,
+                    categoryName: selectedCategory.name,
+                }));
+            } else {
+                console.warn('Invalid category ID:', selectedCategoryId);
+            }
+        },
+        [categoryOptions],
+    );
 
     const handleSaveDish = useCallback(async () => {
         if (!formData.name || !formData.description || !formData.price || !formData.categoryId) {
@@ -205,12 +210,12 @@ export function ManageDish() {
                             value={formData.name}
                             onChange={handleChange}
                         />
-                        <SelectDish
+                        <Select
                             title="Categoria"
-                            value={formData.categoryId}
+                            value={formData.categoryName}
                             options={categoryOptions.map((cat) => ({
                                 value: cat.id,
-                                label: cat.name,
+                                labelText: cat.name,
                             }))}
                             icon={MdOutlineKeyboardArrowDown}
                             onChange={handleCategoryChange}
