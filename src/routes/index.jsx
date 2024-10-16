@@ -77,7 +77,7 @@ export function App() {
                 <Route
                     path={routes.favourites}
                     element={
-                        <AuthenticatedRoute onlyForRole={'customer'}>
+                        <AuthenticatedRoute>
                             <Favourite />
                         </AuthenticatedRoute>
                     }
@@ -87,7 +87,7 @@ export function App() {
                     path={routes.orderHistory}
                     element={
                         <AuthenticatedRoute>
-                            <OrderHistory />
+                            <OrderHistory onlyForRole={'customer'} />
                         </AuthenticatedRoute>
                     }
                 />
@@ -96,7 +96,7 @@ export function App() {
                     path={routes.order}
                     element={
                         <AuthenticatedRoute>
-                            <Order />
+                            <Order onlyForRole={'customer'} />
                         </AuthenticatedRoute>
                     }
                 />

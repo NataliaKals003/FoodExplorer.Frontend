@@ -33,7 +33,7 @@ export const Container = styled.header`
             display: none;
         }
 
-        .historyOrderButton {
+        .headerTextButton {
             display: none;
         }
 
@@ -44,9 +44,14 @@ export const Container = styled.header`
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.SM}) {
         padding: 3.5rem 1.75rem 1.5rem 1.75rem;
+
+        .headerTextButton {
+            display: none;
+        }
     }
 
     .headerTextButton {
+        /* display: none; */
         font-weight: 400;
         font-size: 1rem;
         margin-right: 1.5rem;

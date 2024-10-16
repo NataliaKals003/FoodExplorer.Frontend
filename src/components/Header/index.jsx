@@ -72,13 +72,13 @@ export function Header() {
             <Search>
                 <InputHeader placeholder="Seach by dishes or ingredients" icon={IoSearchOutline} type="text" />
             </Search>
-            <ButtonText onClick={handleOrderHistoryClick} className="headerTextButton" title="Order history" />
+            <ButtonText onClick={handleFavouriteClick} className="favouriteOrderButton" title="My favourites" />
+            {userCustomer && (
+                <ButtonText onClick={handleOrderHistoryClick} className="headerTextButton" title="Order history" />
+            )}
 
             {userAdmin && <ButtonText onClick={handleNewDishClick} className="headerTextButton" title="New dish" />}
 
-            {userCustomer && (
-                <ButtonText onClick={handleFavouriteClick} className="favouriteOrderButton" title="My favourites" />
-            )}
             <OrdersIcon>
                 <PiReceiptBold />
                 <span>{orderCount}</span>
@@ -86,8 +86,8 @@ export function Header() {
             <Button
                 className="headerButton"
                 icon={PiReceiptBold}
-                onClick={userAdmin && handleOrderDishClick}
-                title={userAdmin ? `Orders (${orderCount})` : `Pedidos (${orderCount})`}
+                onClick={userCustomer && handleOrderDishClick}
+                title={userAdmin ? `Pedidos (${orderCount})` : `Orders (${orderCount})`}
             />
             <Logout onClick={handleLogout}>
                 <LuLogOut />
