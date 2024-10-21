@@ -59,7 +59,7 @@ export function Card({ product, onClick }) {
             {userCustomer && (
                 <Footer>
                     <Amount className="cardAmount" value />
-                    <Button className="cardButton">incluir</Button>
+                    <Button className="cardButton">include</Button>
                 </Footer>
             )}
         </Container>

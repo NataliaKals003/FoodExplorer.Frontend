@@ -72,7 +72,7 @@ export const Container = styled.div`
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        z-index: 10;
+        z-index: 4;
         cursor: pointer;
     }
 

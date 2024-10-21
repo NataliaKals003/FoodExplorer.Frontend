@@ -4,13 +4,13 @@ import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 export const Container = styled.aside`
     display: none;
 
-    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+    @media (max-width: 768px) {
         display: flex;
         flex-direction: column;
         width: 100%;
         height: 100vh;
         position: fixed;
-        z-index: 3;
+        z-index: 7;
         top: 0;
         left: 0;
         background-color: ${({ theme }) => theme.COLORS.DARK_400};

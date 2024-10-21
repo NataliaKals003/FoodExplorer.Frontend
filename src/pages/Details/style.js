@@ -2,10 +2,13 @@ import styled from 'styled-components';
 import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 
 export const Container = styled.div`
-    display: flex;
-    flex-direction: column;
     height: 100vh;
-    color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    width: 100%;
+
+    .backButton {
+        font-weight: 500;
+        margin: 1.5rem 0 2.6rem 7.6rem;
+    }
 `;
 
 export const Content = styled.div`
@@ -13,7 +16,7 @@ export const Content = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 2rem 7.6rem 2rem 7.6rem;
+    margin: 2rem 7.6rem;
     font-family: 'Poppins', sans-serif;
 
     .backButton {

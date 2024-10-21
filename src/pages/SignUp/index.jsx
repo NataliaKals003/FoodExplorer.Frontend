@@ -42,18 +42,18 @@ export function SignUp() {
             </Logo>
             <Form>
                 <Content>
-                    <h2>Crie sua conta</h2>
-                    <span>Seu nome</span>
+                    <h2>Create your account</h2>
+                    <span>Your name</span>
                     <Input
                         className="login"
-                        placeholder="Exemplo: Maria da Silva"
+                        placeholder="Example: Maria da Silva"
                         type="text"
                         onChange={(e) => setName(e.target.value)}
                     />
                     <span>Email</span>
                     <Input
                         className="login"
-                        placeholder="Exemplo: exemplo@exemplo.com.br"
+                        placeholder="Example: exemplo@exemplo.com"
                         type="text"
                         onChange={(e) => setEmail(e.target.value)}
                     />
@@ -65,11 +65,11 @@ export function SignUp() {
                         maxLength={6}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <Button title="Criar conta" onClick={handleSingUp} />
+                    <Button title="Create account" onClick={handleSingUp} />
                     <ButtonText
                         onClick={() => navigate(routes.signIn)}
                         className="createAcount"
-                        title="Já tenho uma conta"
+                        title="I already have an account"
                     />
                 </Content>
             </Form>

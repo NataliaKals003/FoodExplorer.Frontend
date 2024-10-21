@@ -18,12 +18,6 @@ export function SignIn() {
         signIn({ email, password });
     }
 
-    // useEffect(() => {
-    //     if (user != null) {
-    //         navigate(routes.home);
-    //     }
-    // }, [user]);
-
     const navigate = useNavigate();
 
     return (
@@ -34,11 +28,11 @@ export function SignIn() {
             </Logo>
             <Form>
                 <Content>
-                    <h2>Faça login</h2>
+                    <h2>Log in</h2>
                     <span>Email</span>
                     <Input
                         className="login"
-                        placeholder="Exemplo: exemplo@exemplo.com.br"
+                        placeholder="Example: exemplo@exemplo.com"
                         type="text"
                         dark={true}
                         onChange={(e) => setEmail(e.target.value)}
@@ -46,17 +40,17 @@ export function SignIn() {
                     <span>Senha</span>
                     <Input
                         className="login"
-                        placeholder="No mínimo 6 caracteres"
+                        placeholder="At least 6 characters"
                         type="password"
                         maxLength={6}
                         dark={true}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <Button title="Entrar" onClick={handleSignIn} />
+                    <Button title="Log in" onClick={handleSignIn} />
                     <ButtonText
                         onClick={() => navigate(routes.signUp)}
                         className="createAcount"
-                        title="Criar uma conta"
+                        title="Create an accounta"
                     />
                 </Content>
             </Form>

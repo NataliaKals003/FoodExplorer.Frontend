@@ -1,4 +1,4 @@
-import polygonFooter from '../../assets/Polygon Footer.svg'
+import polygonFooter from '../../assets/Polygon Footer.svg';
 import { Container, Logo } from './styles';
 
 export function Footer() {
@@ -6,11 +6,9 @@ export function Footer() {
         <Container>
             <Logo>
                 <img src={polygonFooter} size={24} alt="Polygon" />
-                <span>food explorer</span>
+                <h2>food explorer</h2>
             </Logo>
-            <div>
-                <span>© 2023 - Todos os direitos reservados.</span>
-            </div>
+            <span className="textLogo">© 2023 - All rights reserved.</span>
         </Container>
     );
 }

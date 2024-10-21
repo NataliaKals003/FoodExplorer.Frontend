@@ -28,7 +28,7 @@ export function Header() {
     };
 
     const handleLogout = () => {
-        if (window.confirm('Você deseja sair?')) {
+        if (window.confirm('Do you want to log out?')) {
             signOut();
         }
     };
@@ -87,7 +87,7 @@ export function Header() {
                 className="headerButton"
                 icon={PiReceiptBold}
                 onClick={userCustomer && handleOrderDishClick}
-                title={userAdmin ? `Pedidos (${orderCount})` : `Orders (${orderCount})`}
+                title={`Orders (${orderCount})`}
             />
             <Logout onClick={handleLogout}>
                 <LuLogOut />

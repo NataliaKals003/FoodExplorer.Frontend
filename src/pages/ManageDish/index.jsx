@@ -16,6 +16,9 @@ import { Button } from '../../components/Button';
 import { api } from '../../services/api';
 
 export function ManageDish() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -25,7 +28,7 @@ export function ManageDish() {
         price: '',
         description: '',
         categoryId: undefined,
-        categoryName: 'Refeições',
+        categoryName: 'Meals',
         imageFile: '',
     });
 
@@ -46,7 +49,7 @@ export function ManageDish() {
             imageFile: file,
             imageUrl: null,
         }));
-        console.log('Imagem carregada:', file.name);
+        console.log('Image uploaded:', file.name);
     }, []);
 
     const handleIngredientsChange = useCallback((newIngredient) => {
@@ -54,13 +57,11 @@ export function ManageDish() {
             ...prevData,
             ingredients: newIngredient,
         }));
-        console.log(newIngredient);
     }, []);
 
     const handleCategoryChange = useCallback(
         (selectedCategoryId) => {
             const selectedCategory = categoryOptions.find((cat) => cat.id === Number(selectedCategoryId));
-
             if (selectedCategory) {
                 setFormData((prevData) => ({
                     ...prevData,
@@ -94,7 +95,8 @@ export function ManageDish() {
         formDataToSend.append('price', formData.price);
         formDataToSend.append('categoryId', formData.categoryId);
         formDataToSend.append('ingredients', formData.ingredients.join(','));
-        console.log(formData.ingredients);
+        console.log('ingredients', formData.ingredients);
+        console.log('category:', formData.categoryId);
 
         console.log('Saving dish imageFile:', formData.imageFile);
         if (formData.imageFile) {
@@ -146,12 +148,15 @@ export function ManageDish() {
                     const response_dish = await api.get(`/dishes/${id}`);
                     const dish = response_dish.data;
 
+                    const category = categoryOptions.find((cat) => cat.id === dish.categoryId);
+
                     setFormData({
                         name: dish.name,
                         ingredients: dish.ingredients,
                         price: dish.price,
                         description: dish.description,
                         categoryId: dish.categoryId,
+                        categoryName: category ? category.name : '',
                         imageFile: null,
                         imageUrl: dish.image,
                     });
@@ -162,7 +167,7 @@ export function ManageDish() {
             };
             fetchDish();
         }
-    }, [id]);
+    }, [id, categoryOptions]);
 
     useEffect(() => {
         if (categoryOptions.length > 0 && !formData.categoryId) {
@@ -188,30 +193,31 @@ export function ManageDish() {
     return (
         <Container>
             <Header />
-            <ButtonText className="backButton" icon={IoChevronBack} title="voltar" onClick={() => navigate('/')} />
+            <ButtonText className="backButton" icon={IoChevronBack} title="back" onClick={() => navigate('/')} />
 
             <main>
                 <Form>
-                    <h1>{id ? 'Editar prato' : 'Adicionar prato'}</h1>
+                    <h1>{id ? 'Edit dish' : 'Add dish'}</h1>
                     <DishDetails>
                         <UploadImg
-                            title="Imagem do prato"
-                            buttonLabel="Selecione imagem"
+                            title="Dish image"
+                            buttonLabel="Select image"
                             icon={FiUpload}
                             onImageUpload={handleImageUpload}
                             imageUrl={formData.imageUrl}
                         />
                         <Input
-                            title="Nome"
+                            title="Name"
                             name="name"
-                            placeholder="Ex.: Salada Ceasar"
+                            placeholder="Ex: Ceasar Salad"
                             type="text"
                             flex="auto"
                             value={formData.name}
                             onChange={handleChange}
                         />
+
                         <Select
-                            title="Categoria"
+                            title="Category"
                             value={formData.categoryName}
                             options={categoryOptions.map((cat) => ({
                                 value: cat.id,
@@ -224,31 +230,31 @@ export function ManageDish() {
                     <DishAttributes>
                         <Ingredients
                             value={formData.ingredients}
-                            title="Ingredientes"
+                            title="Ingredients"
                             onIngredientsChange={handleIngredientsChange}
                             hasUnresolvedIngredient={(has) => setHasUnresolvedIngredient(has)}
                         />
                         <Input
                             name="price"
-                            title="Preço"
-                            placeholder="R$ 00.00"
+                            title="Price"
+                            placeholder="$ 00.00"
                             type="number"
                             value={formData.price}
                             onChange={handleChange}
                         />
                     </DishAttributes>
                     <TextArea
-                        title="Descrição"
+                        title="Description"
                         name="description"
-                        placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+                        placeholder="Briefly talk about the dish, its ingredients, and composition"
                         value={formData.description}
                         onChange={handleChange}
                     />
                     <ButtonContainer>
-                        {id && <Button className="deleteDish" title="Excluir prato" onClick={handleDelete} />}
+                        <Button className="deleteDish" title="Delete dish" onClick={id ? handleDelete : undefined} />
                         <Button
                             className="saveDish"
-                            title={id ? 'Salvar alterações' : 'Criar prato'}
+                            title={id ? 'Save changes' : 'Create dish'}
                             onClick={handleSaveDish}
                         />
                     </ButtonContainer>

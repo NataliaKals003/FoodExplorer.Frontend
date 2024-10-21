@@ -30,24 +30,24 @@ export function Home() {
                     <img src={macarons} alt="Macarons" />
                 </ImageContainer>
                 <TextBanner>
-                    <h1>Sabores inigualáveis</h1>
-                    <p>Sinta o cuidado do preparo com ingredientes selecionados</p>
+                    <h1>Unmatched flavors</h1>
+                    <p>Feel the care in preparation with selected ingredients</p>
                 </TextBanner>
             </Banner>
             <Content>
                 <div className="Main">
-                    <h2>Refeições</h2>
-                    <h3>Refeições</h3>
+                    <h2>Meals</h2>
+                    <h3>Meals</h3>
                     <Swiper products={dishes.filter((dish) => dish.categoryId === 1)} />
                 </div>
                 <div className="Desert">
-                    <h2>Sobremesas</h2>
-                    <h3>Pratos principais</h3>
+                    <h2>Desserts</h2>
+                    <h3>Main dishes</h3>
                     <Swiper products={dishes.filter((dish) => dish.categoryId === 2)} />
                 </div>
                 <div className="Drink">
-                    <h2>Bebidas</h2>
-                    <h3>Pratos principais</h3>
+                    <h2>Drinks</h2>
+                    <h3>Main dishes</h3>
                     <Swiper products={dishes.filter((dish) => dish.categoryId === 3)} />
                 </div>
             </Content>

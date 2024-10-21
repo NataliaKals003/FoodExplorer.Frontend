@@ -26,7 +26,7 @@ export const Container = styled.header`
         }
     }
 
-    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+    @media (max-width: 768px) {
         padding: 3.5rem 1.75rem 1.5rem 1.75rem;
 
         .headerButton {
@@ -89,7 +89,7 @@ export const Logo = styled.div`
         color: ${({ theme }) => theme.COLORS.CAKE_200};
     }
 
-    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+    @media (max-width: 768px) {
         .title {
             flex-direction: row;
             align-items: center;
@@ -121,7 +121,7 @@ export const Logout = styled.button`
         margin-left: 2rem;
     }
 
-    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+    @media (max-width: 768px) {
         display: none;
     }
 `;
@@ -144,7 +144,7 @@ export const Search = styled.div`
         }
     }
 
-    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+    @media (max-width: 768px) {
         display: none;
     }
 `;
@@ -160,7 +160,7 @@ export const Menu = styled.button`
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
     }
 
-    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+    @media (max-width: 768px) {
         display: block;
     }
 `;
@@ -190,7 +190,7 @@ export const OrdersIcon = styled.div`
         justify-content: center;
     }
 
-    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+    @media (max-width: 768px) {
         display: flex;
     }
 

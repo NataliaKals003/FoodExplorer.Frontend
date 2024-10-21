@@ -5,10 +5,10 @@ import { IoChevronBack } from 'react-icons/io5';
 export function NotFound() {
     return (
         <Container>
-            <h1>Página indisponível</h1>
+            <h1>Page unavailable</h1>
             <Link to="/">
                 <IoChevronBack size={20} />
-                voltar para o início
+                Go back to the home page
             </Link>
         </Container>
     );

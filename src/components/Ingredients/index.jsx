@@ -1,10 +1,10 @@
-import { Container } from "./styles";
-import { TagItem } from "../TagIten";
-import { useEffect, useState } from "react";
+import { Container } from './styles';
+import { TagItem } from '../TagIten';
+import { useEffect, useState } from 'react';
 
 export function Ingredients({ value = [], title, onIngredientsChange, hasUnresolvedIngredient }) {
     const [ingredients, setIngredients] = useState(value);
-    const [newIngredient, setNewIngredient] = useState("");
+    const [newIngredient, setNewIngredient] = useState('');
 
     useEffect(() => {
         if (value !== ingredients) {
@@ -22,24 +22,24 @@ export function Ingredients({ value = [], title, onIngredientsChange, hasUnresol
 
     function handleAddIngredient() {
         if (newIngredient.trim()) {
-            setIngredients(prevState => [...prevState, newIngredient.trim()]);
-            setNewIngredient("");
+            setIngredients((prevState) => [...prevState, newIngredient.trim()]);
+            setNewIngredient('');
         }
     }
 
     function handleRemoveIngredient(ingredientToRemove) {
         if (ingredientToRemove) {
-            const removeIngredient = window.confirm(`Você deseja remover ${ingredientToRemove}?`);
+            const removeIngredient = window.confirm(`Do you want to remove ${ingredientToRemove}?`);
             if (removeIngredient) {
-                setIngredients(prevState => prevState.filter(ingredient => ingredient !== ingredientToRemove));
+                setIngredients((prevState) => prevState.filter((ingredient) => ingredient !== ingredientToRemove));
             }
         }
-    };
+    }
 
     return (
         <Container>
             <span>{title}</span>
-            <section title="Ingredientes">
+            <section title="Ingredients">
                 {ingredients.map((ingredient, index) => (
                     <TagItem
                         key={String(index)}
@@ -49,12 +49,12 @@ export function Ingredients({ value = [], title, onIngredientsChange, hasUnresol
                 ))}
                 <TagItem
                     isNew
-                    placeholder="Adicionar"
+                    placeholder="Add"
                     value={newIngredient}
-                    onChange={e => setNewIngredient(e.target.value)}
+                    onChange={(e) => setNewIngredient(e.target.value)}
                     onClick={handleAddIngredient}
                 />
             </section>
         </Container>
-    )
+    );
 }

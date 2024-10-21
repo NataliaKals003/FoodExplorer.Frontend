@@ -16,7 +16,7 @@ export function SideMenu({ closeMenu }) {
     const navigate = useNavigate();
 
     const handleLogout = async () => {
-        if (window.confirm('Você deseja sair?')) {
+        if (window.confirm('Do you want to log out?')) {
             await signOut();
             navigate(routes.signIn);
             location.reload();

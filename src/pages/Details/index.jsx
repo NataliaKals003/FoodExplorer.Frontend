@@ -45,14 +45,14 @@ export function Details({ product }) {
     return (
         <Container>
             <Header />
+            <ButtonText
+                onClick={() => navigate(routes.home)}
+                className="backButton"
+                icon={IoChevronBack}
+                title="back"
+            />
             {data && (
                 <Content>
-                    <ButtonText
-                        onClick={() => navigate(routes.home)}
-                        className="backButton"
-                        icon={IoChevronBack}
-                        title="voltar"
-                    />
                     <img src={data.image} alt={data.image} />
                     <div className="text-content">
                         <h1>{data.name}</h1>
@@ -66,19 +66,19 @@ export function Details({ product }) {
                             {userCustomer && <Amount className="amount" />}
                             <Button className="include">
                                 {userCustomer ? (
-                                    <span className="text-desktop">Incluir ∙ R$ {data.price} </span>
+                                    <span className="text-desktop">Include ∙ $ {data.price} </span>
                                 ) : (
                                     <span product={product} onClick={handleEditDishClick} className="text-desktop">
-                                        Editar prato
+                                        Edit dish
                                     </span>
                                 )}
                                 {userCustomer ? (
                                     <span className="text-mobile">
-                                        <PiReceiptBold className="icon" size={15} /> pedir ∙ R$ {data.price}
+                                        <PiReceiptBold className="icon" size={15} /> order ∙ $ {data.price}
                                     </span>
                                 ) : (
                                     <span product={product} onClick={handleEditDishClick} className="text-mobile">
-                                        Editar prato
+                                        Edit dish
                                     </span>
                                 )}
                             </Button>

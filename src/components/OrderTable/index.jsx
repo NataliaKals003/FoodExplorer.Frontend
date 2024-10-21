@@ -14,19 +14,19 @@ export function OrderTable() {
 
     const [orders, setOrders] = useState([
         {
-            status: 'Pendente',
+            status: 'Pending',
             codigo: '00001',
-            detalhamento: '1x Salada radish, 1x Torrada Params, 1x Salada radish, 1x Torrada Params',
+            detalhamento: '1x Radish Salad, 1x Params Toast, 1x Radish Salad, 1x Params Toast',
             dataHora: '20/05 às 18h00',
         },
         {
-            status: 'Preparando',
+            status: 'Preparing',
             codigo: '00002',
             detalhamento: '1x Salada radish, 1 Torrada Params, 1x Salada radish, 1x Torrada Params',
             dataHora: '20/05 às 18h00',
         },
         {
-            status: 'Entregue',
+            status: 'Delivered',
             codigo: '00003',
             detalhamento: '1x Salada radish, 1 Torrada Params, 1x Salada radish, 1x Torrada Params',
             dataHora: '20/05 às 18h00',
@@ -35,11 +35,11 @@ export function OrderTable() {
 
     const getStatusColor = (status) => {
         switch (status) {
-            case 'Pendente':
+            case 'Pending':
                 return 'red';
-            case 'Preparando':
+            case 'Preparing':
                 return 'orange';
-            case 'Entregue':
+            case 'Delivered':
                 return 'green';
             default:
                 return 'gray';
@@ -73,9 +73,9 @@ export function OrderTable() {
                             <Select
                                 value={order.status}
                                 options={[
-                                    { value: 'Pendente', labelText: 'Pendente' },
-                                    { value: 'Preparando', labelText: 'Preparando' },
-                                    { value: 'Entregue', labelText: 'Entregue' },
+                                    { value: 'Pending', labelText: 'Pending' },
+                                    { value: 'Preparing', labelText: 'Preparing' },
+                                    { value: 'Delivered', labelText: 'Delivered' },
                                 ]}
                                 icon={MdOutlineKeyboardArrowDown}
                                 onChange={(newStatus) => handleStatusChange(index, newStatus)}
