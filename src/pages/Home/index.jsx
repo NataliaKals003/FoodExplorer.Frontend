@@ -8,18 +8,30 @@ import { api } from '../../services/api';
 
 export function Home() {
     const [dishes, setDishes] = useState([]);
+    const [favourites, setFavourites] = useState([]);
+
+    async function fetchDishes() {
+        try {
+            const response = await api.get('/dishes');
+            setDishes(response.data);
+        } catch (error) {
+            console.error('Error fetching dishes', error);
+        }
+    }
+
+    async function fetchFavourites() {
+        try {
+            const response = await api.get('/favourites');
+            setFavourites(response.data);
+            console.log('Favourites fetched:', response.data);
+        } catch (error) {
+            console.error('Error fetching favourites:', error);
+        }
+    }
 
     useEffect(() => {
-        async function fetchDishes() {
-            try {
-                const response = await api.get('/dishes');
-                setDishes(response.data);
-            } catch (error) {
-                console.error('Error fetching dishes', error);
-            }
-        }
-
         fetchDishes();
+        fetchFavourites();
     }, []);
 
     return (
@@ -37,18 +49,15 @@ export function Home() {
             <Content>
                 <div className="Main">
                     <h2>Meals</h2>
-                    <h3>Meals</h3>
-                    <Swiper products={dishes.filter((dish) => dish.categoryId === 1)} />
+                    <Swiper dishes={dishes.filter((dish) => dish.categoryId === 1)} favourites={favourites} />
                 </div>
                 <div className="Desert">
                     <h2>Desserts</h2>
-                    <h3>Main dishes</h3>
-                    <Swiper products={dishes.filter((dish) => dish.categoryId === 2)} />
+                    <Swiper dishes={dishes.filter((dish) => dish.categoryId === 2)} favourites={favourites} />
                 </div>
                 <div className="Drink">
                     <h2>Drinks</h2>
-                    <h3>Main dishes</h3>
-                    <Swiper products={dishes.filter((dish) => dish.categoryId === 3)} />
+                    <Swiper dishes={dishes.filter((dish) => dish.categoryId === 3)} favourites={favourites} />
                 </div>
             </Content>
             <Footer />

@@ -54,7 +54,7 @@ export function SideMenu({ closeMenu }) {
                 />
             </Search>
             {userAdmin && <TextMenu onClick={handleNewDishClick}>New dish</TextMenu>}
-            <TextMenu onClick={handleFavouriteClick}>My favourites</TextMenu>
+            {userCustomer && <TextMenu onClick={handleFavouriteClick}>My favourites</TextMenu>}
             {userCustomer && <TextMenu onClick={handleOrderHistoryClick}>Order history</TextMenu>}
             <TextMenu onClick={handleLogout}>Exit</TextMenu>
             <div style={{ marginTop: 'auto' }} />

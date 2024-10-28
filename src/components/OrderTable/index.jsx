@@ -1,37 +1,29 @@
 import { Container, TableHeader, TableRow, TableCell } from './styles';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { Select } from '../Select';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import { GoDotFill } from 'react-icons/go';
-
 import { useAuth } from '../../hooks/auth';
+import { api } from '../../services/api';
 
 export function OrderTable() {
     const { user } = useAuth();
+    const [orders, setOrders] = useState([]);
 
     const userAdmin = user.role === 'admin';
-    const userCustomer = user.role === 'customer';
+    // const userCustomer = user.role === 'customer';
 
-    const [orders, setOrders] = useState([
-        {
-            status: 'Pending',
-            codigo: '00001',
-            detalhamento: '1x Radish Salad, 1x Params Toast, 1x Radish Salad, 1x Params Toast',
-            dataHora: '20/05 às 18h00',
-        },
-        {
-            status: 'Preparing',
-            codigo: '00002',
-            detalhamento: '1x Salada radish, 1 Torrada Params, 1x Salada radish, 1x Torrada Params',
-            dataHora: '20/05 às 18h00',
-        },
-        {
-            status: 'Delivered',
-            codigo: '00003',
-            detalhamento: '1x Salada radish, 1 Torrada Params, 1x Salada radish, 1x Torrada Params',
-            dataHora: '20/05 às 18h00',
-        },
-    ]);
+    useEffect(() => {
+        async function fetchOrders() {
+            try {
+                const response = await api.get('/orders');
+                setOrders(response.data);
+            } catch (error) {
+                console.error('Error fetching orders', error);
+            }
+        }
+        fetchOrders();
+    }, []);
 
     const getStatusColor = (status) => {
         switch (status) {
@@ -57,19 +49,24 @@ export function OrderTable() {
         });
     }, []);
 
+    const buildDetailsDescription = (dishes) => {
+        const dishesDescription = dishes.map((dish) => `${dish.quantity} x ${dish.name}`).join(', ');
+        return dishesDescription;
+    };
+
     return (
         <Container>
             <TableHeader>
-                <TableCell style={{ fontSize: '1rem' }}>Status</TableCell>
-                <TableCell style={{ fontSize: '1rem' }}>Code</TableCell>
-                <TableCell style={{ fontSize: '1rem' }}>Details</TableCell>
-                <TableCell style={{ fontSize: '1rem' }}>Date and Time</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>Code</TableCell>
+                <TableCell>Details</TableCell>
+                <TableCell>Date and Time</TableCell>
             </TableHeader>
 
             {orders.map((order, index) => (
-                <TableRow key={index}>
+                <TableRow key={order.id || index}>
                     <TableCell>
-                        {userAdmin && (
+                        {userAdmin ? (
                             <Select
                                 value={order.status}
                                 options={[
@@ -78,21 +75,26 @@ export function OrderTable() {
                                     { value: 'Delivered', labelText: 'Delivered' },
                                 ]}
                                 icon={MdOutlineKeyboardArrowDown}
-                                onChange={(newStatus) => handleStatusChange(index, newStatus)}
+                                onChange={(newStatus) => handleStatusChange(index, newStatus.value)}
                                 iconColor={getStatusColor(order.status)}
-                                showStatusIcon={true}
                             />
-                        )}
-                        {userCustomer && (
+                        ) : (
                             <span style={{ display: 'flex', alignItems: 'center' }}>
                                 <GoDotFill style={{ color: getStatusColor(order.status), marginRight: '0.5rem' }} />
                                 {order.status}
                             </span>
                         )}
                     </TableCell>
-                    <TableCell>{order.codigo}</TableCell>
-                    <TableCell>{order.detalhamento}</TableCell>
-                    <TableCell>{order.dataHora}</TableCell>
+                    <TableCell>{String(order.id).padStart(8, '0')}</TableCell>
+                    <TableCell>{buildDetailsDescription(order.dishes)}</TableCell>
+                    <TableCell>
+                        {new Date(order.dateTime).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })} às{' '}
+                        {new Date(order.dateTime).toLocaleTimeString('pt-BR', {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: false,
+                        })}
+                    </TableCell>
                 </TableRow>
             ))}
         </Container>

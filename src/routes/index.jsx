@@ -78,7 +78,7 @@ export function App() {
                     path={routes.favourites}
                     element={
                         <AuthenticatedRoute>
-                            <Favourite />
+                            <Favourite onlyForRole={'customer'} />
                         </AuthenticatedRoute>
                     }
                 />

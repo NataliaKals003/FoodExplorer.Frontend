@@ -80,6 +80,7 @@ export const Logo = styled.div`
     .title {
         display: flex;
         flex-direction: column;
+        cursor: pointer;
     }
 
     strong {

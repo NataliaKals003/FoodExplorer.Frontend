@@ -7,7 +7,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import 'swiper/css';
 
-export function Swiper({ products }) {
+export function Swiper({ dishes, favourites }) {
     const prevRef = useRef(null);
     const nextRef = useRef(null);
     const swiperRef = useRef(null);
@@ -59,11 +59,18 @@ export function Swiper({ products }) {
                     2000: { slidesPerView: 4, spaceBetween: 5 },
                 }}
             >
-                {products.map((product, index) => (
-                    <SwiperSlide key={index}>
-                        <Card product={product} onClick={() => handleCardClick(product.id)} />
-                    </SwiperSlide>
-                ))}
+                {dishes.map((dish, index) => {
+                    const isFavourite = favourites.some((fav) => fav.id === dish.id);
+                    return (
+                        <SwiperSlide key={index}>
+                            <Card
+                                dish={dish}
+                                onClick={() => handleCardClick(dish.id)}
+                                isCurrentlyFavourite={isFavourite}
+                            />
+                        </SwiperSlide>
+                    );
+                })}
             </SwiperComponent>
             <div className="custom-swiper-button-next" ref={nextRef}>
                 <FaChevronRight size={24} />

@@ -4,12 +4,12 @@ import { IoIosHeart } from 'react-icons/io';
 import { SlPencil } from 'react-icons/sl';
 import { Amount } from '../Amount';
 import { Button } from '../Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../../hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
 
-export function Card({ product, onClick }) {
+export function Card({ dish, onClick, isCurrentlyFavourite }) {
     const { user } = useAuth();
 
     const userAdmin = user.role === 'admin';
@@ -21,20 +21,30 @@ export function Card({ product, onClick }) {
         navigate(`/dish/${id}`);
     };
 
-    const [isFavourite, setIsFavourite] = useState(false);
+    const [isFavourite, setIsFavourite] = useState(isCurrentlyFavourite);
+    console.log('is fav?', isCurrentlyFavourite);
 
-    const toggleFavourite = async (e) => {
+    const handleFavouriteClick = async (e) => {
         e.stopPropagation();
-        setIsFavourite((prev) => !prev);
+        const newValue = !isFavourite;
+        setIsFavourite(newValue);
 
-        if (!isFavourite) {
+        if (newValue) {
+            console.log('eh favorito');
             try {
-                await api.post('/favourites', {
-                    dish_id: dishId,
-                    user_id: userCustomer.id,
-                });
+                const requestBody = {
+                    dishId: dish.id,
+                };
+
+                await api.post('/favourites', requestBody);
             } catch (error) {
                 console.error('Failed to add to favourites', error);
+            }
+        } else if (!newValue) {
+            try {
+                await api.delete(`/favourites/${dish.id}`);
+            } catch (error) {
+                console.error('Failed to remove from favourites', error);
             }
         }
     };
@@ -44,17 +54,17 @@ export function Card({ product, onClick }) {
             <Content>
                 {userCustomer &&
                     (isFavourite ? (
-                        <IoIosHeart className="heartFavourite" onClick={toggleFavourite} />
+                        <IoIosHeart className="heartFavourite" onClick={handleFavouriteClick} />
                     ) : (
-                        <IoIosHeartEmpty className="heart" onClick={toggleFavourite} />
+                        <IoIosHeartEmpty className="heart" onClick={handleFavouriteClick} />
                     ))}
 
-                {userAdmin && <SlPencil className="edit" onClick={() => handleEditDishClick(product.id)} />}
-                <img src={product.image} alt={product.image} onClick={onClick} />
-                <h1 onClick={onClick}>{`${product.name} >`}</h1>
-                <p>{product.description}</p>
-                {userAdmin && <span className="priceAdmin">R$ {product.price}</span>}
-                {userCustomer && <span className="priceCustomer">R$ {product.price}</span>}
+                {userAdmin && <SlPencil className="edit" onClick={() => handleEditDishClick(dish.id)} />}
+                <img src={dish.image} alt={dish.image} onClick={onClick} />
+                <h1 onClick={onClick}>{`${dish.name} >`}</h1>
+                <p>{dish.description}</p>
+                {userAdmin && <span className="priceAdmin">R$ {dish.price}</span>}
+                {userCustomer && <span className="priceCustomer">R$ {dish.price}</span>}
             </Content>
             {userCustomer && (
                 <Footer>

@@ -200,10 +200,6 @@ export const Content = styled.div`
     flex-grow: 1;
     margin: 0rem 7.6rem 0rem 7.6rem;
 
-    h3 {
-        display: none;
-    }
-
     h2 {
         font-size: 2rem;
         font-family: 'Poppins';
@@ -221,30 +217,14 @@ export const Content = styled.div`
         margin: 0rem 2rem;
 
         h2 {
-            display: none;
-        }
-
-        h3 {
-            display: block;
-            font-family: 'Poppins';
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
+            font-size: 1rem;
         }
     }
     @media (max-width: ${LAYOUT_BREAKPOINTS.SM}) {
         margin: 0 0 0 1.5rem;
 
         h2 {
-            display: none;
-        }
-
-        h3 {
-            display: block;
-            font-family: 'Poppins';
             font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
         }
     }
 `;

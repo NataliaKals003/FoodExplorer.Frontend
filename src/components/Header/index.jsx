@@ -72,7 +72,9 @@ export function Header() {
             <Search>
                 <InputHeader placeholder="Seach by dishes or ingredients" icon={IoSearchOutline} type="text" />
             </Search>
-            <ButtonText onClick={handleFavouriteClick} className="favouriteOrderButton" title="My favourites" />
+            {userCustomer && (
+                <ButtonText onClick={handleFavouriteClick} className="favouriteOrderButton" title="My favourites" />
+            )}
             {userCustomer && (
                 <ButtonText onClick={handleOrderHistoryClick} className="headerTextButton" title="Order history" />
             )}
