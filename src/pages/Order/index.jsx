@@ -2,27 +2,44 @@ import { Container, Content, MyOrderContainer, MyOrder } from './style.js';
 import { Header } from '../../components/Header/index.jsx';
 import { Payment } from '../../components/Payment/index.jsx';
 import { Footer } from '../../components/Footer/index.jsx';
-import pizza from '../../assets/Screenshot_19.png';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ButtonText } from '../../components/ButtonText/index.jsx';
+import { useState, useEffect } from 'react';
+import { api } from '../../services/api';
 
 export function Order() {
-    const orders = [
-        { id: 1, name: 'Salada Radish', quantity: 1, price: `$ ${48.9}`, image: pizza },
-        { id: 2, name: 'Pizza Margherita', quantity: 2, price: `$ ${48.9}`, image: pizza },
-        { id: 3, name: 'Torta de Limão', quantity: 1, price: `$ ${12.5}`, image: pizza },
-        { id: 4, name: 'Torta de Laranja', quantity: 1, price: `$ ${12.5}`, image: pizza },
-    ];
+    const [order, setOrder] = useState();
 
-    function calculateTotal(orders) {
-        return orders
-            .reduce((total, order) => {
-                const priceNumber = parseFloat(order.price.replace('$', '').trim());
-                return total + priceNumber * order.quantity;
-            }, 0)
-            .toFixed(2);
-    }
+    const { id } = useParams();
 
-    const totalPrice = calculateTotal(orders);
+    useEffect(() => {
+        if (id) {
+            async function fetchOrder() {
+                try {
+                    const response = await api.get(`/orders/${id}`);
+                    setOrder(response.data);
+                } catch (error) {
+                    console.error('Error fetching order', error);
+                }
+            }
+            fetchOrder();
+        } else {
+            async function fetchCategories() {
+                try {
+                    const response = await api.get(`/orders`);
+                    setOrder(response.data);
+                } catch (error) {
+                    console.error('Error fetching order', error);
+                }
+            }
+            fetchCategories();
+        }
+    }, []);
+
+    // const buildDishDescription = (dish) => {
+    //     const dishesDescription = dish.map((dish) => `${dish.quantity} x ${dish.name}`);
+    //     return dishesDescription;
+    // };
 
     return (
         <Container>
@@ -30,21 +47,19 @@ export function Order() {
             <Content>
                 <MyOrderContainer>
                     <h1>My order</h1>
-                    {orders.map((order) => (
-                        <MyOrder key={order.id}>
-                            <img src={order.image} alt={order.name} />
+                    {order?.dishes?.map((dish, index) => (
+                        <MyOrder key={dish.id || index}>
+                            <img src={dish.image} alt={dish.name} />
                             <div className="dish-wrap">
                                 <div className="dishDetails">
-                                    <h2>
-                                        {order.quantity} x {order.name}
-                                    </h2>
-                                    <span>{order.price}</span>
+                                    <h2>{`${dish.quantity} x ${dish.name}`}</h2>
+                                    <span>$ {dish.price}</span>
                                 </div>
                                 <ButtonText className="deleteDish" title="Delete" />
                             </div>
                         </MyOrder>
                     ))}
-                    <span className="totalPrice">Total: R$ {totalPrice}</span>
+                    <span className="totalPrice">Total: $ {order?.totalPrice}</span>
                 </MyOrderContainer>
                 <Payment />
             </Content>

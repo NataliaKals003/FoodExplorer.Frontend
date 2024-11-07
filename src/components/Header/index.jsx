@@ -75,22 +75,22 @@ export function Header() {
             {userCustomer && (
                 <ButtonText onClick={handleFavouriteClick} className="favouriteOrderButton" title="My favourites" />
             )}
-            {userCustomer && (
-                <ButtonText onClick={handleOrderHistoryClick} className="headerTextButton" title="Order history" />
-            )}
-
+            <ButtonText onClick={handleOrderHistoryClick} className="headerTextButton" title="Order history" />
             {userAdmin && <ButtonText onClick={handleNewDishClick} className="headerTextButton" title="New dish" />}
-
-            <OrdersIcon>
-                <PiReceiptBold />
-                <span>{orderCount}</span>
-            </OrdersIcon>
-            <Button
-                className="headerButton"
-                icon={PiReceiptBold}
-                onClick={userCustomer && handleOrderDishClick}
-                title={`Orders (${orderCount})`}
-            />
+            {userCustomer && (
+                <OrdersIcon>
+                    <PiReceiptBold />
+                    <span>{orderCount}</span>
+                </OrdersIcon>
+            )}
+            {userCustomer && (
+                <Button
+                    className="headerButton"
+                    icon={PiReceiptBold}
+                    onClick={userCustomer ? handleOrderDishClick : undefined}
+                    title={`Orders (${orderCount})`}
+                />
+            )}
             <Logout onClick={handleLogout}>
                 <LuLogOut />
             </Logout>

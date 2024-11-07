@@ -36,10 +36,23 @@ export const SelectWrapper = styled.div`
         -webkit-appearance: none;
         -moz-appearance: none;
 
-        > svg {
+        .iconSelect {
             margin-left: 0.5rem;
             color: ${({ theme }) => theme.COLORS.LIGHT_400};
             font-size: 1.6rem;
+        }
+
+        .iconSelect.loading-icon {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
     }
 `;

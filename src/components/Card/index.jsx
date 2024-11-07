@@ -4,7 +4,7 @@ import { IoIosHeart } from 'react-icons/io';
 import { SlPencil } from 'react-icons/sl';
 import { Amount } from '../Amount';
 import { Button } from '../Button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAuth } from '../../hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
@@ -17,12 +17,28 @@ export function Card({ dish, onClick, isCurrentlyFavourite }) {
 
     const navigate = useNavigate();
 
+    const [quantity, setQuantity] = useState(0);
+
+    const handleIncludeClick = async () => {
+        try {
+            await api.post('/orderDishes', {
+                dishId: dish.id,
+                quantity: quantity,
+            });
+
+            setQuantity(0);
+
+            // navigate('/order');
+        } catch (error) {
+            console.error('Erro ao adicionar prato à ordem:', error);
+        }
+    };
+
     const handleEditDishClick = (id) => {
         navigate(`/dish/${id}`);
     };
 
     const [isFavourite, setIsFavourite] = useState(isCurrentlyFavourite);
-    console.log('is fav?', isCurrentlyFavourite);
 
     const handleFavouriteClick = async (e) => {
         e.stopPropagation();
@@ -63,13 +79,19 @@ export function Card({ dish, onClick, isCurrentlyFavourite }) {
                 <img src={dish.image} alt={dish.image} onClick={onClick} />
                 <h1 onClick={onClick}>{`${dish.name} >`}</h1>
                 <p>{dish.description}</p>
-                {userAdmin && <span className="priceAdmin">R$ {dish.price}</span>}
-                {userCustomer && <span className="priceCustomer">R$ {dish.price}</span>}
+                {userAdmin && <span className="priceAdmin">$ {dish.price}</span>}
+                {userCustomer && <span className="priceCustomer">$ {dish.price}</span>}
             </Content>
             {userCustomer && (
                 <Footer>
-                    <Amount className="cardAmount" value />
-                    <Button className="cardButton">include</Button>
+                    <Amount
+                        className="cardAmount"
+                        value={quantity}
+                        onChange={(newQuantity) => setQuantity(newQuantity)}
+                    />
+                    <Button className="cardButton" onClick={handleIncludeClick}>
+                        include
+                    </Button>
                 </Footer>
             )}
         </Container>

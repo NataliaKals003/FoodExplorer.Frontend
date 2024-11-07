@@ -3,18 +3,20 @@ import { GoPlus } from 'react-icons/go';
 import { FiMinus } from 'react-icons/fi';
 import { useState } from 'react';
 
-export function Amount({ className }) {
-    const [amount, setAmount] = useState(0);
-
+export function Amount({ className, value, onChange }) {
     const increaseAmount = () => {
-        setAmount((prevAmount) => prevAmount + 1);
+        // setAmount((prevAmount) => prevAmount + 1);
+        const newQuantity = value + 1;
+        onChange(newQuantity);
     };
 
     const decreaseAmount = () => {
-        setAmount((prevAmount) => (prevAmount > 0 ? prevAmount - 1 : 0));
+        // setAmount((prevAmount) => (prevAmount > 0 ? prevAmount - 1 : 0));
+        const newQuantity = value > 0 ? value - 1 : 0;
+        onChange(newQuantity);
     };
 
-    const formattedAmount = amount === 0 ? '0' : amount < 10 ? `0${amount}` : amount.toString();
+    const formattedAmount = value === 0 ? '0' : value < 10 ? `0${value}` : value.toString();
 
     return (
         <Container className={className}>

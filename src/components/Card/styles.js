@@ -133,7 +133,6 @@ export const Footer = styled.footer`
 
     .cardAmount {
         margin-bottom: 0;
-        margin-top: 0.75rem;
 
         span {
             font-size: 1.25rem;
@@ -154,6 +153,10 @@ export const Footer = styled.footer`
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
         flex-direction: column;
         margin: 0 1.5rem 1.5rem;
+
+        .cardAmount {
+            margin-top: 0.75rem;
+        }
 
         .cardButton {
             padding: 0.25rem 2rem;

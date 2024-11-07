@@ -17,7 +17,7 @@ export function Select({ title, value, options, icon: Icon, onChange, iconColor,
                 <div className="selected">
                     {showStatusIcon && <GoDotFill className="statusIcon" style={{ color: iconColor }} />}
                     {value}
-                    {Icon && <Icon />}
+                    {Icon && Icon}
                 </div>
                 {isOpen && (
                     <Dropdown>

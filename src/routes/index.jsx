@@ -87,13 +87,13 @@ export function App() {
                     path={routes.orderHistory}
                     element={
                         <AuthenticatedRoute>
-                            <OrderHistory onlyForRole={'customer'} />
+                            <OrderHistory />
                         </AuthenticatedRoute>
                     }
                 />
 
                 <Route
-                    path={routes.order}
+                    path={routes.orderDetails}
                     element={
                         <AuthenticatedRoute>
                             <Order onlyForRole={'customer'} />

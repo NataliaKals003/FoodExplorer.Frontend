@@ -8,7 +8,7 @@ import { api } from '../../services/api';
 
 export function Favourite() {
     const { user } = useAuth();
-    const userCustomer = user.role === 'customer';
+    // const userCustomer = user.role === 'customer';
 
     const [favourites, setFavourites] = useState([]);
 
@@ -47,8 +47,8 @@ export function Favourite() {
                 <h1>My Favourites</h1>
                 <MyFavouriteContainer>
                     {favourites.length > 0 ? (
-                        favourites.map((dish) => (
-                            <MyFavourite key={dish.dishId}>
+                        favourites.map((dish, index) => (
+                            <MyFavourite key={dish.dishId || index}>
                                 <img src={dish.image} alt={dish.name} />
                                 <div className="favourite-wrap">
                                     <h2>{dish.name}</h2>
