@@ -6,8 +6,15 @@ export const Container = styled.div`
     width: 100%;
 
     .backButton {
-        font-weight: 500;
+        font-size: 1.5rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        /* margin-bottom: 2rem; */
         margin: 1.5rem 0 2.6rem 7.6rem;
+        svg {
+            font-size: 1.5rem;
+        }
     }
 `;
 
@@ -16,24 +23,15 @@ export const Content = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center; /* Ensures vertical alignment */
     margin: 2rem 7.6rem;
     font-family: 'Poppins', sans-serif;
-
-    .backButton {
-        font-size: 1.5rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        align-self: flex-start;
-        margin-bottom: 2rem;
-        svg {
-            font-size: 1.5rem;
-        }
-    }
+    gap: 2rem; /* Adds space between the image and text */
 
     .text-content {
         align-self: center;
         margin-left: 2rem;
+        max-width: 60%; /* Prevents text from being too wide */
 
         h1 {
             font-weight: 500;
@@ -84,6 +82,7 @@ export const Content = styled.div`
         width: 390px;
         height: 390px;
         border-radius: 50%;
+        object-fit: cover; /* Ensures the image is properly cropped in a circle */
     }
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.LG}) {
@@ -91,12 +90,10 @@ export const Content = styled.div`
         .backButton {
             font-weight: 400;
             font-size: 1.4rem;
-            align-self: flex-start;
         }
 
         .text-content {
             margin-left: 2rem;
-            align-self: center;
 
             h1 {
                 font-weight: 500;
@@ -105,8 +102,6 @@ export const Content = styled.div`
 
             p {
                 font-size: 0.9rem;
-                font-weight: 400;
-                margin: 1.5rem 0;
             }
 
             .bottom-content {
@@ -114,18 +109,6 @@ export const Content = styled.div`
 
                 .include {
                     font-size: 0.9rem;
-
-                    .text-desktop {
-                        display: block;
-                    }
-
-                    .text-mobile {
-                        display: none;
-
-                        .icon {
-                            display: none;
-                        }
-                    }
                 }
             }
         }
@@ -146,7 +129,6 @@ export const Content = styled.div`
         .backButton {
             font-weight: 400;
             font-size: 1.5rem;
-            align-self: flex-start;
         }
 
         .text-content {
@@ -171,29 +153,12 @@ export const Content = styled.div`
                 .include {
                     font-size: 0.8rem;
                     width: 100%;
-
-                    .text-desktop {
-                        display: none;
-                    }
-
-                    .text-mobile {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: center;
-                        align-items: center;
-
-                        .icon {
-                            display: block;
-                            margin-right: 0.5rem;
-                        }
-                    }
                 }
             }
         }
 
         img {
             margin-bottom: 1rem;
-            align-self: center;
             width: 200px;
             height: 200px;
         }

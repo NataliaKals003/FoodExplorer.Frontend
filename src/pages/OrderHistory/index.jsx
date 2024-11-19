@@ -23,7 +23,6 @@ export function OrderHistory() {
         try {
             await api.patch(`/orders/${orderId}`, { status: newStatus });
 
-            // Atualize o estado do pedido no frontend
             setOrders((prevOrders) =>
                 prevOrders.map((order) => (order.id === orderId ? { ...order, status: newStatus } : order)),
             );
@@ -48,7 +47,7 @@ export function OrderHistory() {
 
     return (
         <Container>
-            <Header />
+            <Header orders={orders} />
             <Content>
                 <h1>Order History</h1>
                 {orders.length > 0 ? (

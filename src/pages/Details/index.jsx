@@ -13,13 +13,15 @@ import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
 import { useAuth } from '../../hooks/auth.jsx';
 
-export function Details({ product }) {
+export function Details() {
     const { user } = useAuth();
 
-    const userAdmin = user?.role === 'admin';
+    // const userAdmin = user?.role === 'admin';
     const userCustomer = user?.role === 'customer';
 
     const navigate = useNavigate();
+
+    const [quantity, setQuantity] = useState(0);
 
     const [data, setData] = useState(null);
     const { id } = useParams();
@@ -37,6 +39,21 @@ export function Details({ product }) {
 
         fetchDish();
     }, [id]);
+
+    const handleIncludeClick = async () => {
+        try {
+            await api.post('/orderDishes', {
+                dishId: data.id,
+                quantity: quantity,
+            });
+
+            setQuantity(0);
+
+            // navigate('/order');
+        } catch (error) {
+            console.error('Erro ao adicionar prato à ordem:', error);
+        }
+    };
 
     const handleEditDishClick = () => {
         navigate(`/dish/${id}`);
@@ -63,12 +80,20 @@ export function Details({ product }) {
                             })}
                         </TagsContainer>
                         <div className="bottom-content">
-                            {userCustomer && <Amount className="amount" />}
+                            {userCustomer && (
+                                <Amount
+                                    className="amount"
+                                    value={quantity}
+                                    onChange={(newQuantity) => setQuantity(newQuantity)}
+                                />
+                            )}
                             <Button className="include">
                                 {userCustomer ? (
-                                    <span className="text-desktop">Include ∙ $ {data.price} </span>
+                                    <span className="text-desktop" onClick={handleIncludeClick}>
+                                        Include ∙ $ {data.price}{' '}
+                                    </span>
                                 ) : (
-                                    <span product={product} onClick={handleEditDishClick} className="text-desktop">
+                                    <span dish={dish} onClick={handleEditDishClick} className="text-desktop">
                                         Edit dish
                                     </span>
                                 )}
@@ -77,7 +102,7 @@ export function Details({ product }) {
                                         <PiReceiptBold className="icon" size={15} /> order ∙ $ {data.price}
                                     </span>
                                 ) : (
-                                    <span product={product} onClick={handleEditDishClick} className="text-mobile">
+                                    <span dish={dish} onClick={handleEditDishClick} className="text-mobile">
                                         Edit dish
                                     </span>
                                 )}

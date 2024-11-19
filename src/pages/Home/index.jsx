@@ -14,6 +14,7 @@ export function Home() {
         try {
             const response = await api.get('/dishes');
             setDishes(response.data);
+            console.log('fetched:', response.data);
         } catch (error) {
             console.error('Error fetching dishes', error);
         }
@@ -23,7 +24,7 @@ export function Home() {
         try {
             const response = await api.get('/favourites');
             setFavourites(response.data);
-            console.log('Favourites fetched:', response.data);
+            // console.log('Favourites fetched:', response.data);
         } catch (error) {
             console.error('Error fetching favourites:', error);
         }
@@ -36,7 +37,7 @@ export function Home() {
 
     return (
         <Container>
-            <Header />
+            <Header value={dishes} />
             <Banner>
                 <ImageContainer>
                     <img src={macarons} alt="Macarons" />

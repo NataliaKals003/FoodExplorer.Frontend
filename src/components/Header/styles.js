@@ -133,7 +133,7 @@ export const Search = styled.div`
     align-items: center;
     flex: 1;
     margin: 0 2rem;
-    height: 100px;
+    /* height: 100px; */
 
     .header {
         display: flex;
@@ -145,6 +145,32 @@ export const Search = styled.div`
         }
     }
 
+    .search-results {
+        max-height: 300px;
+        overflow-y: auto;
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+        position: absolute;
+        top: 100%; /* Place the results container directly below the input */
+        left: 0;
+        width: 100%;
+        z-index: 10;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+        border-radius: 5px; /* Rounded corners */
+        margin-top: 2px;
+        margin-bottom: 3rem;
+        padding: 1rem;
+    }
+
+    .result-item {
+        padding: 10px;
+        color: #fff; /* White text for contrast */
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .result-item:hover {
+        background-color: rgba(255, 255, 255, 0.2); /* Light highlight on hover */
+    }
     @media (max-width: 768px) {
         display: none;
     }

@@ -1,22 +1,22 @@
 import { Container, ButtonPlus, ButtonMinus, AmountDisplay } from './styles';
 import { GoPlus } from 'react-icons/go';
 import { FiMinus } from 'react-icons/fi';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 export function Amount({ className, value, onChange }) {
     const increaseAmount = () => {
-        // setAmount((prevAmount) => prevAmount + 1);
         const newQuantity = value + 1;
+        console.log('Increasing amount:', newQuantity);
         onChange(newQuantity);
     };
 
     const decreaseAmount = () => {
-        // setAmount((prevAmount) => (prevAmount > 0 ? prevAmount - 1 : 0));
         const newQuantity = value > 0 ? value - 1 : 0;
-        onChange(newQuantity);
+        onChange(newQuantity); // This will call the onChange passed from the parent
+        console.log(value);
     };
 
-    const formattedAmount = value === 0 ? '0' : value < 10 ? `0${value}` : value.toString();
+    const formattedAmount = value === 0 || value == null ? '0' : value < 10 ? `0${value}` : value.toString();
 
     return (
         <Container className={className}>

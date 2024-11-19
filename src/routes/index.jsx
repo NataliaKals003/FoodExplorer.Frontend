@@ -101,6 +101,15 @@ export function App() {
                     }
                 />
 
+                <Route
+                    path={routes.orderDetails.replace('/:id', '')}
+                    element={
+                        <AuthenticatedRoute>
+                            <Order onlyForRole={'customer'} />
+                        </AuthenticatedRoute>
+                    }
+                />
+
                 <Route path="*" exact={true} element={<NotFound />} />
             </Routes>
         </BrowserRouter>

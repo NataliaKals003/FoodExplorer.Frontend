@@ -10,9 +10,10 @@ export const Container = styled.div`
 
 export const Content = styled.div`
     margin: 2rem 7.6rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
+    display: ${({ hasDishes }) => (hasDishes ? 'flex' : 'block')};
+    justify-content: ${({ hasDishes }) => (hasDishes ? 'space-around' : 'none')};
+    align-items: ${({ hasDishes }) => (hasDishes ? 'flex-start' : 'none')};
+    flex: ${({ hasDishes }) => (hasDishes ? 'none' : '1')};
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
         flex-direction: column;
