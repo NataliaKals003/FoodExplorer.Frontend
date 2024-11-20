@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { LAYOUT_BREAKPOINTS } from "../../styles/layoutBreakpoints";
+import styled from 'styled-components';
+import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 
 export const Container = styled.header`
     grid-area: header;
@@ -25,62 +25,106 @@ export const Container = styled.header`
             justify-content: center;
         }
     }
-    
-    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+
+    @media (max-width: 768px) {
         padding: 3.5rem 1.75rem 1.5rem 1.75rem;
 
         .headerButton {
+            display: none;
+        }
+
+        .headerTextButton {
+            display: none;
+        }
+
+        .favouriteOrderButton {
             display: none;
         }
     }
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.SM}) {
         padding: 3.5rem 1.75rem 1.5rem 1.75rem;
+
+        .headerTextButton {
+            display: none;
+        }
     }
 
+    .headerTextButton {
+        /* display: none; */
+        font-weight: 400;
+        font-size: 1rem;
+        margin-right: 1.5rem;
+    }
+
+    .favouriteOrderButton {
+        font-weight: 400;
+        font-size: 1rem;
+        margin-right: 1.5rem;
+    }
 `;
 
 export const Logo = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: center;
     font-style: normal;
     font-weight: 700;
     font-size: 1.5rem;
 
     > img {
         margin-right: 0.62rem;
-        width: 1.25rem;
-        height: 1.25rem;
-        size: 1rem;
+        width: 1.87rem;
+        height: 1.87rem;
     }
 
-    span {
-        @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+    .title {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+    }
+
+    strong {
+        font-size: 0.75rem;
+        align-self: flex-end;
+        font-weight: 400;
+        color: ${({ theme }) => theme.COLORS.CAKE_200};
+    }
+
+    @media (max-width: 768px) {
+        .title {
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        span {
             font-size: 1.5rem;
-        }  
+        }
+        strong {
+            align-self: center;
+            margin-left: 8px;
+        }
     }
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.XS}) {
-    font-size: 1.5rem;
-    flex: 1;
-    padding: 0 1rem,;
-  }
+        font-size: 1.5rem;
+        flex: 1;
+        padding: 0 1rem;
+    }
 `;
 
 export const Logout = styled.button`
     border: none;
     background: none;
-    
-    >svg {
+
+    > svg {
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         font-size: 2rem;
         margin-left: 2rem;
     }
 
-    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
-            display: none;
-        }
+    @media (max-width: 768px) {
+        display: none;
+    }
 `;
 
 export const Search = styled.div`
@@ -89,19 +133,45 @@ export const Search = styled.div`
     align-items: center;
     flex: 1;
     margin: 0 2rem;
-    height: 100px;
-    
+    /* height: 100px; */
+
     .header {
         display: flex;
         align-items: center;
         padding: 0.75rem 6rem;
-        
+
         > svg {
             margin-right: 0.5rem;
         }
     }
 
-    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+    .search-results {
+        max-height: 300px;
+        overflow-y: auto;
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+        position: absolute;
+        top: 100%; /* Place the results container directly below the input */
+        left: 0;
+        width: 100%;
+        z-index: 10;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+        border-radius: 5px; /* Rounded corners */
+        margin-top: 2px;
+        margin-bottom: 3rem;
+        padding: 1rem;
+    }
+
+    .result-item {
+        padding: 10px;
+        color: #fff; /* White text for contrast */
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .result-item:hover {
+        background-color: rgba(255, 255, 255, 0.2); /* Light highlight on hover */
+    }
+    @media (max-width: 768px) {
         display: none;
     }
 `;
@@ -110,23 +180,22 @@ export const Menu = styled.button`
     background-color: transparent;
     border: none;
     display: none;
-    
+
     > svg {
-        
-        margin-right: .5rem;
+        margin-right: 0.5rem;
         font-size: 2rem;
-        color:  ${({ theme }) => theme.COLORS.LIGHT_100};
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
     }
 
-    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+    @media (max-width: 768px) {
         display: block;
     }
 `;
 
 export const OrdersIcon = styled.div`
-        position: relative;
-        display: none;
-        align-items: center;
+    position: relative;
+    display: none;
+    align-items: center;
 
     > svg {
         font-size: 2rem;
@@ -148,7 +217,7 @@ export const OrdersIcon = styled.div`
         justify-content: center;
     }
 
-    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+    @media (max-width: 768px) {
         display: flex;
     }
 

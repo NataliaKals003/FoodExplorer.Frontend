@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.button`
     width: 100%;
@@ -7,7 +7,7 @@ export const Container = styled.button`
     border: 0;
     border-radius: 0.31rem;
     padding: 0.75rem 1.5rem;
-    font-family: "Poppins";
+    font-family: 'Poppins';
     font-weight: 500;
     font-style: normal;
     font-size: 0.87rem;
@@ -23,4 +23,3 @@ export const Container = styled.button`
         margin-left: 1.25rem;
     }
 `;
-

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 
 export const Container = styled.div`
@@ -6,26 +6,26 @@ export const Container = styled.div`
     height: 100vh;
 
     .backButton {
-        margin: 2.5rem 7.62rem 1.5rem; 
-        
-        svg {
-        font-size: 2rem; 
+        margin: 2.5rem 7.62rem 1.5rem;
 
-        @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
-            font-size: 1.4rem;
-            align-self: center;
-        }
+        svg {
+            font-size: 2rem;
+
+            @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+                font-size: 1.4rem;
+                align-self: center;
+            }
         }
 
         @media (max-width: ${LAYOUT_BREAKPOINTS.LG}) {
             font-size: 1.2rem;
-        }   
+        }
 
         @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
             margin: 0.6rem 2rem 0.5rem;
             font-weight: 500;
             font-size: 1rem;
-        }  
+        }
     }
 
     main {
@@ -34,7 +34,7 @@ export const Container = styled.div`
 `;
 
 export const Form = styled.form`
-    margin: 0 7.62rem 6.90rem; 
+    margin: 0 7.62rem 6.9rem;
     display: flex;
     flex-direction: column;
 
@@ -46,11 +46,11 @@ export const Form = styled.form`
         margin-bottom: 2rem;
     }
 
-        @media (max-width: ${LAYOUT_BREAKPOINTS.LG}) {
-            h1 {
-                font-size: 1.5rem;
-            }
+    @media (max-width: ${LAYOUT_BREAKPOINTS.LG}) {
+        h1 {
+            font-size: 1.5rem;
         }
+    }
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
         margin: 0 2rem 3.31rem;
@@ -88,9 +88,9 @@ export const ButtonContainer = styled.div`
     gap: 2rem;
     margin-top: 2rem;
     justify-content: flex-end;
-    /* width: fit-content; */
 
-    .saveDish, .deleteDish {
+    .saveDish,
+    .deleteDish {
         width: fit-content;
         align-self: center;
         justify-content: center;
@@ -99,9 +99,10 @@ export const ButtonContainer = styled.div`
     .deleteDish {
         background-color: ${({ theme }) => theme.COLORS.DARK_800};
     }
-        
+
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
-        .saveDish, .deleteDish {
+        .saveDish,
+        .deleteDish {
             width: 100%;
         }
     }

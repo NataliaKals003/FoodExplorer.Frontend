@@ -1,12 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
-
 
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    color: ${({ theme }) => theme.COLORS.LIGHT_400}; 
+    color: ${({ theme }) => theme.COLORS.LIGHT_400};
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
         width: 100%;
@@ -26,6 +25,16 @@ export const Container = styled.div`
 
         &.dark {
             background-color: ${({ theme }) => theme.COLORS.DARK_900};
+        }
+
+        &[type='number']::-webkit-outer-spin-button,
+        &[type='number']::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        &[type='number'] {
+            -moz-appearance: textfield;
         }
     }
 `;

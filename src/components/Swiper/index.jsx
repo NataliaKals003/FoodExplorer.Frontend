@@ -1,28 +1,36 @@
-import { Container } from './styles'
-import { Card } from '../Card'
-import React, { useRef } from 'react';;
+import { Container } from './styles';
+import { Card } from '../Card';
+import React, { useRef, useEffect } from 'react';
 import { Swiper as SwiperComponent, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 import { useNavigate } from 'react-router-dom';
-import { appRoutes } from '../../routes/routes';
+import 'swiper/css';
 
-export function Swiper({ products }) {
-    const navigate = useNavigate();
-
+export function Swiper({ dishes, favourites }) {
     const prevRef = useRef(null);
     const nextRef = useRef(null);
+    const swiperRef = useRef(null);
+    const navigate = useNavigate();
+
+    const handleCardClick = (id) => {
+        navigate(`/dish/details/${id}`);
+    };
+
+    useEffect(() => {
+        if (swiperRef.current) {
+            swiperRef.current.navigation.update();
+        }
+    }, []);
 
     return (
         <Container>
             <SwiperComponent
-                modules={[Navigation]}
-                slidesPerView={4}
-                centeredSlides={true}
-                pagination={{ clickable: false }}
+                modules={[Navigation, Pagination]}
+                slidesPerView={5}
+                spaceBetween={6}
+                pagination={{ clickable: true }}
+                loop={true}
                 navigation={{
                     prevEl: prevRef.current,
                     nextEl: nextRef.current,
@@ -33,37 +41,36 @@ export function Swiper({ products }) {
                     swiper.navigation.init();
                     swiper.navigation.update();
                 }}
-                loop={true}
                 breakpoints={{
                     190: { slidesPerView: 1 },
                     280: { slidesPerView: 1 },
                     320: { slidesPerView: 2, spaceBetween: 20 },
                     375: { slidesPerView: 2, spaceBetween: 10 },
-                    425: { slidesPerView: 3, spaceBetween: 80 },
-                    550: { slidesPerView: 4, spaceBetween: 50 },
+                    425: { slidesPerView: 3, spaceBetween: 10 },
+                    550: { slidesPerView: 4, spaceBetween: 10 },
                     650: { slidesPerView: 4, spaceBetween: 10 },
                     760: { slidesPerView: 2, spaceBetween: 10 },
-                    830: { slidesPerView: 3, spaceBetween: 80 },
-                    940: { slidesPerView: 3, spaceBetween: 80 },
-                    1024: { slidesPerView: 3, spaceBetween: 10 },
-                    1330: { slidesPerView: 3, spaceBetween: 10 },
-                    1280: { slidesPerView: 3, spaceBetween: 50 },
-                    1330: { slidesPerView: 4, spaceBetween: 20 },
-                    1420: { slidesPerView: 4, spaceBetween: 50 },
-                    2000: { slidesPerView: 5, spaceBetween: 10 },
+                    830: { slidesPerView: 3, spaceBetween: 10 },
+                    940: { slidesPerView: 3, spaceBetween: 10 },
+                    1024: { slidesPerView: 3, spaceBetween: 5 },
+                    1280: { slidesPerView: 3, spaceBetween: 5 },
+                    1330: { slidesPerView: 4, spaceBetween: 5 },
+                    1420: { slidesPerView: 4, spaceBetween: 5 },
+                    2000: { slidesPerView: 4, spaceBetween: 5 },
                 }}
             >
-                {products.map((product, index) => (
-                    <SwiperSlide key={index}>
-                        <Card
-                            onClick={() => navigate(appRoutes.details.replace(':id', product.id))}
-                            title={product.title}
-                            description={product.description}
-                            imageUrl={product.imageUrl}
-                            price={product.price}
-                        />
-                    </SwiperSlide>
-                ))}
+                {dishes.map((dish, index) => {
+                    const isFavourite = favourites.some((fav) => fav.id === dish.id);
+                    return (
+                        <SwiperSlide key={index}>
+                            <Card
+                                dish={dish}
+                                onClick={() => handleCardClick(dish.id)}
+                                isCurrentlyFavourite={isFavourite}
+                            />
+                        </SwiperSlide>
+                    );
+                })}
             </SwiperComponent>
             <div className="custom-swiper-button-next" ref={nextRef}>
                 <FaChevronRight size={24} />

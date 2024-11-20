@@ -1,36 +1,99 @@
 import { Container, Content, Footer } from './styles';
-import { IoIosHeartEmpty } from "react-icons/io";
-import { IoIosHeart } from "react-icons/io";
+import { IoIosHeartEmpty } from 'react-icons/io';
+import { IoIosHeart } from 'react-icons/io';
+import { SlPencil } from 'react-icons/sl';
 import { Amount } from '../Amount';
 import { Button } from '../Button';
 import { useState } from 'react';
+import { useAuth } from '../../hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import { api } from '../../services/api';
 
-export function Card({ title, description, price, imageUrl, ...rest }) {
+export function Card({ dish, onClick, isCurrentlyFavourite }) {
+    const { user } = useAuth();
 
-    const [isFavourite, setIsFavourite] = useState(false);
+    const userAdmin = user.role === 'admin';
+    const userCustomer = user.role === 'customer';
 
-    const toggleFavourite = () => {
-        setIsFavourite(prev => !prev);
-        // TODO(natalia): Invoke api
+    const navigate = useNavigate();
+
+    const [quantity, setQuantity] = useState(0);
+
+    const handleIncludeClick = async () => {
+        try {
+            await api.post('/orderDishes', {
+                dishId: dish.id,
+                quantity: quantity,
+            });
+
+            setQuantity(0);
+
+            // navigate('/order');
+        } catch (error) {
+            console.error('Erro ao adicionar prato à ordem:', error);
+        }
+    };
+
+    const handleEditDishClick = (id) => {
+        navigate(`/dish/${id}`);
+    };
+
+    const [isFavourite, setIsFavourite] = useState(isCurrentlyFavourite);
+
+    const handleFavouriteClick = async (e) => {
+        e.stopPropagation();
+        const newValue = !isFavourite;
+        setIsFavourite(newValue);
+
+        if (newValue) {
+            console.log('eh favorito');
+            try {
+                const requestBody = {
+                    dishId: dish.id,
+                };
+
+                await api.post('/favourites', requestBody);
+            } catch (error) {
+                console.error('Failed to add to favourites', error);
+            }
+        } else if (!newValue) {
+            try {
+                await api.delete(`/favourites/${dish.id}`);
+            } catch (error) {
+                console.error('Failed to remove from favourites', error);
+            }
+        }
     };
 
     return (
-        <Container {...rest}>
+        <Container>
             <Content>
-                {isFavourite
-                    ? <IoIosHeart className="heartFavourite" onClick={toggleFavourite} />
-                    : <IoIosHeartEmpty className="heart" onClick={toggleFavourite} />}
-                <img src={imageUrl} alt={title} />
-                <h1>{title}</h1>
-                <p>{description}</p>
-                <span className='price'>{price}</span>
+                {userCustomer &&
+                    (isFavourite ? (
+                        <IoIosHeart className="heartFavourite" onClick={handleFavouriteClick} />
+                    ) : (
+                        <IoIosHeartEmpty className="heart" onClick={handleFavouriteClick} />
+                    ))}
+
+                {userAdmin && <SlPencil className="edit" onClick={() => handleEditDishClick(dish.id)} />}
+                <img src={dish.image} alt={dish.image} onClick={onClick} />
+                <h1 onClick={onClick}>{`${dish.name} >`}</h1>
+                <p>{dish.description}</p>
+                {userAdmin && <span className="priceAdmin">$ {dish.price}</span>}
+                {userCustomer && <span className="priceCustomer">$ {dish.price}</span>}
             </Content>
-            <Footer>
-                <Amount className='cardAmount' />
-                <Button className='cardButton'>
-                    <span>incluir</span>
-                </Button>
-            </Footer>
+            {userCustomer && (
+                <Footer>
+                    <Amount
+                        className="cardAmount"
+                        value={quantity}
+                        onChange={(newQuantity) => setQuantity(newQuantity)}
+                    />
+                    <Button className="cardButton" onClick={handleIncludeClick}>
+                        include
+                    </Button>
+                </Footer>
+            )}
         </Container>
-    )
+    );
 }

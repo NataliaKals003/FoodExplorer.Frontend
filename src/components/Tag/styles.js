@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.span`
-    padding: 0.4rem 0.5rem;
+    display: inline-block;
+    margin: 0 0.75rem 1.5rem 0;
+    padding: 4px 8px;
     border-radius: 0.3rem;
-    margin-right: 0.37rem;
+    font-family: 'Poppins', sans-serif;
     background: ${({ theme }) => theme.COLORS.DARK_1000};
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    font-family: "Poppins", sans-serif;
-    font-size: 0.95rem;
 `;

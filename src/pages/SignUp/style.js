@@ -1,16 +1,22 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 
 export const Container = styled.div`
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    gap: 3rem;
-    overflow-y: auto;
+    justify-content: center;
+    gap: 13rem;
+
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        flex-direction: column;
+        gap: 4.5rem;
+    }
 `;
 
 export const Logo = styled.div`
     display: flex;
+    align-items: center;
 
     > img {
         margin-right: 0.62rem;
@@ -32,6 +38,10 @@ export const Form = styled.form`
     align-items: center;
     border-radius: 1rem;
     background-color: ${({ theme }) => theme.COLORS.DARK_700};
+
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        background: none;
+    }
 `;
 
 export const Content = styled.div`
@@ -65,6 +75,7 @@ export const Content = styled.div`
         border-radius: 0.5rem;
         margin-bottom: 2rem;
         font-size: 1rem;
+        margin-top: 0;
     }
 
     > Button {
@@ -77,5 +88,12 @@ export const Content = styled.div`
         font-family: 'Poppins';
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         margin-top: 2rem;
+    }
+
+    @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
+        padding: 0;
+        > h2 {
+            display: none;
+        }
     }
 `;

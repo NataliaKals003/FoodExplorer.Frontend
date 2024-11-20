@@ -1,29 +1,45 @@
-import { Container } from "./styles";
-import { TagItem } from "../TagIten";
-import { useState } from "react";
+import { Container } from './styles';
+import { TagItem } from '../TagIten';
+import { useEffect, useState } from 'react';
 
-export function Ingredients({ title }) {
-    const [ingredients, setIngredients] = useState([]);
-    const [newIngredient, setNewIngredient] = useState("");
+export function Ingredients({ value = [], title, onIngredientsChange, hasUnresolvedIngredient }) {
+    const [ingredients, setIngredients] = useState(value);
+    const [newIngredient, setNewIngredient] = useState('');
 
-    const handleAddIngredient = () => {
+    useEffect(() => {
+        if (value !== ingredients) {
+            setIngredients(value);
+        }
+    }, [value]);
+
+    useEffect(() => {
+        onIngredientsChange(ingredients);
+    }, [ingredients, onIngredientsChange]);
+
+    useEffect(() => {
+        hasUnresolvedIngredient(newIngredient.trim().length > 0);
+    }, [newIngredient]);
+
+    function handleAddIngredient() {
         if (newIngredient.trim()) {
-            setIngredients([...ingredients, newIngredient]);
-            setNewIngredient("");
+            setIngredients((prevState) => [...prevState, newIngredient.trim()]);
+            setNewIngredient('');
         }
-    };
+    }
 
-    const handleRemoveIngredient = (ingredientToRemove) => {
-        const removeTag = window.confirm(`Você deseja remover ${ingredientToRemove}?`);
-        if (removeTag) {
-            setIngredients(prevState => prevState.filter(ingredient => ingredient !== ingredientToRemove));
+    function handleRemoveIngredient(ingredientToRemove) {
+        if (ingredientToRemove) {
+            const removeIngredient = window.confirm(`Do you want to remove ${ingredientToRemove}?`);
+            if (removeIngredient) {
+                setIngredients((prevState) => prevState.filter((ingredient) => ingredient !== ingredientToRemove));
+            }
         }
-    };
+    }
 
     return (
         <Container>
             <span>{title}</span>
-            <section title="Ingredientes">
+            <section title="Ingredients">
                 {ingredients.map((ingredient, index) => (
                     <TagItem
                         key={String(index)}
@@ -33,12 +49,12 @@ export function Ingredients({ title }) {
                 ))}
                 <TagItem
                     isNew
-                    placeholder="Adicionar"
+                    placeholder="Add"
                     value={newIngredient}
-                    onChange={e => setNewIngredient(e.target.value)}
+                    onChange={(e) => setNewIngredient(e.target.value)}
                     onClick={handleAddIngredient}
                 />
             </section>
         </Container>
-    )
+    );
 }

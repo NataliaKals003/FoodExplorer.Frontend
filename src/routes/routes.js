@@ -1,11 +1,11 @@
-export const authRoutes = {
-    signIn: '/',
+export const routes = {
+    signIn: '/sign-in',
     signUp: '/sign-up',
-};
-
-export const appRoutes = {
     home: '/',
-    details: '/details/:id',
+    dishDetails: '/dish/details/:id',
+    favourites: '/favourite',
     createDish: '/dish',
     manageDish: '/dish/:id',
+    orderHistory: '/order-history',
+    orderDetails: '/order/details/:id',
 };

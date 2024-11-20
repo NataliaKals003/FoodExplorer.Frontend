@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { LAYOUT_BREAKPOINTS } from '../../styles/layoutBreakpoints';
 
 export const Container = styled.div`
@@ -13,15 +13,14 @@ export const Banner = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: ${({ theme }) => theme.COLORS.GRADIANTS_200};
     height: 16.25rem;
-    margin: 10rem 10rem 0rem 10rem;
+    margin: 10.25rem 7.6rem 0rem 7.6rem;
     border-radius: 8px;
     position: relative;
     overflow: visible;
     margin-bottom: 3.8rem;
-
 
     @media (max-width: ${LAYOUT_BREAKPOINTS.XL}) {
         height: 11.25rem;
@@ -62,12 +61,11 @@ export const ImageContainer = styled.div`
         transition: all 0.1s ease;
     }
 
-    
     @media (min-width: 1490px) {
         transform: translate(-15%, 14%);
         img {
             width: 34vw;
-            clip-path: inset(0 0 51% 0);
+            clip-path: inset(0 0 46% 0);
         }
     }
 
@@ -87,7 +85,7 @@ export const ImageContainer = styled.div`
         }
     }
 
-    @media (max-width: 768px){
+    @media (max-width: 768px) {
         transform: translate(-15%, 0%);
         img {
             width: 34vw;
@@ -98,8 +96,32 @@ export const ImageContainer = styled.div`
     @media (max-width: ${LAYOUT_BREAKPOINTS.MD}) {
         transform: translate(-10%, 5%);
         img {
-            width: 30vw;
+            width: 20vw;
             clip-path: inset(0 0 24% 0);
+        }
+    }
+
+    @media (max-width: 600px) {
+        transform: translate(-16%, 7%);
+        img {
+            width: 30vw;
+            clip-path: inset(0 0 31% 0);
+        }
+    }
+
+    @media (max-width: 400px) {
+        transform: translate(-16%, 7%);
+        img {
+            width: 40vw;
+            clip-path: inset(0 0 31% 0);
+        }
+    }
+
+    @media (max-width: 400px) {
+        transform: translate(-16%, 7%);
+        img {
+            width: 40vw;
+            clip-path: inset(0 0 31% 0);
         }
     }
 
@@ -176,11 +198,7 @@ export const TextBanner = styled.div`
 
 export const Content = styled.div`
     flex-grow: 1;
-    margin: 0rem 10rem 0rem 10rem;
-
-    h3 {
-        display: none;
-    }
+    margin: 0rem 7.6rem 0rem 7.6rem;
 
     h2 {
         font-size: 2rem;
@@ -199,30 +217,14 @@ export const Content = styled.div`
         margin: 0rem 2rem;
 
         h2 {
-            display: none;
-        }
-
-        h3 {
-            display: block;
-            font-family: 'Poppins';
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
+            font-size: 1rem;
         }
     }
     @media (max-width: ${LAYOUT_BREAKPOINTS.SM}) {
         margin: 0 0 0 1.5rem;
 
         h2 {
-            display: none;
-        }
-
-        h3 {
-            display: block;
-            font-family: 'Poppins';
             font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
         }
     }
 `;

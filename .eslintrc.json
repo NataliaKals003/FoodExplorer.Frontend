@@ -1,0 +1,15 @@
+{
+    "parser": "babel-eslint",
+    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
+    "plugins": ["prettier", "react", "react-hooks"],
+    "rules": {
+        "prettier/prettier": "error",
+        "react/prop-types": "off",
+        "react/react-in-jsx-scope": "off" // For React 17 and newer
+    },
+    "settings": {
+        "react": {
+            "version": "detect" // Automatically detect the version of React
+        }
+    }
+}
