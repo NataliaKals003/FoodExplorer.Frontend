@@ -29,7 +29,8 @@ export function ManageDish() {
         description: '',
         categoryId: undefined,
         categoryName: 'Meals',
-        imageFile: '',
+        imageFile: null, // Start with null
+        imageUrl: '', // Store the existing image URL
     });
 
     const [categoryOptions, setCategoryOptions] = useState([]);
@@ -44,10 +45,11 @@ export function ManageDish() {
     }, []);
 
     const handleImageUpload = useCallback((file) => {
+        console.log('Uploading image:', file);
         setFormData((prevData) => ({
             ...prevData,
             imageFile: file,
-            imageUrl: null,
+            imageUrl: null, // Reset the image URL if a new image is uploaded
         }));
         console.log('Image uploaded:', file.name);
     }, []);
@@ -98,9 +100,10 @@ export function ManageDish() {
         console.log('ingredients', formData.ingredients);
         console.log('category:', formData.categoryId);
 
-        console.log('Saving dish imageFile:', formData.imageFile);
         if (formData.imageFile) {
             formDataToSend.append('imageFile', formData.imageFile);
+        } else if (formData.imageUrl) {
+            formDataToSend.append('imageUrl', formData.imageUrl);
         }
 
         try {

@@ -26,6 +26,8 @@ export function Details() {
     const [data, setData] = useState(null);
     const { id } = useParams();
 
+    // console.log('dish', dish);
+
     useEffect(() => {
         const fetchDish = async () => {
             try {
@@ -93,7 +95,7 @@ export function Details() {
                                         Include ∙ $ {data.price}{' '}
                                     </span>
                                 ) : (
-                                    <span dish={dish} onClick={handleEditDishClick} className="text-desktop">
+                                    <span onClick={handleEditDishClick} className="text-desktop">
                                         Edit dish
                                     </span>
                                 )}
@@ -102,7 +104,7 @@ export function Details() {
                                         <PiReceiptBold className="icon" size={15} /> order ∙ $ {data.price}
                                     </span>
                                 ) : (
-                                    <span dish={dish} onClick={handleEditDishClick} className="text-mobile">
+                                    <span onClick={handleEditDishClick} className="text-mobile">
                                         Edit dish
                                     </span>
                                 )}

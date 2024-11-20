@@ -1,15 +1,15 @@
+import { useNavigate, useParams } from 'react-router-dom';
+import { useCallback, useState, useEffect } from 'react';
+import { api } from '../../services/api';
 import { Container, Content, MyOrderContainer, MyOrder } from './style.js';
 import { Header } from '../../components/Header/index.jsx';
 import { Payment } from '../../components/Payment/index.jsx';
 import { Footer } from '../../components/Footer/index.jsx';
-import { useNavigate, useParams } from 'react-router-dom';
 import { ButtonText } from '../../components/ButtonText/index.jsx';
-import { useCallback, useState, useEffect } from 'react';
-import { api } from '../../services/api';
 
 export function Order() {
     const [order, setOrder] = useState(null);
-
+    const [reload, setReload] = useState(false);
     const { id } = useParams();
 
     useEffect(() => {
@@ -31,28 +31,21 @@ export function Order() {
         }
 
         fetchOrder();
-    }, [id]); // Add `id` to the dependency array
-
-    useEffect(() => {
-        console.log('order', order);
-    }, [order]);
+    }, [id, reload]);
 
     async function handleRemoveDish(dishToRemove) {
         if (dishToRemove) {
-            console.log('dishToRemove', dishToRemove);
-            // console.log(order.id);
-            console.log('order', order);
-
             const confirmRemove = window.confirm(`Do you want to remove ${dishToRemove.name}?`);
             if (confirmRemove) {
                 const updatedOrder = {
                     ...order,
-                    dishes: order.dishes.filter((item, index) => index !== dishToRemove.index),
+                    dishes: order.dishes.filter((_, index) => index !== dishToRemove.index),
                 };
                 setOrder(updatedOrder);
 
                 try {
                     await api.delete(`/orderDishes/${order.id}/${dishToRemove.dishId}`);
+                    setReload(!reload); // Trigger reload to update the total price
                 } catch (error) {
                     console.error('Failed to remove dish:', error);
                 }
@@ -90,7 +83,6 @@ export function Order() {
                 </MyOrderContainer>
                 {order?.dishes?.length > 0 && <Payment />}
             </Content>
-
             <Footer />
         </Container>
     );
