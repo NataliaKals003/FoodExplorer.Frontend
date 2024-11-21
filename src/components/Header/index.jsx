@@ -67,7 +67,7 @@ export function Header() {
     };
 
     const handleNewDishClick = () => {
-        navigate(`/dishes`);
+        navigate(`/dish`);
         location.reload();
     };
 
