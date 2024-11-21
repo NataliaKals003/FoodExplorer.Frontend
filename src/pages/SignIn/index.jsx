@@ -50,7 +50,7 @@ export function SignIn() {
                     <ButtonText
                         onClick={() => navigate(routes.signUp)}
                         className="createAcount"
-                        title="Create an accounta"
+                        title="Create an account"
                     />
                 </Content>
             </Form>
