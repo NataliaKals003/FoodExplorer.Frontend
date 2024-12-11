@@ -8,7 +8,7 @@ export function Footer() {
                 <img src={polygonFooter} size={24} alt="Polygon" />
                 <h2>food explorer</h2>
             </Logo>
-            <span className="textLogo">© 2023 - All rights reserved.</span>
+            <span className="textLogo">© 2024 - All rights reserved.</span>
         </Container>
     );
 }
